@@ -12,25 +12,25 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class GenreDaoImpl implements GenreDao {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
-	
+
 	@Override
 	public void create(Genre g) {
 		em.persist(g);
 	}
-	
+
 	@Override
 	public void delete(Genre g) throws IllegalArgumentException {
 		em.remove(findById(g.getId()));
 	}
-	
+
 	@Override
-    public void update(Genre g) throws IllegalArgumentException {
-          em.merge(g); 
-    }
+	public void update(Genre g) throws IllegalArgumentException {
+		  em.merge(g);
+	}
 
 	@Override
 	public Genre findById(Long id) {
@@ -42,7 +42,7 @@ public class GenreDaoImpl implements GenreDao {
 		return em.createQuery("SELECT g FROM Genre g WHERE g.name like :name ",
 				Genre.class).setParameter("name", "%"+name+"%").getResultList();
 	}
-	
+
 	@Override
 	public List<Genre> findAll() {
 		return em.createQuery("select g from Genre g", Genre.class)
