@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Genre {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -26,24 +26,21 @@ public class Genre {
 //	@OrderBy("title DESC")
 //	@JoinColumn(name="Song_FK")
 //	private List<Song> songs new ArrayList<Song>();
-	
-	public void setId(Long id){
-		this.id = id;
-	}
-	
-	public Genre(Long genreId) {
-		this.id = genreId;
-	}
+
 	public Genre() {
 	}
 
-//	public void addSong(Song s){
-//		songs.add(s);
-//	}
+	public Genre(Long genreId) {
+		this.id = genreId;
+	}
 
-//	public List<Songse> getSongs() {
-//		return Collections.unmodifiableList(songs);
-//	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -53,9 +50,13 @@ public class Genre {
 		this.name = name;
 	}
 
-	public Long getId() {
-		return id;
-	}
+//	public void addSong(Song s){
+//		songs.add(s);
+//	}
+
+//	public List<Songse> getSongs() {
+//		return Collections.unmodifiableList(songs);
+//	}
 
 	@Override
 	public int hashCode() {
@@ -82,12 +83,12 @@ public class Genre {
 		return true;
 	}
 
-    @Override
-    public String toString() {
-        return "Genre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
- //               ", songs" + songs +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Genre{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+ //			   ", songs" + songs +
+				'}';
+	}
 }
