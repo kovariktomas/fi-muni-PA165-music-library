@@ -8,6 +8,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
+import cz.fi.muni.pa165.dao.GenreDao;
 
 @Configuration
 public class InMemoryDatabaseSpring {
