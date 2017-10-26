@@ -22,11 +22,6 @@ public class Genre {
 	@Column(nullable=false,unique=true)
 	private String name;
 
-//	@OneToMany()
-//	@OrderBy("title DESC")
-//	@JoinColumn(name="Song_FK")
-//	private List<Song> songs new ArrayList<Song>();
-
 	public Genre() {
 	}
 
@@ -49,14 +44,6 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-//	public void addSong(Song s){
-//		songs.add(s);
-//	}
-
-//	public List<Songse> getSongs() {
-//		return Collections.unmodifiableList(songs);
-//	}
 
 	@Override
 	public int hashCode() {
@@ -88,7 +75,6 @@ public class Genre {
 		return "Genre{" +
 				"id=" + id +
 				", name='" + name + '\'' +
- //			   ", songs" + songs +
 				'}';
 	}
 }
