@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
  * @author David Koncak
  */
 @Entity
-@Table(name="Musicians")
 public class Musician {
 
 	@Id

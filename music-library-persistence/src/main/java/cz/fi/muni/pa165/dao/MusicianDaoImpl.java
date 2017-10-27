@@ -44,7 +44,7 @@ public class MusicianDaoImpl implements MusicianDao {
 
     @Override
     public List<Musician> findAll() {
-        return em.createQuery("select m from Musicians m", Musician.class)
+        return em.createQuery("select m from Musician m", Musician.class)
 				.getResultList();
     }
     
