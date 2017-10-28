@@ -26,7 +26,6 @@ import javax.validation.constraints.NotNull;
  * @author Iva Liberova
  */
 @Entity
-@Table(name = "Album")
 public class Album {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
