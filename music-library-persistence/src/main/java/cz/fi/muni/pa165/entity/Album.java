@@ -42,8 +42,8 @@ public class Album {
 	private String commentary;
 	private byte[] albumArt;
 
-//	@OneToMany(mappedBy = "Album", cascade = CascadeType.REMOVE)
-//	private List<Song> songs = new ArrayList<>();
+	@OneToMany(mappedBy = "album", cascade = CascadeType.REMOVE)
+	private List<Song> songs = new ArrayList<>();
 
 	public Album() {
 	}
@@ -92,21 +92,21 @@ public class Album {
 		this.albumArt = albumArt;
 	}
 
-//	public List<Song> getSongs() {
-//		return Collections.unmodifiableList(songs);
-//	}
-//
-//	public void setSongs(List<Song> songs) {
-//		this.songs = songs;
-//	}
-//
-//	public void addSong(Song song) {
-//		this.songs.add(song);
-//	}
-//
-//	public void removeSong(Song song) {
-//		this.songs.remove(song);
-//	}
+	public List<Song> getSongs() {
+		return Collections.unmodifiableList(songs);
+	}
+
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
+
+	public void addSong(Song song) {
+		this.songs.add(song);
+	}
+
+	public void removeSong(Song song) {
+		this.songs.remove(song);
+	}
 
 	@Override
 	public int hashCode() {
