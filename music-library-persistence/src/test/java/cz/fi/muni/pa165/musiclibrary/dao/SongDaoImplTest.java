@@ -6,14 +6,7 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
-import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
-import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
-import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
-import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
 import java.util.Date;
-import java.util.List;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -24,12 +17,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 /**
  *
  * @author Kovarik Tomas
  */
-
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class) // TODO
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
