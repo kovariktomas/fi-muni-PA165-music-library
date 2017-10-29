@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementation of DAO layer of entity Album.
@@ -43,7 +37,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 	}
 
 	@Override
-	public void update(Album album)  throws IllegalArgumentException {
+	public void update(Album album) throws IllegalArgumentException {
 		if (album == null) {
 			throw new IllegalArgumentException("Updating album - album cannot be null.");
 		}
@@ -76,12 +70,12 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 	}
 
 	@Override
-	public List<Album> findByMusician(Musician musician) throws IllegalArgumentException{
+	public List<Album> findByMusician(Musician musician) throws IllegalArgumentException {
 		if (musician == null) {
 			throw new IllegalArgumentException("Finding album by musician - musician cannot be null.");
 		}
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
-			Song.class).setParameter("musician", "%"+musician+"%").getResultList();
+				Song.class).setParameter("musician", "%" + musician + "%").getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
@@ -90,12 +84,12 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 	}
 
 	@Override
-	public List<Album> findByGenre(Genre genre) throws IllegalArgumentException{
+	public List<Album> findByGenre(Genre genre) throws IllegalArgumentException {
 		if (genre == null) {
 			throw new IllegalArgumentException("Finding album by genre - genre cannot be null.");
 		}
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
-			Song.class).setParameter("genre", "%"+genre+"%").getResultList();
+				Song.class).setParameter("genre", "%" + genre + "%").getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
@@ -109,7 +103,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 			throw new IllegalArgumentException("Finding album by title - title cannot be null.");
 		}
 		return em.createQuery("SELECT a FROM Album a WHERE a.title like :title ",
-			Album.class).setParameter("title", "%"+titlePattern+"%").getResultList();
+				Album.class).setParameter("title", "%" + titlePattern + "%").getResultList();
 	}
 
 	@Override

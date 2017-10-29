@@ -1,25 +1,20 @@
 package cz.fi.muni.pa165.musiclibrary.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author Kovarik Tomas
  */
 @Entity
 public class Genre {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Column(nullable=false,unique=true)
+	@Column(nullable = false, unique = true)
 	private String name;
 
 	public Genre() {

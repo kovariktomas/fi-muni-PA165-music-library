@@ -1,8 +1,8 @@
 package cz.fi.muni.pa165.musiclibrary.entity;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @author Jan-Sebastian Fabík

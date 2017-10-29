@@ -1,13 +1,13 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
 /**
- *
  * @author Kovarik Tomas
  */
 @Repository
@@ -29,7 +29,7 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 
 	@Override
 	public void update(Genre g) throws IllegalArgumentException {
-		  em.merge(g);
+		em.merge(g);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 	@Override
 	public List<Genre> findByName(String name) {
 		return em.createQuery("SELECT g FROM Genre g WHERE g.name like :name ",
-				Genre.class).setParameter("name", "%"+name+"%").getResultList();
+				Genre.class).setParameter("name", "%" + name + "%").getResultList();
 	}
 
 	@Override

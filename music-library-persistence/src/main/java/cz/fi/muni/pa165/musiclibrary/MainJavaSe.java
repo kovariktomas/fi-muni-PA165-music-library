@@ -1,11 +1,10 @@
 package cz.fi.muni.pa165.musiclibrary;
 
-import java.sql.SQLException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.sql.SQLException;
 
 public class MainJavaSe {
 	private static EntityManagerFactory emf;
