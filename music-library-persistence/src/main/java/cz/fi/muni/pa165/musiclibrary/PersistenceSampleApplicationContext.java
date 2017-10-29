@@ -17,11 +17,16 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.sql.DataSource;
 
+import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
+import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
+import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
+import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
+
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses = {}, basePackages = "cz.fi.muni.pa165.musiclibrary")
+@ComponentScan(basePackageClasses = {MusicianDao.class, AlbumDao.class, GenreDao.class, SongDao.class}, basePackages = "cz.fi.muni.pa165.musiclibrary")
 public class PersistenceSampleApplicationContext {
 
 	/**

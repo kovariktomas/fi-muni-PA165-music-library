@@ -8,6 +8,11 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
+import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
+import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
+import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
+import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
+
 
 @Configuration
 public class InMemoryDatabaseSpring {
