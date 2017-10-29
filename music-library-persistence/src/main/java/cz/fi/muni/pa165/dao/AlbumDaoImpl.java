@@ -7,14 +7,16 @@ package cz.fi.muni.pa165.dao;
 
 import cz.fi.muni.pa165.entity.Album;
 import cz.fi.muni.pa165.entity.Genre;
-//import cz.fi.muni.pa165.entity.Musician;
-//import cz.fi.muni.pa165.entity.Song;
+import cz.fi.muni.pa165.entity.Musician;
+import cz.fi.muni.pa165.entity.Song;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,37 +76,33 @@ public class AlbumDaoImpl implements AlbumDao{
 		return em.find(Album.class, id);
 	}
 
-//	@Override
-//	public List<Album> findByMusician(Musician musician) throws IllegalArgumentException{
-//		if (musician == null)
-//		{
-//			throw new IllegalArgumentException("Finding album by musician - musician cannot be null.");
-//		}
-//		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
-//			Song.class).setParameter("musician", "%"+musician+"%").getResultList();
-//		List<Album> albums = new ArrayList<>();
-//		for (Iterator<Song> i = songs.iterator(); i.hasNext();)
-//		{
-//			albums.add(i.next().getAlbum());
-//		}
-//		return albums.stream().distinct().collect(Collectors.toList());
-//	}
-//
-//	@Override
-//	public List<Album> findByGenre(Genre genre) throws IllegalArgumentException{
-//		if (genre == null)
-//		{
-//			throw new IllegalArgumentException("Finding album by genre - genre cannot be null.");
-//		}
-//		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
-//			Song.class).setParameter("genre", "%"+genre+"%").getResultList();
-//		List<Album> albums = new ArrayList<>();
-//		for (Iterator<Song> i = songs.iterator(); i.hasNext();)
-//		{
-//			albums.add(i.next().getAlbum());
-//		}
-//		return albums.stream().distinct().collect(Collectors.toList());
-//	}
+	@Override
+	public List<Album> findByMusician(Musician musician) throws IllegalArgumentException{
+		if (musician == null) {
+			throw new IllegalArgumentException("Finding album by musician - musician cannot be null.");
+		}
+		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
+			Song.class).setParameter("musician", "%"+musician+"%").getResultList();
+		List<Album> albums = new ArrayList<>();
+		for (Song song : songs) {
+			albums.add(song.getAlbum());
+		}
+		return albums.stream().distinct().collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Album> findByGenre(Genre genre) throws IllegalArgumentException{
+		if (genre == null) {
+			throw new IllegalArgumentException("Finding album by genre - genre cannot be null.");
+		}
+		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
+			Song.class).setParameter("genre", "%"+genre+"%").getResultList();
+		List<Album> albums = new ArrayList<>();
+		for (Song song : songs) {
+			albums.add(song.getAlbum());
+		}
+		return albums.stream().distinct().collect(Collectors.toList());
+	}
 
 	@Override
 	public List<Album> findByTitle(String titlePattern) throws IllegalArgumentException {
