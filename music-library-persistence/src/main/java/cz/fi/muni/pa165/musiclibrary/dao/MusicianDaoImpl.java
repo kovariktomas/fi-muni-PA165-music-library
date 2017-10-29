@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- *
  * @author David Koncak
  */
 @Repository
@@ -40,7 +39,7 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 	@Override
 	public List<Musician> findByName(String namePattern) {
 		return em.createQuery("SELECT m FROM Musician m WHERE m.name like :name ",
-				Musician.class).setParameter("name", "%"+namePattern+"%").getResultList();
+				Musician.class).setParameter("name", "%" + namePattern + "%").getResultList();
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class InMemoryDatabaseSpring {
 
 	@Bean
-	public DataSource db(){
+	public DataSource db() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY).build();
 		return db;

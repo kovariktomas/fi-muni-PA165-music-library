@@ -14,24 +14,28 @@ import java.util.List;
 public interface AlbumDao {
 	/**
 	 * Create new album in database.
+	 *
 	 * @param album that will be created
 	 */
 	public void create(Album album);
 
 	/**
 	 * Update album in database.
+	 *
 	 * @param album that will be modified
 	 */
 	public void update(Album album) throws IllegalArgumentException;
 
 	/**
 	 * Remove given album from database.
+	 *
 	 * @param album that will be removed
 	 */
 	public void remove(Album album) throws IllegalArgumentException;
 
 	/**
 	 * Finds album in database with given id.
+	 *
 	 * @param id to be found
 	 * @return album with given id
 	 */
@@ -39,6 +43,7 @@ public interface AlbumDao {
 
 	/**
 	 * Returns all albums that contain song of given musician
+	 *
 	 * @param musician author of a song
 	 * @return list of albums that contain song of given musician
 	 */
@@ -46,6 +51,7 @@ public interface AlbumDao {
 
 	/**
 	 * Returns all albums that contain some song of given genre.
+	 *
 	 * @param genre of some song in album
 	 * @return list of albums that contain songs of given genre
 	 */
@@ -53,6 +59,7 @@ public interface AlbumDao {
 
 	/**
 	 * Returns all albums that contain given patter in title.
+	 *
 	 * @param titlePattern patter to be found
 	 * @return list of albums containing given pattern.
 	 */
@@ -60,6 +67,7 @@ public interface AlbumDao {
 
 	/**
 	 * Returns all albums in database.
+	 *
 	 * @return list of all albums
 	 */
 	public List<Album> findAll();

@@ -4,18 +4,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author Kovarik Tomas
  */
 @Entity
 public class Genre {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Column(nullable=false,unique=true)
+	@Column(nullable = false, unique = true)
 	private String name;
 
 	public Genre() {

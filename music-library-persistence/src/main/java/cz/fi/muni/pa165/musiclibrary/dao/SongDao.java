@@ -15,24 +15,28 @@ public interface SongDao {
 
 	/**
 	 * Adds the given song to the database.
+	 *
 	 * @param song the song
 	 */
 	public void create(Song song);
 
 	/**
 	 * Updates the given song in the database.
+	 *
 	 * @param song the song
 	 */
 	public void update(Song song);
 
 	/**
 	 * Deletes the given song from the database.
+	 *
 	 * @param song the song
 	 */
 	public void delete(Song song);
 
 	/**
 	 * Gets a song with the given ID.
+	 *
 	 * @param id the song ID
 	 * @return the song, or null if does not exist
 	 */
@@ -40,6 +44,7 @@ public interface SongDao {
 
 	/**
 	 * Gets songs with the given musician.
+	 *
 	 * @param musician the musician
 	 * @return the songs
 	 */
@@ -47,6 +52,7 @@ public interface SongDao {
 
 	/**
 	 * Gets songs with the given genre.
+	 *
 	 * @param genre the genre
 	 * @return the songs
 	 */
@@ -54,6 +60,7 @@ public interface SongDao {
 
 	/**
 	 * Gets songs which contain the given pattern in the title.
+	 *
 	 * @param titlePattern the title pattern
 	 * @return the songs
 	 */
@@ -61,6 +68,7 @@ public interface SongDao {
 
 	/**
 	 * Gets all songs.
+	 *
 	 * @return the songs
 	 */
 	public List<Song> findAll();
