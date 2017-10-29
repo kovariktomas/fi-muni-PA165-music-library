@@ -134,28 +134,13 @@ public class Song {
 			return false;
 		}
 		final Song other = (Song) obj;
-		if (!Objects.equals(this.musician, other.getMusician())) {
-			return false;
-		}
-		if (!Objects.equals(this.album, other.getAlbum())) {
-			return false;
-		}
-		if (!Objects.equals(this.genre, other.getGenre())) {
-			return false;
-		}
-		if (!Objects.equals(this.title, other.getTitle())) {
-			return false;
-		}
-		if (!Objects.equals(this.bitrate, other.getBitrate())) {
-			return false;
-		}
-		if (!Objects.equals(this.position, other.getPosition())) {
-			return false;
-		}
-		if (!Objects.equals(this.commentary, other.getCommentary())) {
-			return false;
-		}
-		return true;
+		return Objects.equals(this.musician, other.getMusician()) &&
+				Objects.equals(this.album, other.getAlbum()) &&
+				Objects.equals(this.genre, other.getGenre()) &&
+				Objects.equals(this.title, other.getTitle()) &&
+				Objects.equals(this.bitrate, other.getBitrate()) &&
+				Objects.equals(this.position, other.getPosition()) &&
+				Objects.equals(this.commentary, other.getCommentary());
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @author David Koncak
@@ -37,24 +38,22 @@ public class Musician {
 	public int hashCode() {
 		final int prime = 17;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + Objects.hashCode(this.name);
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (!(obj instanceof Musician))
+		}
+		if (!(obj instanceof Musician)) {
 			return false;
+		}
 		Musician other = (Musician) obj;
-		if (name == null) {
-			if (other.getName() != null)
-				return false;
-		} else if (!name.equals(other.getName()))
-			return false;
-		return true;
+		return Objects.equals(this.name, other.getName());
 	}
 }
