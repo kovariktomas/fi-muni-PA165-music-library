@@ -113,6 +113,8 @@ public class Album {
 		int hash = 7;
 		hash = 37 * hash + Objects.hashCode(this.releaseDate);
 		hash = 37 * hash + Objects.hashCode(this.title);
+		hash = 37 * hash + Objects.hashCode(this.commentary);
+		hash = 37 * hash + Objects.hashCode(this.albumArt);
 		return hash;
 	}
 
@@ -128,10 +130,16 @@ public class Album {
 			return false;
 		}
 		final Album other = (Album) obj;
-		if (!Objects.equals(this.title, other.title)) {
+		if (!Objects.equals(this.releaseDate, other.getReleaseDate())) {
 			return false;
 		}
-		if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+		if (!Objects.equals(this.title, other.getTitle())) {
+			return false;
+		}
+		if (!Objects.equals(this.commentary, other.getCommentary())) {
+			return false;
+		}
+		if (!Objects.equals(this.albumArt, other.getAlbumArt())) {
 			return false;
 		}
 		return true;
