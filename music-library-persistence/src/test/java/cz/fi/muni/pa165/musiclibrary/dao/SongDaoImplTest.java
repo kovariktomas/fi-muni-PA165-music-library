@@ -52,33 +52,33 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
     
     @BeforeMethod
     public void init() throws ParseException {
-		
-			
+	
 		Musician m = new Musician();
+		Album a = new Album();
+		Genre g = new Genre();
+		song1 = new Song();
+		
 		m.setName("Musician 01");
 		musicianDao.create(m);
 		
-		Genre g = new Genre();
 		g.setName("Genre 01");
 		genreDao.create(g);
 		
-		song1 = new Song();
-		song1.setAlbum(albumDao.findById(1l));
 		song1.setBitrate(1000);
+		song1.setAlbum(a);
 		song1.setCommentary("Sample comentary");
-		song1.setGenre(genreDao.findById(1l));
+		song1.setGenre(g);
 		song1.setId(1l);
-		song1.setMusician(musicianDao.findById(1l));
+		song1.setMusician(m);
 		song1.setPosition(1);
 		song1.setTitle("Song 01");
 		
-		Album a = new Album();
 		a.setTitle("Album 01");
 		a.setReleaseDate(new Date());
 		a.setCommentary("Comentary for album");
-		a.addSong(song1);
+		a.addSong(song1);		
 		albumDao.create(a);
-		
+	
 		songDao.create(song1);
 	
 	}
