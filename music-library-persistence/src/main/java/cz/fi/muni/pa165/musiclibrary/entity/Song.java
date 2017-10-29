@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.entity;
+package cz.fi.muni.pa165.musiclibrary.entity;
 
 import java.util.Objects;
 import javax.persistence.*;

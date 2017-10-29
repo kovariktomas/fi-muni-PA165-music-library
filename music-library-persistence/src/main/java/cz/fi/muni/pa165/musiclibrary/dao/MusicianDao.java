@@ -1,6 +1,6 @@
-package cz.fi.muni.pa165.dao;
+package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import java.util.List;
 
 /**

@@ -1,8 +1,8 @@
-package cz.fi.muni.pa165.dao;
+package cz.fi.muni.pa165.musiclibrary.dao;
 
 import java.util.List;
 
-import cz.fi.muni.pa165.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 /**
  *
  * @author Kovarik Tomas
