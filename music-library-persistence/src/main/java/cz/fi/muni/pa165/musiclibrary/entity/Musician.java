@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.entity;
+package cz.fi.muni.pa165.musiclibrary.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,25 +9,18 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Kovarik Tomas
+ * @author David Koncak
  */
 @Entity
-public class Genre {
+public class Musician {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Column(nullable=false,unique=true)
+	@Column(nullable=false)
 	private String name;
-
-	public Genre() {
-	}
-
-	public Genre(Long genreId) {
-		this.id = genreId;
-	}
 
 	public Long getId() {
 		return id;
@@ -47,7 +40,7 @@ public class Genre {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 17;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -59,22 +52,14 @@ public class Genre {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Genre))
+		if (!(obj instanceof Musician))
 			return false;
-		Genre other = (Genre) obj;
+		Musician other = (Musician) obj;
 		if (name == null) {
 			if (other.getName() != null)
 				return false;
 		} else if (!name.equals(other.getName()))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Genre{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				'}';
 	}
 }

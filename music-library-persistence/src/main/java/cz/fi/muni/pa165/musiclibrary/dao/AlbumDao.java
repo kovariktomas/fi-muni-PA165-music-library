@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.fi.muni.pa165.dao;
+package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.entity.Album;
-import cz.fi.muni.pa165.entity.Genre;
-import cz.fi.muni.pa165.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import java.util.List;
 
 /**

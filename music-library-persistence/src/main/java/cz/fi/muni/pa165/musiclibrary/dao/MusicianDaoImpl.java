@@ -1,6 +1,6 @@
-package cz.fi.muni.pa165.dao;
+package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @author David Koncak
  */
 @Repository
-public class MusicianDaoImpl implements MusicianDao {
+public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.MusicianDao {
     
     @PersistenceContext
     private EntityManager em;

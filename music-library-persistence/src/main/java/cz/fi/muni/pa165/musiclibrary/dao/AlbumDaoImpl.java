@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.fi.muni.pa165.dao;
+package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.entity.Album;
-import cz.fi.muni.pa165.entity.Genre;
-import cz.fi.muni.pa165.entity.Musician;
-import cz.fi.muni.pa165.entity.Song;
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.entity.Song;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
@@ -27,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class AlbumDaoImpl implements AlbumDao{
+public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao {
 
 	@PersistenceContext
 	private EntityManager em;
