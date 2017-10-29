@@ -111,7 +111,6 @@ public class Album {
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 37 * hash + Objects.hashCode(this.id);
 		hash = 37 * hash + Objects.hashCode(this.releaseDate);
 		hash = 37 * hash + Objects.hashCode(this.title);
 		return hash;
@@ -130,9 +129,6 @@ public class Album {
 		}
 		final Album other = (Album) obj;
 		if (!Objects.equals(this.title, other.title)) {
-			return false;
-		}
-		if (!Objects.equals(this.id, other.id)) {
 			return false;
 		}
 		if (!Objects.equals(this.releaseDate, other.releaseDate)) {
