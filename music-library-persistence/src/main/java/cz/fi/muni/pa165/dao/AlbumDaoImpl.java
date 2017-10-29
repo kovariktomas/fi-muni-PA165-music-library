@@ -31,52 +31,44 @@ public class AlbumDaoImpl implements AlbumDao{
 	private EntityManager em;
 
 	@Override
-	public void create(Album album) throws IllegalArgumentException{
-		if (album == null)
-		{
+	public void create(Album album) throws IllegalArgumentException {
+		if (album == null) {
 			throw new IllegalArgumentException("Creating album - album cannot be null.");
 		}
-		if (em.contains(album))
-		{
+		if (em.contains(album)) {
 			throw new IllegalArgumentException("Creating album - album already in database.");
 		}
 		em.persist(album);
 	}
 
 	@Override
-	public void update(Album album)  throws IllegalArgumentException{
-		if (album == null)
-		{
+	public void update(Album album)  throws IllegalArgumentException {
+		if (album == null) {
 			throw new IllegalArgumentException("Updating album - album cannot be null.");
 		}
-		if (!em.contains(album))
-		{
+		if (!em.contains(album)) {
 			throw new IllegalArgumentException("Updating album - album not in database.");
 		}
 		em.merge(album);
 	}
 
 	@Override
-	public void remove(Album album) throws IllegalArgumentException{
-		if (album == null)
-		{
+	public void remove(Album album) throws IllegalArgumentException {
+		if (album == null) {
 			throw new IllegalArgumentException("Removing album - album cannot be null.");
 		}
-		if (!em.contains(album))
-		{
+		if (!em.contains(album)) {
 			throw new IllegalArgumentException("Removing album - album not in database.");
 		}
 		em.remove(findById(album.getId()));
 	}
 
 	@Override
-	public Album findById(Long id) throws IllegalArgumentException{
-		if (id == null)
-		{
+	public Album findById(Long id) throws IllegalArgumentException {
+		if (id == null) {
 			throw new IllegalArgumentException("Finding album by id - id cannot be null.");
 		}
-		if (id < 0)
-		{
+		if (id < 0) {
 			throw new IllegalArgumentException("Finding album by id - id cannot be negative number.");
 		}
 		return em.find(Album.class, id);
@@ -115,9 +107,8 @@ public class AlbumDaoImpl implements AlbumDao{
 //	}
 
 	@Override
-	public List<Album> findByTitle(String titlePattern) throws IllegalArgumentException{
-		if (titlePattern == null)
-		{
+	public List<Album> findByTitle(String titlePattern) throws IllegalArgumentException {
+		if (titlePattern == null) {
 			throw new IllegalArgumentException("Finding album by title - title cannot be null.");
 		}
 		return em.createQuery("SELECT a FROM Album a WHERE a.title like :title ",

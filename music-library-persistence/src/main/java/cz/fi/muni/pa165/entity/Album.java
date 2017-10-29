@@ -49,7 +49,7 @@ public class Album {
 	}
 
 	public Album(Long id) {
-	this.id = id;
+		this.id = id;
 	}
 
 	public Long getId() {
