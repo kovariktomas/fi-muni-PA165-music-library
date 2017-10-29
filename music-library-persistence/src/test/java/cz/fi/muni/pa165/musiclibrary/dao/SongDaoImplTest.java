@@ -62,12 +62,6 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		g.setName("Genre 01");
 		genreDao.create(g);
 		
-		Album a = new Album();
-		a.setTitle("Album 01");
-		a.setReleaseDate(new Date());
-		a.setCommentary("Comentary for album");
-		albumDao.create(a);
-		
 		song1 = new Song();
 		song1.setAlbum(albumDao.findById(1l));
 		song1.setBitrate(1000);
@@ -77,13 +71,20 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		song1.setMusician(musicianDao.findById(1l));
 		song1.setPosition(1);
 		song1.setTitle("Song 01");
-	
+		
+		Album a = new Album();
+		a.setTitle("Album 01");
+		a.setReleaseDate(new Date());
+		a.setCommentary("Comentary for album");
+		a.addSong(song1);
+		albumDao.create(a);
+		
 		songDao.create(song1);
 	
 	}
 	
     @Test
-    public void testFindAllSongs() {
+    public void testFindAllSong() {
         Assert.assertEquals(SONGS_COUNT, songDao.findAll().size());
     }
 	
