@@ -6,8 +6,8 @@
 package cz.fi.muni.pa165.dao;
 
 import cz.fi.muni.pa165.entity.Album;
-//import cz.fi.muni.pa165.entity.Genre;
-//import cz.fi.muni.pa165.entity.Musician;
+import cz.fi.muni.pa165.entity.Genre;
+import cz.fi.muni.pa165.entity.Musician;
 import java.util.List;
 
 /**
@@ -41,19 +41,19 @@ public interface AlbumDao {
 	 */
 	public Album findById(Long id);
 
-//	/**
-//	 * Returns all albums that contain song of given musician
-//	 * @param musician author of a song
-//	 * @return list of albums that contain song of given musician
-//	 */
-//	public List<Album> findByMusician(Musician musician);
-//
-//	/**
-//	 * Returns all albums that contain some song of given genre.
-//	 * @param genre of some song in album
-//	 * @return list of albums that containg songs of given genre
-//	 */
-//	public List<Album> findByGenre(Genre genre);
+	/**
+	 * Returns all albums that contain song of given musician
+	 * @param musician author of a song
+	 * @return list of albums that contain song of given musician
+	 */
+	public List<Album> findByMusician(Musician musician);
+
+	/**
+	 * Returns all albums that contain some song of given genre.
+	 * @param genre of some song in album
+	 * @return list of albums that contain songs of given genre
+	 */
+	public List<Album> findByGenre(Genre genre);
 
 	/**
 	 * Returns all albums that contain given patter in title.
