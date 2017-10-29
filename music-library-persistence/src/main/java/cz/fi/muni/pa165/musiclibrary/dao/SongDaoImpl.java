@@ -3,12 +3,11 @@ package cz.fi.muni.pa165.musiclibrary.dao;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 /**
  * @author Jan-Sebastian Fabík

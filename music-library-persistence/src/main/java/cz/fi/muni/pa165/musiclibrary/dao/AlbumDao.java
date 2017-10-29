@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.musiclibrary.dao;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+
 import java.util.List;
 
 /**

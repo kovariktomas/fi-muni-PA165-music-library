@@ -1,10 +1,11 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
-import java.util.List;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 /**
  *
