@@ -6,7 +6,6 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
-import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -18,7 +17,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Date;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 /**
  *
@@ -130,15 +128,15 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument song must not be null.; nested exception is java.lang.IllegalArgumentException: Argument song must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument song must not be null.")
 	public void testCreateWithNullSong() {
 		songDao.create(null);
 	}
 
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "The given song already exists.; nested exception is java.lang.IllegalArgumentException: The given song already exists.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "The given song already exists.")
 	public void testCreateExistingSong() {
 		songDao.create(song1);
 	}
@@ -153,8 +151,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findById(song1.getId()));
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument id must not be null.; nested exception is java.lang.IllegalArgumentException: Argument id must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument id must not be null.")
 	public void testFindByIdNullId() {
 		songDao.findById(null);
 	}
@@ -164,8 +162,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findByTitle("Song 01").get(0));
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument titlePattern must not be null.; nested exception is java.lang.IllegalArgumentException: Argument titlePattern must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument titlePattern must not be null.")
 	public void testFindByTitleNullTitle() {
 		songDao.findByTitle(null);
 	}
@@ -197,8 +195,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, edittedSong);
 	};
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "The given song does not exists.; nested exception is java.lang.IllegalArgumentException: The given song does not exists.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "The given song does not exist.")
 	public void testUpdateNotExistingSong() {
 			Musician m = new Musician();
 		Album a = new Album();
@@ -228,8 +226,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		songDao.update(song);
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument song must not be null.; nested exception is java.lang.IllegalArgumentException: Argument song must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument song must not be null.")
 	public void testUpdateNullSong() {
 		songDao.update(null);
 	}
@@ -241,8 +239,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findByMusician(m1).get(0));
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument musician must not be null.; nested exception is java.lang.IllegalArgumentException: Argument musician must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument musician must not be null.")
 	public void testFindByMusicianNullMusician() {
 		songDao.findByMusician(null);
 	}
@@ -254,8 +252,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findByGenre(g1).get(0));
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument genre must not be null.; nested exception is java.lang.IllegalArgumentException: Argument genre must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument genre must not be null.")
 	public void testFindByGenreNullGenre() {
 		songDao.findByGenre(null);
 	}
@@ -267,8 +265,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findAll().get(0));
 	}
 
-	@Test(expectedExceptions = InvalidDataAccessApiUsageException.class,
-			expectedExceptionsMessageRegExp = "Argument song must not be null.; nested exception is java.lang.IllegalArgumentException: Argument song must not be null.")
+	@Test(expectedExceptions = IllegalArgumentException.class,
+			expectedExceptionsMessageRegExp = "Argument song must not be null.")
 	public void testDeleteNullSong() {
 		songDao.delete(null);
 	}

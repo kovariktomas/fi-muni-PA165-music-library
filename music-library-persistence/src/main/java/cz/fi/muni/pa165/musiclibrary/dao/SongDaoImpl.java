@@ -19,7 +19,7 @@ public class SongDaoImpl implements SongDao {
 	private EntityManager em;
 
 	@Override
-	public void create(Song song) {
+	public void create(Song song) throws IllegalArgumentException {
 		if (song == null) {
 			throw new IllegalArgumentException("Argument song must not be null.");
 		}
@@ -30,18 +30,18 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public void update(Song song) {
+	public void update(Song song) throws IllegalArgumentException {
 		if (song == null) {
 			throw new IllegalArgumentException("Argument song must not be null.");
 		}
 		if (!em.contains(song)) {
-			throw new IllegalArgumentException("The given song does not exists.");
+			throw new IllegalArgumentException("The given song does not exist.");
 		}
 		em.merge(song);
 	}
 
 	@Override
-	public void delete(Song song) {
+	public void delete(Song song) throws IllegalArgumentException {
 		if (song == null) {
 			throw new IllegalArgumentException("Argument song must not be null.");
 		}
@@ -49,7 +49,7 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public Song findById(Long id) {
+	public Song findById(Long id) throws IllegalArgumentException {
 		if (id == null) {
 			throw new IllegalArgumentException("Argument id must not be null.");
 		}
@@ -57,7 +57,7 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public List<Song> findByMusician(Musician musician) {
+	public List<Song> findByMusician(Musician musician) throws IllegalArgumentException {
 		if (musician == null) {
 			throw new IllegalArgumentException("Argument musician must not be null.");
 		}
@@ -67,7 +67,7 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public List<Song> findByGenre(Genre genre) {
+	public List<Song> findByGenre(Genre genre) throws IllegalArgumentException {
 		if (genre == null) {
 			throw new IllegalArgumentException("Argument genre must not be null.");
 		}
@@ -77,7 +77,7 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public List<Song> findByTitle(String titlePattern) {
+	public List<Song> findByTitle(String titlePattern) throws IllegalArgumentException {
 		if (titlePattern == null) {
 			throw new IllegalArgumentException("Argument titlePattern must not be null.");
 		}
