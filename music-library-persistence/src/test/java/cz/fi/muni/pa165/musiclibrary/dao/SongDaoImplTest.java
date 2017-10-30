@@ -19,10 +19,9 @@ import org.testng.annotations.Test;
 import java.util.Date;
 
 /**
- *
  * @author Kovarik Tomas
  */
-@ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
@@ -122,7 +121,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		songDao.create(song);
 
 
-		Assert.assertEquals(SONGS_COUNT  + 1, songDao.findAll().size());
+		Assert.assertEquals(SONGS_COUNT + 1, songDao.findAll().size());
 		Assert.assertSame(song, songDao.findByTitle(song.getTitle()).get(0));
 		songDao.delete(song);
 	}
@@ -158,7 +157,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testFindByTitle(){
+	public void testFindByTitle() {
 		Assert.assertEquals(song1, songDao.findByTitle("Song 01").get(0));
 	}
 
@@ -169,7 +168,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testUpdate(){
+	public void testUpdate() {
 		m1 = new Musician();
 		Album a = new Album();
 		g1 = new Genre();
@@ -193,12 +192,12 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 
 		Song edittedSong = songDao.findById(song1.getId());
 		Assert.assertEquals(song1, edittedSong);
-	};
+	}
 
 	@Test(expectedExceptions = IllegalArgumentException.class,
 			expectedExceptionsMessageRegExp = "The given song does not exist.")
 	public void testUpdateNotExistingSong() {
-			Musician m = new Musician();
+		Musician m = new Musician();
 		Album a = new Album();
 		Genre g = new Genre();
 
@@ -233,7 +232,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testFindByMusician(){
+	public void testFindByMusician() {
 		testUpdate();
 		Assert.assertEquals(1, songDao.findByMusician(m1).size());
 		Assert.assertEquals(song1, songDao.findByMusician(m1).get(0));
@@ -246,7 +245,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testFindByGenre(){
+	public void testFindByGenre() {
 		testUpdate();
 		Assert.assertEquals(1, songDao.findByGenre(g1).size());
 		Assert.assertEquals(song1, songDao.findByGenre(g1).get(0));
