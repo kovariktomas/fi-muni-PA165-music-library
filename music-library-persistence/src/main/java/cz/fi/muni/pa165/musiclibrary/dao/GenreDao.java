@@ -12,23 +12,23 @@ public interface GenreDao {
 	/**
 	 * Adds the given genre to the database.
 	 *
-	 * @param g the genre
+	 * @param genre the genre
 	 */
-	public void create(Genre g);
+	public void create(Genre genre);
 
 	/**
-	 * Deletes the given genre in the database.
+	 * Deletes the given genre from the database.
 	 *
-	 * @param g the genre
+	 * @param genre the genre
 	 */
-	public void delete(Genre s) throws IllegalArgumentException;
+	public void delete(Genre genre) throws IllegalArgumentException;
 
 	/**
 	 * Updates the given genre in the database.
 	 *
-	 * @param g the genre
+	 * @param genre the genre
 	 */
-	public void update(Genre s) throws IllegalArgumentException;
+	public void update(Genre genre) throws IllegalArgumentException;
 
 	/**
 	 * Gets a genre with the given ID.
@@ -39,10 +39,10 @@ public interface GenreDao {
 	public Genre findById(Long id);
 
 	/**
-	 * Gets a genre which contain the given pattern in the title.
+	 * Gets genres which contain the given pattern in the name.
 	 *
 	 * @param namePattern the name pattern
-	 * @return the genre, or null if does not exist
+	 * @return the genres
 	 */
 	public List<Genre> findByName(String namePattern);
 

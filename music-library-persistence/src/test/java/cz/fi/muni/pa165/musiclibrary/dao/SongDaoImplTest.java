@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
  *
  * @author Kovarik Tomas
  */
-@ContextConfiguration(classes=PersistenceSampleApplicationContext.class) // TODO
+@ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
