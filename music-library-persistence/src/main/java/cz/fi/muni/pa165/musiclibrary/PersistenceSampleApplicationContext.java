@@ -1,5 +1,9 @@
 package cz.fi.muni.pa165.musiclibrary;
 
+import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
+import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
+import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
+import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,11 +20,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.sql.DataSource;
-
-import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
-import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
-import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
-import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
 
 
 @Configuration
