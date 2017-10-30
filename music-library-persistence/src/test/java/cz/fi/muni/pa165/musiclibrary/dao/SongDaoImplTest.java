@@ -147,6 +147,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(song1, songDao.findByGenre(g1).get(0));
 	}
 
+	@Test
 	public void testDelete() {
 		songDao.delete(song2);
 		Assert.assertEquals(1, songDao.findAll().size());
