@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,27 +19,61 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 
 
 	@Override
-	public void create(Genre g) {
-		em.persist(g);
+	public void create(Genre genre) throws GenreAlreadyExistsException, IllegalArgumentException {
+		if (genre == null) {
+			throw new IllegalArgumentException("Argument genre must not be null.");
+		}
+		if (em.contains(genre)) {
+			throw new IllegalArgumentException("The given genre already exists.");
+		}
+		if (nameAlreadyExists(genre.getName())) {
+			throw new GenreAlreadyExistsException("Genre with this name already exists.");
+		}
+		em.persist(genre);
+	}
+
+	private boolean nameAlreadyExists(String name) {
+		Long count = em.createQuery("SELECT COUNT(g) FROM Genre g WHERE g.name = :name", Long.class)
+			.setParameter("name", name)
+			.getSingleResult();
+		return count > 0;
 	}
 
 	@Override
-	public void delete(Genre g) throws IllegalArgumentException {
-		em.remove(findById(g.getId()));
+	public void delete(Genre genre) throws IllegalArgumentException {
+		if (genre == null) {
+			throw new IllegalArgumentException("Argument genre must not be null.");
+		}
+		if (!em.contains(genre)) {
+			throw new IllegalArgumentException("The given genre does not exist.");
+		}
+		em.remove(genre);
 	}
 
 	@Override
-	public void update(Genre g) throws IllegalArgumentException {
-		em.merge(g);
+	public void update(Genre genre) throws IllegalArgumentException {
+		if (genre == null) {
+			throw new IllegalArgumentException("Argument genre must not be null.");
+		}
+		if (!em.contains(genre)) {
+			throw new IllegalArgumentException("The given genre does not exist.");
+		}
+		em.merge(genre);
 	}
 
 	@Override
-	public Genre findById(Long id) {
+	public Genre findById(Long id) throws IllegalArgumentException {
+		if (id == null) {
+			throw new IllegalArgumentException("Argument id must not be null.");
+		}
 		return em.find(Genre.class, id);
 	}
 
 	@Override
-	public List<Genre> findByName(String name) {
+	public List<Genre> findByName(String name) throws IllegalArgumentException {
+		if (name == null) {
+			throw new IllegalArgumentException("Argument name must not be null.");
+		}
 		return em.createQuery("SELECT g FROM Genre g WHERE g.name like :name ",
 				Genre.class).setParameter("name", "%" + name + "%").getResultList();
 	}
