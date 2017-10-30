@@ -25,43 +25,44 @@ import org.testng.annotations.Test;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
-    @Autowired
-    private SongDao songDao;
 
 	@Autowired
-    private MusicianDao musicianDao;
+	private SongDao songDao;
 
 	@Autowired
-    private AlbumDao albumDao;
+	private MusicianDao musicianDao;
 
 	@Autowired
-    private GenreDao genreDao;
+	private AlbumDao albumDao;
 
-	
-    public static final int SONGS_COUNT = 2;
+	@Autowired
+	private GenreDao genreDao;
 
-    private Song song1;
-	
-    private Song song2;
-    
+
+	public static final int SONGS_COUNT = 2;
+
+	private Song song1;
+
+	private Song song2;
+
 	private Musician m1;
 
 	private Genre g1;
-		
-    @BeforeMethod
-    public void init() throws ParseException {
-	
+
+	@BeforeMethod
+	public void init() throws ParseException {
+
 		Musician m = new Musician();
 		Album a = new Album();
 		Genre g = new Genre();
 		song1 = new Song();
-		
+
 		m.setName("Musician 01");
 		musicianDao.create(m);
-		
+
 		g.setName("Genre 01");
 		genreDao.create(g);
-				
+
 		a.setTitle("Album 01");
 		a.setReleaseDate(new Date());
 		a.setCommentary("Comentary for album");
@@ -77,7 +78,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		song1.setPosition(1);
 		song1.setTitle("Song 01");
 		songDao.create(song1);
-		
+
 		song2 = new Song();
 		song2.setAlbum(a);
 		a.addSong(song2);
@@ -90,10 +91,10 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		songDao.create(song2);
 	}
 
-    @Test
-    public void testFindAllSong() {
+	@Test
+	public void testFindAllSong() {
 		Assert.assertEquals(SONGS_COUNT, songDao.findAll().size());
-    }
+	}
 
 	@Test
 	public void testFindById() {
@@ -110,7 +111,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		m1 = new Musician();
 		Album a = new Album();
 		g1 = new Genre();
-		
+
 		m1.setName("Musician 02");
 		musicianDao.create(m1);
 		g1.setName("Genre 02");
@@ -127,8 +128,8 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 		song1.setMusician(m1);
 		song1.setGenre(g1);
 		songDao.update(song1);
-		
-		Song edittedSong = songDao.findById(song1.getId());		
+
+		Song edittedSong = songDao.findById(song1.getId());
 		Assert.assertEquals(song1, edittedSong);
 	};
 

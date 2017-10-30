@@ -20,7 +20,7 @@ public interface GenreDao {
 	 * Deletes the given genre in the database.
 	 *
 	 * @param g the genre
-	 */	
+	 */
 	public void delete(Genre s) throws IllegalArgumentException;
 
 	/**
