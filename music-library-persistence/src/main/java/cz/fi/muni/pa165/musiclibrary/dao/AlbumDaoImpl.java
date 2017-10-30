@@ -75,7 +75,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 			throw new IllegalArgumentException("Finding album by musician - musician cannot be null.");
 		}
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
-				Song.class).setParameter("musician", "%" + musician + "%").getResultList();
+				Song.class).setParameter("musician", musician ).getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
@@ -89,7 +89,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 			throw new IllegalArgumentException("Finding album by genre - genre cannot be null.");
 		}
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
-				Song.class).setParameter("genre", "%" + genre + "%").getResultList();
+				Song.class).setParameter("genre",genre).getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
