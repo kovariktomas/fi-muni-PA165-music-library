@@ -5,11 +5,6 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import static org.mockito.Mockito.mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -20,14 +15,20 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import static org.mockito.Mockito.mock;
+
 /**
- *
  * @author David Koncak
  */
-@ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
+public class AlbumDaoTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
 	private AlbumDao albumDao;
@@ -51,7 +52,7 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 	private Musician m1;
 
 	@BeforeMethod
-	public void createAlbum() throws ParseException{
+	public void createAlbum() throws ParseException {
 		a = new Album();
 
 		song1 = mock(Song.class);
@@ -74,12 +75,12 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 
 	@Test
 	public void testNonExistentReturnsNull() {
-	Assert.assertNull(albumDao.findById(11l));
+		Assert.assertNull(albumDao.findById(11l));
 	}
 
 
 	@Test
-	public void testCreate(){
+	public void testCreate() {
 		Assert.assertEquals(albumDao.findById(a.getId()).getTitle(), "Testovaci album");
 	}
 
@@ -91,7 +92,7 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 	}
 
 	@Test
-	public void testUpdate(){
+	public void testUpdate() {
 		a.setTitle("Upravene");
 		albumDao.update(a);
 
@@ -106,7 +107,7 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 	}
 
 	@Test
-	public void testFindByMusician(){
+	public void testFindByMusician() {
 		m1 = new Musician();
 		m1.setName("Onassis");
 		Genre g = new Genre();
@@ -130,7 +131,7 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 	}
 
 	@Test
-	public void testFindByGenre(){
+	public void testFindByGenre() {
 		m1 = new Musician();
 		m1.setName("Onassis");
 		Genre g = new Genre();
@@ -155,21 +156,21 @@ public class AlbumDaoTest  extends AbstractTestNGSpringContextTests{
 	}
 
 	@Test
-	public void testFindByTitle(){
+	public void testFindByTitle() {
 		List<Album> albums = albumDao.findByTitle("Testovaci album");
 		Assert.assertEquals(albums.size(), 1);
 		Assert.assertTrue(albums.contains(a));
 	}
 
 	@Test
-	public void testWithNonExistingTitle(){
+	public void testWithNonExistingTitle() {
 		List<Album> albums = albumDao.findByTitle("avdsfa");
 		Assert.assertEquals(albums.size(), 0);
 		Assert.assertTrue(!albums.contains(a));
 	}
 
 	@Test
-	public void testFindAll(){
+	public void testFindAll() {
 		List<Album> albums = albumDao.findAll();
 		Assert.assertEquals(albums.size(), 1);
 		Assert.assertEquals(albums.get(0).getTitle(), "Testovaci album");
