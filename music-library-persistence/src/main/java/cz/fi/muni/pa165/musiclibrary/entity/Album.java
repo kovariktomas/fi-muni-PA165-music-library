@@ -110,7 +110,7 @@ public class Album {
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Album)) {
 			return false;
 		}
 		final Album other = (Album) obj;
