@@ -130,7 +130,7 @@ public class Song {
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Song)) {
 			return false;
 		}
 		final Song other = (Song) obj;
