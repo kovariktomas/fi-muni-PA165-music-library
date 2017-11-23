@@ -10,7 +10,7 @@
 
 	<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
 	<artifactId>music-library-persistence</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>Music Library Persistence Layer</name>

@@ -1,2 +1,6 @@
+**/.idea
 **/nbproject
 */target
+*.iml
+*.ipr
+*.iws

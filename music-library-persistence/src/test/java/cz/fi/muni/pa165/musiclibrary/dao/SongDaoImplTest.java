@@ -1,6 +1,5 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
-import bsh.ParseException;
 import cz.fi.muni.pa165.musiclibrary.PersistenceSampleApplicationContext;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
@@ -50,7 +49,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 	private Genre g1;
 
 	@BeforeMethod
-	public void init() throws ParseException {
+	public void init() {
 
 		Musician m = new Musician();
 		Album a = new Album();
