@@ -8,9 +8,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import cz.fi.muni.pa165.musiclibrary.PersistenceSampleApplicationContext;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.service.GenreServiceImpl;
+import cz.fi.muni.pa165.musiclibrary.service.facade.GenreFacadeImpl;
+import org.springframework.context.annotation.ComponentScan;
+
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-//@ComponentScan(basePackageClasses={OrderServiceImpl.class, CategoryFacadeImpl.class})
+@ComponentScan(basePackageClasses={GenreServiceImpl.class})
 public class ServiceConfiguration {
 
 

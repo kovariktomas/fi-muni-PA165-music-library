@@ -11,5 +11,5 @@ public interface GenreFacade {
 	public void deleteGenre(Long genreId);
 	public List<GenreDTO> getAllGenres();
 	public GenreDTO getGenreWithId(Long id);
-	public GenreDTO getGenreWithName(String name);
+	public List<GenreDTO> findGenreWithPattern(String pattern);
 }
