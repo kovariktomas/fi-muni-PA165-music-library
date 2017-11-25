@@ -36,7 +36,7 @@ public class ServiceConfiguration {
     public class DozerCustomConfig extends BeanMappingBuilder {
         @Override
 	    protected void configure() {
-	        //mapping(Category.class, CategoryDTO.class);
+	        mapping(Genre.class, GenreDTO.class);
 	    }
     }
 

@@ -1,7 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.dto;
 
 import java.util.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 /**

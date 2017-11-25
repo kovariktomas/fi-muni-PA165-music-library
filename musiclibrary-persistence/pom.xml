@@ -4,12 +4,12 @@
 
 	<parent>
 		<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-		<artifactId>music-library-parent</artifactId>
+		<artifactId>musiclibrary-parent</artifactId>
 		<version>1.0</version>
 	</parent>
 
 	<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-	<artifactId>music-library-persistence</artifactId>
+	<artifactId>musiclibrary-persistence</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
@@ -46,27 +46,27 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>javax.inject</groupId> -->
-		<!-- <artifactId>javax.inject</artifactId> -->
-		<!-- <version>1</version> -->
-		<!-- </dependency> -->
+		<dependency>
+		<groupId>javax.inject</groupId>
+		<artifactId>javax.inject</artifactId>
+		<version>1</version>
+		 </dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>javax.enterprise</groupId> -->
-		<!-- <artifactId>cdi-api</artifactId> -->
-		<!-- <version>1.2</version> -->
-		<!-- </dependency> -->
+		<dependency>
+		<groupId>javax.enterprise</groupId> 
+		<artifactId>cdi-api</artifactId> 
+		<version>1.2</version> 
+		 </dependency> 
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-			<artifactId>music-library-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency> -->
+			<artifactId>musiclibrary-api</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>

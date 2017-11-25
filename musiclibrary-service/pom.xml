@@ -4,11 +4,13 @@
 
     <parent>
         <groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-        <artifactId>music-library-parent</artifactId>
+        <artifactId>musiclibrary-parent</artifactId>
         <version>1.0</version>
     </parent>
-
-    <artifactId>music-library-service</artifactId>
+	
+	<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
+    <artifactId>musiclibrary-service</artifactId>
+	<version>1.0</version>
     <packaging>jar</packaging>
     <name>Service Layer</name>
 
@@ -20,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-            <artifactId>music-library-persistence</artifactId>
+            <artifactId>musiclibrary-persistence</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

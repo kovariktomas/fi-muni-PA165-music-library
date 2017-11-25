@@ -34,10 +34,10 @@ public class GenreFacadeImpl implements GenreFacade {
 	private BeanMappingService beanMappingService;
 
 	@Override
-	public Long createGenre(GenreCreateDTO p) {
+	public Long createGenre(GenreCreateDTO g) {
         Genre mappedGenre = beanMappingService.mapTo(g, Genre.class);
         //save genre
-        Genre newGenre = genreService.createProduct(mappedGenre);
+        Genre newGenre = genreService.createGenre(mappedGenre);
 		return newGenre.getId();
 	}
 	
@@ -47,7 +47,7 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public List<GenreDTO> getAllGenress() {
+	public List<GenreDTO> getAllGenres() {
 		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
 	}
 

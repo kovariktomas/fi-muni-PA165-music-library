@@ -4,11 +4,13 @@
 
 	<parent>
 	   <groupId>cz.fi.muni.pa165.musiclibrary</groupId>
-	    <artifactId>music-library-parent</artifactId>
+	    <artifactId>musiclibrary-parent</artifactId>
 	    <version>1.0</version>
 	</parent>
 
-	<artifactId>music-library-api</artifactId>
+	<groupId>cz.fi.muni.pa165.musiclibrary</groupId>
+	<artifactId>musiclibrary-api</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>API</name>
 
