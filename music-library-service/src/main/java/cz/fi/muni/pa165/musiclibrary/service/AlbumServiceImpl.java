@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * 
+ *
  * @author Iva Liberova
  */
 public class AlbumServiceImpl implements AlbumService {
@@ -55,5 +55,17 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public List<Album> findAll() {
         return albumDao.findAll();
+    }
+
+    @Override
+    public List<Album> getAlbumsFromLastMonth() {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public List<Album> searchAlbumsByQuery(List<String> titlePatterns) {
+        // TODO
+        return null;
     }
 }

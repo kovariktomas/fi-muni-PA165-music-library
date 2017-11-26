@@ -26,4 +26,8 @@ public interface AlbumService {
     List<Album> findByTitle(String titlePattern);
 
     List<Album> findAll();
+
+    List<Album> getAlbumsFromLastMonth();
+
+    List<Album> searchAlbumsByQuery(List<String> titlePatterns);
 }
