@@ -24,14 +24,14 @@ public interface AlbumDao {
 	 *
 	 * @param album that will be modified
 	 */
-	public void update(Album album) throws IllegalArgumentException;
+	public void update(Album album);
 
 	/**
 	 * Remove given album from database.
 	 *
 	 * @param album that will be removed
 	 */
-	public void remove(Album album) throws IllegalArgumentException;
+	public void remove(Album album);
 
 	/**
 	 * Finds album in database with given id.
