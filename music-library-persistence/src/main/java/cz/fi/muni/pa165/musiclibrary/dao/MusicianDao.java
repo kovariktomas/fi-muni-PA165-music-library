@@ -10,47 +10,46 @@ import java.util.List;
 public interface MusicianDao {
 
 	/**
-	 * Create new musician in database.
+	 * Adds the given musician to the database.
 	 *
-	 * @param m added musician
+	 * @param musician the musician
 	 */
-	public void create(Musician m);
+	void create(Musician musician);
+
+	/**
+	 * Updates the given musician.
+	 *
+	 * @param musician the musician
+	 */
+	void update(Musician musician);
 
 	/**
 	 * Deletes the given musician.
 	 *
-	 * @param m the musician
-	 * @throws IllegalArgumentException if the musician is null
+	 * @param musician the musician
 	 */
-	public void remove(Musician m) throws IllegalArgumentException;
+	void delete(Musician musician);
 
 	/**
-	 * Updates given musician.
+	 * Gets a musician with the given ID.
 	 *
-	 * @param m that will be modified
+	 * @param id the musician ID
+	 * @return the musician
 	 */
-	public void update(Musician m);
+	Musician findById(Long id);
 
 	/**
-	 * Gets a musician with given id.
+	 * Gets all musicians with a name matching all the given patterns.
 	 *
-	 * @param id the musician id
-	 * @return specific musician
+	 * @param patterns the patterns to be found
+	 * @return the list of musicians
 	 */
-	public Musician findById(Long id);
+	List<Musician> findByName(List<String> patterns);
 
 	/**
-	 * Returns all musicians with a name matching all the given patterns.
+	 * Gets all musicians in the database.
 	 *
-	 * @param patterns patterns to be found
-	 * @return list of musicians
+	 * @return the list of musicians
 	 */
-	public List<Musician> findByName(List<String> patterns);
-
-	/**
-	 * Returns all musicians in the database
-	 *
-	 * @return list of musicians
-	 */
-	public List<Musician> findAll();
+	List<Musician> findAll();
 }

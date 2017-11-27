@@ -26,7 +26,7 @@ public class MusicianServiceImpl implements MusicianService {
 	}
 
 	public void delete(Musician musician) {
-		musicianDao.remove(musician);
+		musicianDao.delete(musician);
 	}
 
 	public Musician findById(Long id) {

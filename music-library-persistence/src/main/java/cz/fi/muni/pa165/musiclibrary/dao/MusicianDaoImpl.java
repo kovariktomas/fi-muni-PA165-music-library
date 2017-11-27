@@ -18,18 +18,18 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 	private EntityManager em;
 
 	@Override
-	public void create(Musician m) {
-		em.persist(m);
+	public void create(Musician musician) {
+		em.persist(musician);
 	}
 
 	@Override
-	public void remove(Musician m) throws IllegalArgumentException {
-		em.remove(findById(m.getId()));
+	public void delete(Musician musician) {
+		em.remove(findById(musician.getId()));
 	}
 
 	@Override
-	public void update(Musician m) {
-		em.merge(m);
+	public void update(Musician musician) {
+		em.merge(musician);
 	}
 
 	@Override

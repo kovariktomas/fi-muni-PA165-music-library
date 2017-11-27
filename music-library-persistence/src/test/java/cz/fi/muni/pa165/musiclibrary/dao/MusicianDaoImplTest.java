@@ -76,9 +76,9 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testRemove() {
+	public void testDelete() {
 		musicianDao.create(daya);
-		musicianDao.remove(daya);
+		musicianDao.delete(daya);
 		List<Musician> result = musicianDao.findAll();
 		Assert.assertEquals(0, result.size());
 	}
