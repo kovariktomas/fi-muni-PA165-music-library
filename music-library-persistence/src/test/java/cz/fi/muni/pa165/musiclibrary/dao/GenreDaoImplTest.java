@@ -15,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,7 +61,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		genreDao.create(popGenre);
 
 		Assert.assertEquals(GENRES_COUNT + 1, genreDao.findAll().size());
-		Assert.assertSame(popGenre, genreDao.findByName(popGenre.getName()).get(0));
+		Assert.assertSame(popGenre, genreDao.findById(popGenre.getId()));
 	}
 
 	@Test(expectedExceptions = IllegalArgumentException.class,
@@ -86,9 +87,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testDelete() {
 		genreDao.delete(rockGenre);
-
 		Assert.assertEquals(GENRES_COUNT - 1, genreDao.findAll().size());
-		Assert.assertEquals(0, genreDao.findByName("Rock").size());
 	}
 
 	@Test(expectedExceptions = IllegalArgumentException.class,
@@ -111,7 +110,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		genreDao.update(rockGenre);
 
 		Assert.assertEquals(GENRES_COUNT, genreDao.findAll().size());
-		Assert.assertSame(rockGenre, genreDao.findByName(rockGenre.getName()).get(0));
+		Assert.assertSame(rockGenre, genreDao.findById(rockGenre.getId()));
 	}
 
 	@Test
@@ -119,7 +118,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		genreDao.update(rockGenre);
 
 		Assert.assertEquals(GENRES_COUNT, genreDao.findAll().size());
-		Assert.assertSame(rockGenre, genreDao.findByName(rockGenre.getName()).get(0));
+		Assert.assertSame(rockGenre, genreDao.findById(rockGenre.getId()));
 	}
 
 	@Test(expectedExceptions = IllegalArgumentException.class,
@@ -154,7 +153,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindByName() {
-		List<Genre> genres = genreDao.findByName("Swing");
+		List<Genre> genres = genreDao.findByName(Arrays.asList("%Swing%"));
 		Assert.assertEquals(2, genres.size());
 		Assert.assertTrue(genres.contains(swingGenre));
 		Assert.assertTrue(genres.contains(electroSwingGenre));

@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -32,33 +31,36 @@ public class GenreFacadeImpl implements GenreFacade {
 	private BeanMappingService beanMappingService;
 
 	@Override
-	public Long createGenre(GenreCreateDTO g) {
+	public Long create(GenreCreateDTO g) {
 		Genre mappedGenre = beanMappingService.mapTo(g, Genre.class);
 		//save genre
-		Genre newGenre = genreService.createGenre(mappedGenre);
+		Genre newGenre = genreService.create(mappedGenre);
 		return newGenre.getId();
 	}
 
 	@Override
-	public void deleteGenre(Long genreId) {
-		genreService.deleteGenre(new Genre(genreId));
+	public void delete(Long genreId) {
+		genreService.delete(new Genre(genreId));
+	}
+
+	public void update(GenreDTO genre) {
+		genreService.update(beanMappingService.mapTo(genre, Genre.class));
 	}
 
 	@Override
-	public List<GenreDTO> getAllGenres() {
+	public List<GenreDTO> findAll() {
 		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
 	}
 
 	@Override
-	public GenreDTO getGenreWithId(Long id) {
+	public GenreDTO findById(Long id) {
 		Genre genre = genreService.findById(id);
 		return (genre == null) ? null : beanMappingService.mapTo(genre, GenreDTO.class);
 	}
 
 	@Override
-	public List<GenreDTO> findGenreWithPattern(String pattern) {
-		List<Genre> genre = genreService.findByPattern(pattern);
-		return (genre == null) ? null : beanMappingService.mapTo(genre, GenreDTO.class);
+	public List<GenreDTO> findByName(String query) {
+		List<Genre> genres = genreService.findByName(query);
+		return (genres == null) ? null : beanMappingService.mapTo(genres, GenreDTO.class);
 	}
-
 }
