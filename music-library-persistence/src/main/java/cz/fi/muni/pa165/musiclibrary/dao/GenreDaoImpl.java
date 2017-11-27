@@ -65,17 +65,17 @@ public class GenreDaoImpl implements GenreDao {
 	}
 
 	@Override
-	public Genre findById(Long id) throws IllegalArgumentException {
+	public Genre findById(Long id) throws InvalidArgumentException {
 		if (id == null) {
-			throw new IllegalArgumentException("Argument id must not be null.");
+			throw new InvalidArgumentException("Argument id must not be null.");
 		}
 		return em.find(Genre.class, id);
 	}
 
 	@Override
-	public List<Genre> findByName(List<String> patterns) throws IllegalArgumentException {
+	public List<Genre> findByName(List<String> patterns) throws InvalidArgumentException {
 		if (patterns == null) {
-			throw new IllegalArgumentException("Argument name must not be null.");
+			throw new InvalidArgumentException("Argument name must not be null.");
 		}
 		StringBuilder queryBuilder = new StringBuilder("select g from Genre g");
 
