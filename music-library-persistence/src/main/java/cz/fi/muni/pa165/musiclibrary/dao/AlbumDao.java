@@ -5,6 +5,7 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.exceptions.AlbumAlreadyExistsException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,8 +14,9 @@ import java.util.List;
  * @author Iva Liberova
  */
 public interface AlbumDao {
+
 	/**
-	 * Create new album in database.
+	 * Create new album in database
 	 *
 	 * @param album that will be created
 	 * @throws AlbumAlreadyExistsException if an album with the same title already exists
@@ -22,21 +24,21 @@ public interface AlbumDao {
 	void create(Album album) throws AlbumAlreadyExistsException;
 
 	/**
-	 * Update album in database.
+	 * Update album in database
 	 *
 	 * @param album that will be modified
 	 */
 	void update(Album album);
 
 	/**
-	 * Remove given album from database.
+	 * Remove given album from database
 	 *
 	 * @param album that will be removed
 	 */
 	void remove(Album album);
 
 	/**
-	 * Finds album in database with given id.
+	 * Finds album in database with given id
 	 *
 	 * @param id to be found
 	 * @return album with given id
@@ -52,7 +54,7 @@ public interface AlbumDao {
 	List<Album> findByMusician(Musician musician);
 
 	/**
-	 * Returns all albums that contain some song of given genre.
+	 * Returns all albums that contain some song of given genre
 	 *
 	 * @param genre of some song in album
 	 * @return list of albums that contain songs of given genre
@@ -60,17 +62,26 @@ public interface AlbumDao {
 	List<Album> findByGenre(Genre genre);
 
 	/**
-	 * Returns all albums that contain given patter in title.
+	 * Returns all albums that contain all the given patterns in their title.
 	 *
-	 * @param titlePattern patter to be found
-	 * @return list of albums containing given pattern.
+	 * @param patterns the pattern to be found
+	 * @return the list of albums containing the patterns
 	 */
-	List<Album> findByTitle(String titlePattern);
+	List<Album> findByTitle(List<String> patterns);
 
 	/**
-	 * Returns all albums in database.
+	 * Returns all albums in database
 	 *
 	 * @return list of all albums
 	 */
 	List<Album> findAll();
+
+	/**
+	 * Returns all albums released between given dates
+	 *
+	 * @param startDate first valid date
+	 * @param endDate   last valid date
+	 * @return list of all albums that were released
+	 */
+	List<Album> getAlbumsReleasedBetween(Date startDate, Date endDate);
 }
