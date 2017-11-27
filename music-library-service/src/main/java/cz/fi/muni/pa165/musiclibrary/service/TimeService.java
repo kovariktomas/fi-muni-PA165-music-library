@@ -10,5 +10,5 @@ import java.util.Date;
 
 @Service
 public interface TimeService {
-    public Date getCurrentTime();
+	public Date getCurrentTime();
 }

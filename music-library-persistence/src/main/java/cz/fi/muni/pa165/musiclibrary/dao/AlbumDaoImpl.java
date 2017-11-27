@@ -26,29 +26,29 @@ public class AlbumDaoImpl implements AlbumDao {
 	private EntityManager em;
 
 	@Override
-	public void create(Album album){
+	public void create(Album album) {
 		em.persist(album);
 	}
 
 	@Override
-	public void update(Album album){
+	public void update(Album album) {
 		em.merge(album);
 	}
 
 	@Override
-	public void remove(Album album){
+	public void remove(Album album) {
 		em.remove(findById(album.getId()));
 	}
 
 	@Override
-	public Album findById(Long id){
+	public Album findById(Long id) {
 		return em.find(Album.class, id);
 	}
 
 	@Override
-	public List<Album> findByMusician(Musician musician){
+	public List<Album> findByMusician(Musician musician) {
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
-				Song.class).setParameter("musician", musician).getResultList();
+			Song.class).setParameter("musician", musician).getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
@@ -57,9 +57,9 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public List<Album> findByGenre(Genre genre){
+	public List<Album> findByGenre(Genre genre) {
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
-				Song.class).setParameter("genre", genre).getResultList();
+			Song.class).setParameter("genre", genre).getResultList();
 		List<Album> albums = new ArrayList<>();
 		for (Song song : songs) {
 			albums.add(song.getAlbum());
@@ -68,9 +68,9 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public List<Album> findByTitle(String titlePattern){
+	public List<Album> findByTitle(String titlePattern) {
 		return em.createQuery("SELECT a FROM Album a WHERE a.title like :title ",
-				Album.class).setParameter("title", "%" + titlePattern + "%").getResultList();
+			Album.class).setParameter("title", "%" + titlePattern + "%").getResultList();
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author Iva Liberova
  */
-@ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
@@ -64,7 +65,7 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 		musicianDao.update(daya);
 		Musician currentDaya = musicianDao.findById(daya.getId());
 		Assert.assertEquals(currentDaya, daya);
-		Assert.assertEquals(currentDaya.getName(),daya.getName());
+		Assert.assertEquals(currentDaya.getName(), daya.getName());
 		Assert.assertNotEquals(oldName, currentDaya.getName());
 	}
 
@@ -101,16 +102,16 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindByName() {
 		musicianDao.create(taylor_swift);
-		Assert.assertEquals(musicianDao.findByName("Taylor").get(0), taylor_swift);
+		Assert.assertEquals(musicianDao.findByName(Arrays.asList("%Taylor%")).get(0), taylor_swift);
 	}
 
 	@Test
 	public void testFindByNameNotInDB() {
-		Assert.assertTrue(musicianDao.findByName("Taylor").isEmpty());
+		Assert.assertTrue(musicianDao.findByName(Arrays.asList("Taylor")).isEmpty());
 	}
 
 	@Test
-	public void testFindAll(){
+	public void testFindAll() {
 		musicianDao.create(daya);
 		musicianDao.create(taylor_swift);
 		musicianDao.create(muse);
@@ -124,7 +125,7 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 
 		Assert.assertEquals(expectedResult.size(), result.size());
 
-		for(int i = 0; i < expectedResult.size(); i++){
+		for (int i = 0; i < expectedResult.size(); i++) {
 			Assert.assertEquals(expectedResult.get(i), result.get(i));
 		}
 	}

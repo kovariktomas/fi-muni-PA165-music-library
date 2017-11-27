@@ -75,12 +75,12 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 			throw new IllegalArgumentException("Argument name must not be null.");
 		}
 		return em.createQuery("SELECT g FROM Genre g WHERE g.name like :name ",
-				Genre.class).setParameter("name", "%" + name + "%").getResultList();
+			Genre.class).setParameter("name", "%" + name + "%").getResultList();
 	}
 
 	@Override
 	public List<Genre> findAll() {
 		return em.createQuery("select g from Genre g", Genre.class)
-				.getResultList();
+			.getResultList();
 	}
 }

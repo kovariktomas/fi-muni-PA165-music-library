@@ -1,32 +1,32 @@
 package cz.fi.muni.pa165.musiclibrary.dto;
 
-import java.util.*;
+import java.util.Objects;
+
 /**
  * @author Kovarik Tomas
  */
-public class GenreDTO
-{
-    private Long id;
+public class GenreDTO {
+	private Long id;
 
-    private String name;
+	private String name;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    @Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -49,11 +49,11 @@ public class GenreDTO
 		return Objects.equals(this.name, other.getName());
 	}
 
-    @Override
+	@Override
 	public String toString() {
 		return "Genre{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				'}';
+			"id=" + id +
+			", name='" + name + '\'' +
+			'}';
 	}
 }

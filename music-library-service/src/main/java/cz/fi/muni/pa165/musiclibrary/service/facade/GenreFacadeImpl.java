@@ -1,21 +1,19 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
 
-import javax.inject.Inject;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
+import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
+import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
+import cz.fi.muni.pa165.musiclibrary.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
-import cz.fi.muni.pa165.musiclibrary.entity.Genre;
-import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
-import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
-import cz.fi.muni.pa165.musiclibrary.service.GenreService;
-
-import java.util.Date;
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -35,12 +33,12 @@ public class GenreFacadeImpl implements GenreFacade {
 
 	@Override
 	public Long createGenre(GenreCreateDTO g) {
-        Genre mappedGenre = beanMappingService.mapTo(g, Genre.class);
-        //save genre
-        Genre newGenre = genreService.createGenre(mappedGenre);
+		Genre mappedGenre = beanMappingService.mapTo(g, Genre.class);
+		//save genre
+		Genre newGenre = genreService.createGenre(mappedGenre);
 		return newGenre.getId();
 	}
-	
+
 	@Override
 	public void deleteGenre(Long genreId) {
 		genreService.deleteGenre(new Genre(genreId));

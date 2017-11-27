@@ -5,16 +5,16 @@ import java.util.List;
 
 public class SearchHelper {
 
-    public static List<String> splitSearchQuery(String query) {
-        List<String> patterns = new ArrayList<String>();
+	public static List<String> splitSearchQuery(String query) {
+		List<String> patterns = new ArrayList<String>();
 
-        for (String word : query.split(" ")) {
-            if (!word.isEmpty()) {
-                patterns.add("%" + word + "%");
-            }
-        }
+		for (String word : query.split(" ")) {
+			if (!word.isEmpty()) {
+				patterns.add("%" + word + "%");
+			}
+		}
 
-        return patterns;
-    }
+		return patterns;
+	}
 
 }

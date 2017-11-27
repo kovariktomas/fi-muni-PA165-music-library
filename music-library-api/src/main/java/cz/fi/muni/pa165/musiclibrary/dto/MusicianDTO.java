@@ -1,18 +1,23 @@
 package cz.fi.muni.pa165.musiclibrary.dto;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
- * @author Kovarik Tomas
+ * @author Jan-Sebastian Fabík
  */
-public class GenreCreateDTO {
+public class MusicianDTO {
+
 	private Long id;
 
-	@NotNull
-	@Size(min = 3, max = 50)
 	private String name;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -24,7 +29,7 @@ public class GenreCreateDTO {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 17;
 		int result = 1;
 		result = prime * result + Objects.hashCode(this.name);
 		return result;
@@ -38,18 +43,18 @@ public class GenreCreateDTO {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof GenreCreateDTO)) {
+		if (!(obj instanceof MusicianDTO)) {
 			return false;
 		}
-		GenreCreateDTO other = (GenreCreateDTO) obj;
+		MusicianDTO other = (MusicianDTO) obj;
 		return Objects.equals(this.name, other.getName());
 	}
 
 	@Override
 	public String toString() {
-		return "Genre{" +
+		return "MusicianDTO{" +
 			"id=" + id +
-			", name='" + name + '\'' +
-			'}';
+			", name='" + name + "'" +
+			"}";
 	}
 }

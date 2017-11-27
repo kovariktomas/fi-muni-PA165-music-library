@@ -40,12 +40,12 @@ public interface MusicianDao {
 	public Musician findById(Long id);
 
 	/**
-	 * Returns all musicians with given name.
+	 * Returns all musicians with a name matching all the given patterns.
 	 *
-	 * @param namePattern patter to be found
+	 * @param patterns patterns to be found
 	 * @return list of musicians
 	 */
-	public List<Musician> findByName(String namePattern);
+	public List<Musician> findByName(List<String> patterns);
 
 	/**
 	 * Returns all musicians in the database
@@ -53,5 +53,4 @@ public interface MusicianDao {
 	 * @return list of musicians
 	 */
 	public List<Musician> findAll();
-
 }

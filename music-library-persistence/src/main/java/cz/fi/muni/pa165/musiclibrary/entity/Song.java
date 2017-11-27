@@ -135,23 +135,23 @@ public class Song {
 		}
 		final Song other = (Song) obj;
 		return Objects.equals(this.musician, other.getMusician()) &&
-				Objects.equals(this.album, other.getAlbum()) &&
-				Objects.equals(this.genre, other.getGenre()) &&
-				Objects.equals(this.title, other.getTitle()) &&
-				Objects.equals(this.bitrate, other.getBitrate()) &&
-				Objects.equals(this.position, other.getPosition()) &&
-				Objects.equals(this.commentary, other.getCommentary());
+			Objects.equals(this.album, other.getAlbum()) &&
+			Objects.equals(this.genre, other.getGenre()) &&
+			Objects.equals(this.title, other.getTitle()) &&
+			Objects.equals(this.bitrate, other.getBitrate()) &&
+			Objects.equals(this.position, other.getPosition()) &&
+			Objects.equals(this.commentary, other.getCommentary());
 	}
 
 	@Override
 	public String toString() {
 		return "Song{id=" + id +
-				", musician=" + (musician != null ? "#" + musician.getId() : "null") +
-				", album=" + (album != null ? "#" + album.getId() : "null") +
-				", genre=" + (genre != null ? "#" + genre.getId() : "null") +
-				", title=" + title +
-				", bitrate=" + bitrate +
-				", position=" + position +
-				", commentary=" + commentary + "}";
+			", musician=" + (musician != null ? "#" + musician.getId() : "null") +
+			", album=" + (album != null ? "#" + album.getId() : "null") +
+			", genre=" + (genre != null ? "#" + genre.getId() : "null") +
+			", title=" + title +
+			", bitrate=" + bitrate +
+			", position=" + position +
+			", commentary=" + commentary + "}";
 	}
 }

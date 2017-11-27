@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -37,15 +38,31 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 	}
 
 	@Override
-	public List<Musician> findByName(String namePattern) {
-		return em.createQuery("SELECT m FROM Musician m WHERE m.name like :name ",
-				Musician.class).setParameter("name", "%" + namePattern + "%").getResultList();
+	public List<Musician> findByName(List<String> patterns) {
+		StringBuilder queryBuilder = new StringBuilder("SELECT m FROM Musician m");
+
+		for (int i = 0; i < patterns.size(); i++) {
+			if (i == 0) {
+				queryBuilder.append(" WHERE");
+			} else {
+				queryBuilder.append(" AND");
+			}
+			queryBuilder.append(" m.name LIKE :pattern").append(i);
+		}
+
+		TypedQuery<Musician> query = em.createQuery(queryBuilder.toString(), Musician.class);
+
+		for (int i = 0; i < patterns.size(); i++) {
+			query.setParameter("pattern" + i, patterns.get(i));
+		}
+
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Musician> findAll() {
 		return em.createQuery("select m from Musician m", Musician.class)
-				.getResultList();
+			.getResultList();
 	}
 
 }
