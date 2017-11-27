@@ -38,47 +38,41 @@ public class MusicianFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 		musicianFacade.create(musicianDTO);
 
-		List<Musician> musicians = em.createQuery("SELECT m FROM Musician m", Musician.class).getResultList();
+		List<Musician> musicians = getAllMusicians();
 		Assert.assertEquals(1, musicians.size());
 		Assert.assertEquals("Parov Stelar", musicians.get(0).getName());
 	}
 
 	@Test
 	public void testUpdate() {
-		Musician musician = new Musician();
-		musician.setName("Marcus Füreder");
-		em.persist(musician);
+		Musician musician = createSampleMusician("Marcus Füreder");
 
 		MusicianDTO musicianDTO = new MusicianDTO();
 		musicianDTO.setId(musician.getId());
 		musicianDTO.setName("Parov Stelar");
 		musicianFacade.update(musicianDTO);
 
-		List<Musician> musicians = em.createQuery("SELECT m FROM Musician m", Musician.class).getResultList();
+		List<Musician> musicians = getAllMusicians();
 		Assert.assertEquals(1, musicians.size());
 		Assert.assertEquals("Parov Stelar", musicians.get(0).getName());
 	}
 
 	@Test
 	public void testDelete() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-		em.persist(musician);
+		Musician musician = createSampleMusician("Parov Stelar");
 
 		MusicianDTO musicianDTO = new MusicianDTO();
 		musicianDTO.setId(musician.getId());
 		musicianDTO.setName("Parov Stelar");
 		musicianFacade.delete(musicianDTO);
 
-		List<Musician> musicians = em.createQuery("SELECT m FROM Musician m", Musician.class).getResultList();
+		List<Musician> musicians = getAllMusicians();
 		Assert.assertEquals(0, musicians.size());
 	}
 
 	@Test
 	public void testFindById() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-		em.persist(musician);
+		Musician musician = createSampleMusician("Parov Stelar");
 
 		MusicianDTO musicianDTO = musicianFacade.findById(musician.getId());
 
@@ -141,5 +135,9 @@ public class MusicianFacadeImplTest extends AbstractTestNGSpringContextTests {
 		musician.setName(name);
 		em.persist(musician);
 		return musician;
+	}
+
+	private List<Musician> getAllMusicians() {
+		return em.createQuery("SELECT m FROM Musician m", Musician.class).getResultList();
 	}
 }
