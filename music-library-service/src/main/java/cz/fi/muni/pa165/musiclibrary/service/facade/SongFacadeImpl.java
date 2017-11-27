@@ -1,9 +1,13 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import cz.fi.muni.pa165.musiclibrary.service.GenreService;
+import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
 import cz.fi.muni.pa165.musiclibrary.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
@@ -14,7 +18,7 @@ import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
  *
  * @author David
  */
-public class SongFacadeImpl implements SongFacade{
+public class SongFacadeImpl implements SongFacade {
     
     @Autowired
     private SongService songService;

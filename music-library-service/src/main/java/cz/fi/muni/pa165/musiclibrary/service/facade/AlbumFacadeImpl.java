@@ -1,12 +1,16 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
 import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
+import cz.fi.muni.pa165.musiclibrary.service.GenreService;
+import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

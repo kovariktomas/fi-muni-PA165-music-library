@@ -1,6 +1,8 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class AlbumFacadeImplTest {
     private AlbumDTO albumDTOHungry;
     private AlbumDTO albumDTOLazy;
 
-    private GenreDTO contryGenre;
+    private GenreDTO countryGenre;
     private SongDTO countrySong;
     private MusicianDTO daya;
 
@@ -37,7 +39,7 @@ public class AlbumFacadeImplTest {
         countryGenre.setName("Country");
 
         daya = new MusicianDTO();
-        daya.setID(new Long(1));
+        daya.setId(new Long(1));
         daya.setName("Daya");
 
         countrySong = new SongDTO();
@@ -92,7 +94,7 @@ public class AlbumFacadeImplTest {
     @Test
     public void testFindByGenre(){
         albumFacade.create(albumDTOHungry);
-        Assert.assertEquals(albumFacade.findByGenre(contryGenre).get(0), albumDTOHungry);
+        Assert.assertEquals(albumFacade.findByGenre(countryGenre).get(0), albumDTOHungry);
     }
 
     @Test

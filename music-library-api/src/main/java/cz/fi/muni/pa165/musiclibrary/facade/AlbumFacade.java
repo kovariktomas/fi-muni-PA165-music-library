@@ -1,6 +1,8 @@
 package cz.fi.muni.pa165.musiclibrary.facade;
 
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 
 import java.util.List;
 
