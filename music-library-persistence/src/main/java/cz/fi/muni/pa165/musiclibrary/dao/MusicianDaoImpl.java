@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author David Koncak
@@ -47,13 +48,13 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 			} else {
 				queryBuilder.append(" AND");
 			}
-			queryBuilder.append(" m.name LIKE :pattern").append(i);
+			queryBuilder.append(" LOWER(m.name) LIKE :pattern").append(i);
 		}
 
 		TypedQuery<Musician> query = em.createQuery(queryBuilder.toString(), Musician.class);
 
 		for (int i = 0; i < patterns.size(); i++) {
-			query.setParameter("pattern" + i, patterns.get(i));
+			query.setParameter("pattern" + i, patterns.get(i).toLowerCase(Locale.ENGLISH));
 		}
 
 		return query.getResultList();
