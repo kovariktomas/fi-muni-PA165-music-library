@@ -15,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
+ * Implementation of album facade interface.
+ *
  * @author Iva Liberova
  */
 @Service
@@ -76,5 +79,15 @@ public class AlbumFacadeImpl implements AlbumFacade {
 	@Override
 	public List<AlbumDTO> findAll() {
 		return beanMappingService.mapTo(albumService.findAll(), AlbumDTO.class);
+	}
+
+	@Override
+	public List<AlbumDTO> getAlbumsReleasedBetween(Date startDate, Date endDate) {
+		return beanMappingService.mapTo(albumService.getAlbumsReleasedBetween(startDate, endDate), AlbumDTO.class);
+	}
+
+	@Override
+	public List<AlbumDTO> getAlbumsFromLastMonth() {
+		return beanMappingService.mapTo(albumService.getAlbumsFromLastMonth(), AlbumDTO.class);
 	}
 }

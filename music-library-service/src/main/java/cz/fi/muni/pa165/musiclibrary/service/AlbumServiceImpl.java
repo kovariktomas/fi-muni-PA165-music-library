@@ -4,19 +4,27 @@ import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
+ * Implementation of AlbumFacade
+ *
  * @author Iva Liberova
  */
+
 @Service
 public class AlbumServiceImpl implements AlbumService {
-
 	@Autowired
 	private AlbumDao albumDao;
+
+	@Autowired
+	private TimeService timeService;
 
 	@Override
 	public void create(Album album) {
@@ -49,8 +57,9 @@ public class AlbumServiceImpl implements AlbumService {
 	}
 
 	@Override
-	public List<Album> findByTitle(String titlePattern) {
-		return albumDao.findByTitle(titlePattern);
+	public List<Album> findByTitle(String query) {
+		List<String> patterns = SearchHelper.splitSearchQuery(query);
+		return albumDao.findByTitle(patterns);
 	}
 
 	@Override
@@ -59,14 +68,16 @@ public class AlbumServiceImpl implements AlbumService {
 	}
 
 	@Override
-	public List<Album> getAlbumsFromLastMonth() {
-		// TODO
-		return null;
+	public List<Album> getAlbumsReleasedBetween(Date startDate, Date endDate) {
+		return albumDao.getAlbumsReleasedBetween(startDate, endDate);
 	}
 
 	@Override
-	public List<Album> searchAlbumsByQuery(List<String> titlePatterns) {
-		// TODO
-		return null;
+	public List<Album> getAlbumsFromLastMonth() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(timeService.getCurrentTime());
+		calendar.add(Calendar.MONTH, -1);
+		Date lastMonth = calendar.getTime();
+		return albumDao.getAlbumsReleasedBetween(lastMonth, timeService.getCurrentTime());
 	}
 }
