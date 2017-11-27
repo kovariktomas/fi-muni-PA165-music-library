@@ -40,57 +40,42 @@ public class MusicianServiceTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testCreate() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-
+		Musician musician = createMockMusician("Parov Stelar");
 		musicianService.create(musician);
-
 		verify(musicianDao).create(musician);
 	}
 
 	@Test
 	public void testUpdate() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-
+		Musician musician = createMockMusician("Parov Stelar");
 		musicianService.update(musician);
-
 		verify(musicianDao).update(musician);
 	}
 
 	@Test
 	public void testDelete() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-
+		Musician musician = createMockMusician("Parov Stelar");
 		musicianService.delete(musician);
-
 		verify(musicianDao).delete(musician);
 	}
 
 	@Test
 	public void testFindById() {
-		Musician musician = new Musician();
-		musician.setName("Parov Stelar");
-
+		Musician musician = createMockMusician("Parov Stelar");
 		when(musicianDao.findById(1L)).thenReturn(musician);
-
 		Assert.assertSame(musician, musicianService.findById(1L));
 	}
 
 	@Test
 	public void testFindNonexistentById() {
 		when(musicianDao.findById(1L)).thenReturn(null);
-
 		Assert.assertEquals(null, musicianService.findById(1L));
 	}
 
 	@Test
 	public void testFindByName() {
-		Musician musician1 = new Musician();
-		musician1.setName("Red Hot Chilli Peppers");
-		Musician musician2 = new Musician();
-		musician2.setName("Alabama Red Peppers");
+		Musician musician1 = createMockMusician("Red Hot Chilli Peppers");
+		Musician musician2 = createMockMusician("Alabama Red Peppers");
 		List<Musician> musicians = Arrays.asList(musician1, musician2);
 
 		when(musicianDao.findByName(Arrays.asList("%red%", "%peppers%"))).thenReturn(musicians);
@@ -100,10 +85,8 @@ public class MusicianServiceTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindByNameWithEmptyQuery() {
-		Musician musician1 = new Musician();
-		musician1.setName("Parov Stelar");
-		Musician musician2 = new Musician();
-		musician2.setName("Caravan Palace");
+		Musician musician1 = createMockMusician("Parov Stelar");
+		Musician musician2 = createMockMusician("Caravan Palace");
 		List<Musician> musicians = Arrays.asList(musician1, musician2);
 
 		when(musicianDao.findByName(new ArrayList<>())).thenReturn(musicians);
@@ -113,15 +96,19 @@ public class MusicianServiceTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindAll() {
-		Musician musician1 = new Musician();
-		musician1.setName("Parov Stelar");
-		Musician musician2 = new Musician();
-		musician2.setName("Caravan Palace");
+		Musician musician1 = createMockMusician("Parov Stelar");
+		Musician musician2 = createMockMusician("Caravan Palace");
 		List<Musician> musicians = Arrays.asList(musician1, musician2);
 
 		when(musicianDao.findAll()).thenReturn(musicians);
 
 		Assert.assertSame(musicians, musicianService.findAll());
+	}
+
+	private Musician createMockMusician(String name) {
+		Musician musician = new Musician();
+		musician.setName("Parov Stelar");
+		return musician;
 	}
 
 }
