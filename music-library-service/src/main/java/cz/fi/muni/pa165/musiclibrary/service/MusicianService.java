@@ -17,7 +17,7 @@ public interface MusicianService {
 
 	Musician findById(Long id);
 
-	List<Musician> findByName(List<String> patterns);
+	List<Musician> findByName(String query);
 
 	List<Musician> findAll();
 }
