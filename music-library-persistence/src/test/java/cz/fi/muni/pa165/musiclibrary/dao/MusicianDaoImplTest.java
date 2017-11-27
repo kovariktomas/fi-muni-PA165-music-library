@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author Iva Liberova
  */
-@ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
@@ -65,7 +65,7 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 		musicianDao.update(daya);
 		Musician currentDaya = musicianDao.findById(daya.getId());
 		Assert.assertEquals(currentDaya, daya);
-		Assert.assertEquals(currentDaya.getName(),daya.getName());
+		Assert.assertEquals(currentDaya.getName(), daya.getName());
 		Assert.assertNotEquals(oldName, currentDaya.getName());
 	}
 
@@ -111,7 +111,7 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testFindAll(){
+	public void testFindAll() {
 		musicianDao.create(daya);
 		musicianDao.create(taylor_swift);
 		musicianDao.create(muse);
@@ -125,7 +125,7 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 
 		Assert.assertEquals(expectedResult.size(), result.size());
 
-		for(int i = 0; i < expectedResult.size(); i++){
+		for (int i = 0; i < expectedResult.size(); i++) {
 			Assert.assertEquals(expectedResult.get(i), result.get(i));
 		}
 	}

@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.musiclibrary.service;
 
 import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
-
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -23,7 +22,7 @@ public class GenreServiceImpl implements GenreService {
 	public Genre findById(Long id) {
 		return genreDao.findById(id);
 	}
-	
+
 	@Override
 	public List<Genre> findByPattern(String pattern) {
 		return genreDao.findByName(pattern);

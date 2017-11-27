@@ -62,7 +62,7 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 	@Override
 	public List<Musician> findAll() {
 		return em.createQuery("select m from Musician m", Musician.class)
-				.getResultList();
+			.getResultList();
 	}
 
 }

@@ -115,14 +115,14 @@ public class Album {
 		}
 		final Album other = (Album) obj;
 		return Objects.equals(this.releaseDate, other.getReleaseDate()) &&
-				Objects.equals(this.title, other.getTitle()) &&
-				Objects.equals(this.commentary, other.getCommentary()) &&
-				Arrays.equals(this.albumArt, other.getAlbumArt());
+			Objects.equals(this.title, other.getTitle()) &&
+			Objects.equals(this.commentary, other.getCommentary()) &&
+			Arrays.equals(this.albumArt, other.getAlbumArt());
 	}
 
 	@Override
 	public String toString() {
 		return "Album{" + "id=" + id + ", releaseDate=" + releaseDate +
-				", title=" + title + '}';
+			", title=" + title + '}';
 	}
 }

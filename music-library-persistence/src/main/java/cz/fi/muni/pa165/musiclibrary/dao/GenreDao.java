@@ -14,7 +14,7 @@ public interface GenreDao {
 	 * Adds the given genre to the database.
 	 *
 	 * @param genre the genre
-	 * @throws IllegalArgumentException if the genre is null or already exists
+	 * @throws IllegalArgumentException    if the genre is null or already exists
 	 * @throws GenreAlreadyExistsException if a genre with the same name already exists
 	 */
 	public void create(Genre genre) throws GenreAlreadyExistsException, IllegalArgumentException;

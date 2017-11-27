@@ -60,7 +60,7 @@ public interface SongDao {
 	 *
 	 * @param genre the genre
 	 * @return the songs
-	 * @throws  IllegalArgumentException if the genre is null
+	 * @throws IllegalArgumentException if the genre is null
 	 */
 	public List<Song> findByGenre(Genre genre) throws IllegalArgumentException;
 

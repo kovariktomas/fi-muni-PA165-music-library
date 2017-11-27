@@ -11,9 +11,9 @@ import java.util.Date;
 @Service
 public class TimeServiceImpl implements TimeService {
 
-    @Override
-    public Date getCurrentTime() {
-        return new Date();
-    }
+	@Override
+	public Date getCurrentTime() {
+		return new Date();
+	}
 
 }

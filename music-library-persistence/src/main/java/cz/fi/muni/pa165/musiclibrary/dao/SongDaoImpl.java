@@ -62,8 +62,8 @@ public class SongDaoImpl implements SongDao {
 			throw new IllegalArgumentException("Argument musician must not be null.");
 		}
 		return em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician", Song.class)
-				.setParameter("musician", musician)
-				.getResultList();
+			.setParameter("musician", musician)
+			.getResultList();
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class SongDaoImpl implements SongDao {
 			throw new IllegalArgumentException("Argument genre must not be null.");
 		}
 		return em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre", Song.class)
-				.setParameter("genre", genre)
-				.getResultList();
+			.setParameter("genre", genre)
+			.getResultList();
 	}
 
 	@Override
@@ -82,13 +82,13 @@ public class SongDaoImpl implements SongDao {
 			throw new IllegalArgumentException("Argument titlePattern must not be null.");
 		}
 		return em.createQuery("SELECT s FROM Song s WHERE s.title LIKE :title", Song.class)
-				.setParameter("title", "%" + titlePattern + "%")
-				.getResultList();
+			.setParameter("title", "%" + titlePattern + "%")
+			.getResultList();
 	}
 
 	@Override
 	public List<Song> findAll() {
 		return em.createQuery("SELECT s from Song s", Song.class)
-				.getResultList();
+			.getResultList();
 	}
 }
