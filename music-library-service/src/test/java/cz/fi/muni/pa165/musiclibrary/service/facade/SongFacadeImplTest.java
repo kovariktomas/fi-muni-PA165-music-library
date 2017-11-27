@@ -17,6 +17,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
@@ -37,13 +38,18 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	@PersistenceContext
 	private EntityManager em;
 
-	@Test
-	public void testCreate() {
-		Album album = createSampleAlbum("Hybrid Theory", "2000-10-24");
-		Musician musician = createSampleMusician("Linkin Park");
-		Genre genre = createSampleGenre("Nu metal");
+	private Song song1;
+	private SongDTO songDTO;
+	private Musician musician;
+	private Genre genre;
 
-		SongDTO songDTO = new SongDTO();
+	@BeforeMethod
+	public void init() {
+		Album album = createSampleAlbum("Hybrid Theory", "2000-10-24");
+		musician = createSampleMusician("Linkin Park");
+		genre = createSampleGenre("Nu metal");
+
+		songDTO = new SongDTO();
 		songDTO.setAlbum(createAlbumDTO(album));
 		songDTO.setMusician(createMusicianDTO(musician));
 		songDTO.setGenre(createGenreDTO(genre));
@@ -51,11 +57,84 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 		songDTO.setBitrate(320);
 		songDTO.setPosition(0);
 
+		song1 = new Song();
+		song1.setAlbum(album);
+		song1.setMusician(musician);
+		song1.setGenre(genre);
+		song1.setTitle("In The End");
+		song1.setBitrate(320);
+		song1.setPosition(0);
+	}
+
+
+	@Test
+	public void testCreate() {
 		songFacade.create(songDTO);
 
 		List<Song> songs = getAllSongs();
 		Assert.assertEquals(1, songs.size());
 		Assert.assertEquals("In The End", songs.get(0).getTitle());
+	}
+
+	@Test
+	public void testDelete() {
+
+		songFacade.delete(songDTO);
+
+		List<Song> songs = getAllSongs();
+		Assert.assertEquals(0, songs.size());
+	}
+
+	@Test
+	public void testFindById() {
+		em.persist(song1);
+
+		SongDTO songDto = songFacade.findById(song1.getId());
+
+		Assert.assertEquals(song1.getId(), songDto.getId());
+		Assert.assertEquals("In The End", songDto.getTitle());
+	}
+
+	@Test
+	public void testFindAll() {
+		em.persist(song1);
+
+		List<SongDTO> songDTOs = songFacade.findAll();
+
+		Assert.assertEquals(1, songDTOs.size());
+		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
+	}
+
+	@Test
+	public void testFindByTitle() {
+		em.persist(song1);
+
+		List<SongDTO> songDTOs = songFacade.findByTitle("In The End");
+
+		Assert.assertEquals(1, songDTOs.size());
+		Assert.assertEquals(song1.getId(), songDTOs.get(0).getId());
+	}
+
+	@Test
+	public void testFindByMusician() {
+		em.persist(song1);
+
+		List<SongDTO> songDTOs = songFacade.findByMusician(createMusicianDTO(musician));
+
+		Assert.assertEquals(1, songDTOs.size());
+		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
+		Assert.assertEquals(song1.getPosition(), songDTOs.get(0).getPosition());
+	}
+
+	@Test
+	public void testFindByGenre() {
+		em.persist(song1);
+
+		List<SongDTO> songDTOs = songFacade.findByGenre(createGenreDTO(genre));
+
+		Assert.assertEquals(1, songDTOs.size());
+		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
+		Assert.assertEquals(song1.getPosition(), songDTOs.get(0).getPosition());
 	}
 
 	private Album createSampleAlbum(String title, String date) {
@@ -116,4 +195,5 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private List<Song> getAllSongs() {
 		return em.createQuery("SELECT s FROM Song s", Song.class).getResultList();
 	}
+
 }
