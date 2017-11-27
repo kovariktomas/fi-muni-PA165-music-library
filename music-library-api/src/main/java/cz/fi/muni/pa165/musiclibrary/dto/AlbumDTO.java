@@ -3,6 +3,8 @@ package cz.fi.muni.pa165.musiclibrary.dto;
 import java.util.*;
 
 /**
+ * Data Transfer Object for Album
+ *
  * @author Iva Liberova
  */
 public class AlbumDTO {
