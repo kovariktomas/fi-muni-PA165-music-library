@@ -20,6 +20,9 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author Jan-Sebastian Fabík
+ */
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class MusicianServiceTest extends AbstractTestNGSpringContextTests {
 
