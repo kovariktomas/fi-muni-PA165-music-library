@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.service;
 
 import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -30,7 +31,8 @@ public class MusicianServiceImpl implements MusicianService {
 		return musicianDao.findById(id);
 	}
 
-	public List<Musician> findByName(List<String> patterns) {
+	public List<Musician> findByName(String query) {
+		List<String> patterns = SearchHelper.splitSearchQuery(query);
 		return musicianDao.findByName(patterns);
 	}
 

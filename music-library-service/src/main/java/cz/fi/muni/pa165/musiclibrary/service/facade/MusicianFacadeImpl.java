@@ -36,8 +36,7 @@ public class MusicianFacadeImpl implements MusicianFacade {
 	}
 
 	public List<MusicianDTO> findByName(String query) {
-		List<String> patterns = SearchHelper.splitSearchQuery(query);
-		List<Musician> musicians = musicianService.findByName(patterns);
+		List<Musician> musicians = musicianService.findByName(query);
 		return beanMappingService.mapTo(musicians, MusicianDTO.class);
 	}
 
