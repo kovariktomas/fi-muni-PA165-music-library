@@ -7,7 +7,6 @@ import java.util.Date;
 /**
  * An interface that defines a service access to the current time.
  */
-
 @Service
 public interface TimeService {
 	public Date getCurrentTime();

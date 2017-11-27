@@ -25,7 +25,7 @@ public class GenreFacadeImpl implements GenreFacade {
 
 	final static Logger log = LoggerFactory.getLogger(GenreFacadeImpl.class);
 
-	@Inject
+	@Autowired
 	private GenreService genreService;
 
 	@Autowired

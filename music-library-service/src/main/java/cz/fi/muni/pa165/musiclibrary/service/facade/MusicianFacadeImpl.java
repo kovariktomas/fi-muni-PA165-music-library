@@ -5,11 +5,14 @@ import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
 import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
-import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
+@Transactional
 public class MusicianFacadeImpl implements MusicianFacade {
 
 	@Autowired
