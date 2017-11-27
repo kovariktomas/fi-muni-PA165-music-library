@@ -47,11 +47,11 @@ public interface GenreDao {
 	/**
 	 * Gets genres which contain the given pattern in the name.
 	 *
-	 * @param namePattern the name pattern
+	 * @param patterns patterns to be found
 	 * @return the genres
 	 * @throws IllegalArgumentException if the name pattern is null
 	 */
-	public List<Genre> findByName(String namePattern) throws IllegalArgumentException;
+	public List<Genre> findByName(List<String> patterns) throws IllegalArgumentException;
 
 	/**
 	 * Gets all genres.

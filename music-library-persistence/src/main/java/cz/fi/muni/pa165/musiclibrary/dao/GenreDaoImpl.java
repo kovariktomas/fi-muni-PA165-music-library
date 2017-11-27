@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Kovarik Tomas
@@ -70,12 +71,27 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 	}
 
 	@Override
-	public List<Genre> findByName(String name) throws IllegalArgumentException {
-		if (name == null) {
+	public List<Genre> findByName(List<String> patterns) throws IllegalArgumentException {
+		if (patterns == null) {
 			throw new IllegalArgumentException("Argument name must not be null.");
 		}
-		return em.createQuery("SELECT g FROM Genre g WHERE g.name like :name ",
-			Genre.class).setParameter("name", "%" + name + "%").getResultList();
+		StringBuilder queryBuilder = new StringBuilder("select g from Genre g");
+
+		for (int i = 0; i < patterns.size(); i++) {
+			if (i == 0) {
+				queryBuilder.append(" WHERE");
+			} else {
+				queryBuilder.append(" AND");
+			}
+			queryBuilder.append(" g.name LIKE :pattern").append(i);
+		}
+
+		TypedQuery<Genre> query = em.createQuery(queryBuilder.toString(), Genre.class);
+
+		for (int i = 0; i < patterns.size(); i++) {
+			query.setParameter("pattern" + i, patterns.get(i));
+		}
+		return query.getResultList();
 	}
 
 	@Override
