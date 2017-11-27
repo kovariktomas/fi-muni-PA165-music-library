@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.TypedQuery;
 
 /**
@@ -48,7 +49,7 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 		if (!em.contains(genre)) {
 			throw new IllegalArgumentException("The given genre does not exist.");
 		}
-		em.remove(genre);
+	em.remove(genre);
 	}
 
 	@Override
@@ -83,13 +84,13 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 			} else {
 				queryBuilder.append(" AND");
 			}
-			queryBuilder.append(" g.name LIKE :pattern").append(i);
+			queryBuilder.append(" LOWER(g.name) LIKE :pattern").append(i);
 		}
 
 		TypedQuery<Genre> query = em.createQuery(queryBuilder.toString(), Genre.class);
 
 		for (int i = 0; i < patterns.size(); i++) {
-			query.setParameter("pattern" + i, patterns.get(i));
+			query.setParameter("pattern" + i, patterns.get(i).toLowerCase(Locale.ENGLISH));
 		}
 		return query.getResultList();
 	}

@@ -23,7 +23,7 @@ import java.util.List;
 @Transactional
 public class GenreFacadeImpl implements GenreFacade {
 
-	final static Logger log = LoggerFactory.getLogger(GenreFacadeImpl.class);
+	//final static Logger log = LoggerFactory.getLogger(GenreFacadeImpl.class);
 
 	@Inject
 	private GenreService genreService;
@@ -40,10 +40,11 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public void delete(Long genreId) {
-		genreService.delete(new Genre(genreId));
+	public void delete(GenreDTO genre) {
+		genreService.delete(beanMappingService.mapTo(genre, Genre.class));
 	}
 
+	@Override
 	public void update(GenreDTO genre) {
 		genreService.update(beanMappingService.mapTo(genre, Genre.class));
 	}
