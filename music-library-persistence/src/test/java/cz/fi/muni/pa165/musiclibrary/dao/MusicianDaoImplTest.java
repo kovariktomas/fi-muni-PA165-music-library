@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -101,12 +102,12 @@ public class MusicianDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindByName() {
 		musicianDao.create(taylor_swift);
-		Assert.assertEquals(musicianDao.findByName("Taylor").get(0), taylor_swift);
+		Assert.assertEquals(musicianDao.findByName(Arrays.asList("%Taylor%")).get(0), taylor_swift);
 	}
 
 	@Test
 	public void testFindByNameNotInDB() {
-		Assert.assertTrue(musicianDao.findByName("Taylor").isEmpty());
+		Assert.assertTrue(musicianDao.findByName(Arrays.asList("Taylor")).isEmpty());
 	}
 
 	@Test
