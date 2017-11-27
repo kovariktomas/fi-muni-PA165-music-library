@@ -20,60 +20,33 @@ import java.util.stream.Collectors;
  */
 @Repository
 @Transactional
-public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao {
+public class AlbumDaoImpl implements AlbumDao {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public void create(Album album) throws IllegalArgumentException {
-		if (album == null) {
-			throw new IllegalArgumentException("Creating album - album cannot be null.");
-		}
-		if (em.contains(album)) {
-			throw new IllegalArgumentException("Creating album - album already in database.");
-		}
+	public void create(Album album){
 		em.persist(album);
 	}
 
 	@Override
-	public void update(Album album) throws IllegalArgumentException {
-		if (album == null) {
-			throw new IllegalArgumentException("Updating album - album cannot be null.");
-		}
-		if (!em.contains(album)) {
-			throw new IllegalArgumentException("Updating album - album not in database.");
-		}
+	public void update(Album album){
 		em.merge(album);
 	}
 
 	@Override
-	public void remove(Album album) throws IllegalArgumentException {
-		if (album == null) {
-			throw new IllegalArgumentException("Removing album - album cannot be null.");
-		}
-		if (!em.contains(album)) {
-			throw new IllegalArgumentException("Removing album - album not in database.");
-		}
+	public void remove(Album album){
 		em.remove(findById(album.getId()));
 	}
 
 	@Override
-	public Album findById(Long id) throws IllegalArgumentException {
-		if (id == null) {
-			throw new IllegalArgumentException("Finding album by id - id cannot be null.");
-		}
-		if (id < 0) {
-			throw new IllegalArgumentException("Finding album by id - id cannot be negative number.");
-		}
+	public Album findById(Long id){
 		return em.find(Album.class, id);
 	}
 
 	@Override
-	public List<Album> findByMusician(Musician musician) throws IllegalArgumentException {
-		if (musician == null) {
-			throw new IllegalArgumentException("Finding album by musician - musician cannot be null.");
-		}
+	public List<Album> findByMusician(Musician musician){
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician",
 				Song.class).setParameter("musician", musician).getResultList();
 		List<Album> albums = new ArrayList<>();
@@ -84,10 +57,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 	}
 
 	@Override
-	public List<Album> findByGenre(Genre genre) throws IllegalArgumentException {
-		if (genre == null) {
-			throw new IllegalArgumentException("Finding album by genre - genre cannot be null.");
-		}
+	public List<Album> findByGenre(Genre genre){
 		List<Song> songs = em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre",
 				Song.class).setParameter("genre", genre).getResultList();
 		List<Album> albums = new ArrayList<>();
@@ -98,10 +68,7 @@ public class AlbumDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.AlbumDao 
 	}
 
 	@Override
-	public List<Album> findByTitle(String titlePattern) throws IllegalArgumentException {
-		if (titlePattern == null) {
-			throw new IllegalArgumentException("Finding album by title - title cannot be null.");
-		}
+	public List<Album> findByTitle(String titlePattern){
 		return em.createQuery("SELECT a FROM Album a WHERE a.title like :title ",
 				Album.class).setParameter("title", "%" + titlePattern + "%").getResultList();
 	}
