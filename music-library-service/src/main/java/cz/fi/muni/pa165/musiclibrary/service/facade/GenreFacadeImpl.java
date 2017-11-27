@@ -7,12 +7,11 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
 import cz.fi.muni.pa165.musiclibrary.service.GenreService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -21,8 +20,6 @@ import java.util.List;
 @Service
 @Transactional
 public class GenreFacadeImpl implements GenreFacade {
-
-	final static Logger log = LoggerFactory.getLogger(GenreFacadeImpl.class);
 
 	@Autowired
 	private GenreService genreService;
@@ -39,10 +36,11 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public void delete(Long genreId) {
-		genreService.delete(new Genre(genreId));
+	public void delete(GenreDTO genre) {
+		genreService.delete(beanMappingService.mapTo(genre, Genre.class));
 	}
 
+	@Override
 	public void update(GenreDTO genre) {
 		genreService.update(beanMappingService.mapTo(genre, Genre.class));
 	}

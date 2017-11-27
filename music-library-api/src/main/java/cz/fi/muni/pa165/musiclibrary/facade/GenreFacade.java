@@ -13,7 +13,7 @@ import java.util.List;
 public interface GenreFacade {
 	Long create(GenreCreateDTO g);
 
-	void delete(Long genreId);
+	void delete(GenreDTO genre);
 
 	void update(GenreDTO genre);
 
