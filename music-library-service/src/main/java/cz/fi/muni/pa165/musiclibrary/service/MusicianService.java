@@ -1,12 +1,14 @@
 package cz.fi.muni.pa165.musiclibrary.service;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author Jan-Sebastian Fabík
  */
+@Service
 public interface MusicianService {
 
 	void create(Musician musician);

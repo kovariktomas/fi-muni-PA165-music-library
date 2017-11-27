@@ -5,14 +5,18 @@ import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
+import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class AlbumFacadeImplTest {
+@ContextConfiguration(classes = ServiceConfiguration.class)
+public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
 	private AlbumFacade albumFacade;

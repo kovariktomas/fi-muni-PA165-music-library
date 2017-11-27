@@ -5,12 +5,14 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author Iva Liberova
  */
+@Service
 public class AlbumServiceImpl implements AlbumService {
 
 	@Autowired

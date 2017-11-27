@@ -12,12 +12,16 @@ import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
 import cz.fi.muni.pa165.musiclibrary.service.GenreService;
 import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * @author Iva Liberova
  */
+@Service
+@Transactional
 public class AlbumFacadeImpl implements AlbumFacade {
 	@Autowired
 	private AlbumService albumService;
