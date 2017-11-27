@@ -22,6 +22,8 @@ import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -38,7 +40,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private Album album22;
 	private Album albumReputation;
 	private Musician taylor;
-	private Musician daya;
 	private Genre jazz;
 	private Genre pop;
 	private Song delicate;
@@ -49,7 +50,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private GenreDTO jazzDTO;
 	private GenreDTO popDTO;
 	private SongDTO delicateDTO;
-	private MusicianDTO dayaDTO;
 	private MusicianDTO taylorDTO;
 
 	@BeforeMethod
@@ -57,10 +57,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		taylor = new Musician();
 		taylor.setName("Taylor Swift");
 		em.persist(taylor);
-
-		daya = new Musician();
-		daya.setName("Daya");
-		em.persist(daya);
 
 		jazz = new Genre();
 		jazz.setName("jazz");
@@ -70,30 +66,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		pop.setName("pop");
 		em.persist(pop);
 
-		delicate = new Song();
-		delicate.setTitle("Delicate");
-		delicate.setPosition(5);
-		delicate.setGenre(jazz);
-		delicate.setMusician(taylor);
-		em.persist(delicate);
-
-		album22 = new Album();
-		album22.setTitle("22");
-		album22.addSong(delicate);
-		em.persist(album22);
-
-		albumReputation = new Album();
-		albumReputation.setTitle("Reputation");
-		em.persist(albumReputation);
-
-		albumDTO22 = new AlbumDTO();
-		albumDTO22.setId(album22.getId());
-		albumDTO22.setTitle(album22.getTitle());
-
-		albumDTOReputation = new AlbumDTO();
-		albumDTOReputation.setId(albumReputation.getId());
-		albumDTOReputation.setTitle(albumReputation.getTitle());
-
 		taylorDTO = new MusicianDTO();
 		taylorDTO.setId(taylor.getId());
 		taylorDTO.setName(taylor.getName());
@@ -101,6 +73,37 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		jazzDTO = new GenreDTO();
 		jazzDTO.setId(jazz.getId());
 		jazzDTO.setName(jazz.getName());
+
+		albumDTO22 = new AlbumDTO();
+		albumDTO22.setTitle("22");
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2016, 1, 1);
+		Date fabricatedTime = calendar.getTime();
+		albumDTO22.setReleaseDate(fabricatedTime);
+		albumDTO22.setCommentary("aa");
+
+		albumDTOReputation = new AlbumDTO();
+		albumDTOReputation.setTitle("Reputation");
+		albumDTOReputation.setReleaseDate(fabricatedTime);
+		albumDTOReputation.setCommentary("aa");
+
+		delicateDTO = new SongDTO();
+		delicateDTO.setMusician(taylorDTO);
+		delicateDTO.setTitle("Delicate");
+
+		album22 = new Album();
+		album22.setTitle("22");
+		album22.setReleaseDate(fabricatedTime);
+
+		albumReputation = new Album();
+		albumReputation.setTitle("Reputation");
+		albumReputation.setReleaseDate(fabricatedTime);
+
+
+		delicate = new Song();
+		delicate.setTitle("Delicate");
+
+		delicateDTO.setAlbum(albumDTO22);
 	}
 
 	@Test
@@ -114,7 +117,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testUpdate() {
 		String oldName = albumDTO22.getTitle();
-		albumFacade.create(albumDTO22);
 		albumDTO22.setTitle("aaaa");
 		albumFacade.update(albumDTO22);
 		AlbumDTO updatedDto = albumFacade.findById(albumDTO22.getId());
@@ -125,7 +127,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testRemove() {
-		albumFacade.create(albumDTO22);
 		albumFacade.remove(albumDTO22);
 		List<AlbumDTO> result = albumFacade.findAll();
 		Assert.assertEquals(0, result.size());
