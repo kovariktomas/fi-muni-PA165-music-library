@@ -40,7 +40,7 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 			.getSingleResult();
 		return count > 0;
 	}
-
+/*
 	@Override
 	public void delete(Genre genre) throws IllegalArgumentException {
 		if (genre == null) {
@@ -61,13 +61,22 @@ public class GenreDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.GenreDao 
 			throw new IllegalArgumentException("The given genre does not exist.");
 		}
 		em.merge(genre);
+	}*/
+	@Override
+	public void delete(Genre g) throws IllegalArgumentException {
+		em.remove(findById(g.getId()));
+	}
+
+	@Override
+	public void update(Genre g) {
+		em.merge(g);
 	}
 
 	@Override
 	public Genre findById(Long id) throws IllegalArgumentException {
-		if (id == null) {
+		/*if (id == null) {
 			throw new IllegalArgumentException("Argument id must not be null.");
-		}
+		}*/
 		return em.find(Genre.class, id);
 	}
 

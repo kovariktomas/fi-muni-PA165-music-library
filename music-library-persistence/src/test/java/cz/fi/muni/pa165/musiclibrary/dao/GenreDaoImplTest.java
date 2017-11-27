@@ -89,7 +89,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		genreDao.delete(rockGenre);
 		Assert.assertEquals(GENRES_COUNT - 1, genreDao.findAll().size());
 	}
-
+/*
 	@Test(expectedExceptions = IllegalArgumentException.class,
 		expectedExceptionsMessageRegExp = "Argument genre must not be null.")
 	public void testDeleteWithNullGenre() {
@@ -103,7 +103,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		swingGenreCopy.setName("Swing");
 		genreDao.delete(swingGenreCopy);
 	}
-
+*/
 	@Test
 	public void testUpdate() {
 		rockGenre.setName("Rock 2");
@@ -121,12 +121,15 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertSame(rockGenre, genreDao.findById(rockGenre.getId()));
 	}
 
+	/*
 	@Test(expectedExceptions = IllegalArgumentException.class,
 		expectedExceptionsMessageRegExp = "Argument genre must not be null.")
 	public void testUpdateWithNullGenre() {
 		genreDao.update(null);
 	}
+	*/
 
+	/*
 	@Test(expectedExceptions = IllegalArgumentException.class,
 		expectedExceptionsMessageRegExp = "The given genre does not exist.")
 	public void testUpdateWithNonexistentGenre() {
@@ -134,6 +137,7 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		swingGenreCopy.setName("Swing");
 		genreDao.update(swingGenreCopy);
 	}
+	*/
 
 	@Test
 	public void testFindById() {
@@ -144,12 +148,13 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByNonexistentId() {
 		Assert.assertEquals(null, genreDao.findById(999L));
 	}
-
+/*
 	@Test(expectedExceptions = IllegalArgumentException.class,
 		expectedExceptionsMessageRegExp = "Argument id must not be null.")
 	public void testFindByNullId() {
 		genreDao.findById(null);
 	}
+	*/
 
 	@Test
 	public void testFindByName() {
