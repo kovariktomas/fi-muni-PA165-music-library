@@ -36,34 +36,41 @@ public class SongFacadeImpl implements SongFacade {
 	@Autowired
 	private BeanMappingService beanMappingService;
 
+	@Override
 	public void create(SongDTO songDTO) {
 		Song song = beanMappingService.mapTo(songDTO, Song.class);
 		songService.create(song);
 	}
 
+	@Override
 	public void delete(SongDTO song) {
 		songService.remove(beanMappingService.mapTo(song, Song.class));
 	}
 
+	@Override
 	public SongDTO findById(Long id) {
 		Song song = songService.findById(id);
 		return (song == null) ? null : beanMappingService.mapTo(song, SongDTO.class);
 	}
 
+	@Override
 	public List<SongDTO> findByMusician(MusicianDTO musician) {
 		Musician m = musicianService.findById(musician.getId());
 		return beanMappingService.mapTo(songService.findByMusician(m), SongDTO.class);
 	}
 
+	@Override
 	public List<SongDTO> findByGenre(GenreDTO genre) {
 		Genre g = genreService.findById(genre.getId());
 		return beanMappingService.mapTo(songService.findByGenre(g), SongDTO.class);
 	}
 
+	@Override
 	public List<SongDTO> findByTitle(String titlePattern) {
 		return beanMappingService.mapTo(songService.findByTitle(titlePattern), SongDTO.class);
 	}
 
+	@Override
 	public List<SongDTO> findAll() {
 		return beanMappingService.mapTo(songService.findAll(), SongDTO.class);
 	}
