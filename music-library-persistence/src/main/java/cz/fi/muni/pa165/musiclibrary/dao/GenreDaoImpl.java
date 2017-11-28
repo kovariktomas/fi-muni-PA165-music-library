@@ -37,7 +37,7 @@ public class GenreDaoImpl implements GenreDao {
 
 	@Override
 	public void delete(Genre genre) {
-		em.remove(genre);
+		em.remove(findById(genre.getId()));
 	}
 
 	@Override
