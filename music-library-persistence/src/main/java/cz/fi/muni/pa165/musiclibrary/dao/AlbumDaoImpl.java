@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -90,13 +91,13 @@ public class AlbumDaoImpl implements AlbumDao {
 			} else {
 				queryBuilder.append(" AND");
 			}
-			queryBuilder.append(" a.title LIKE :pattern").append(i);
+			queryBuilder.append(" LOWER(a.title) LIKE :pattern").append(i);
 		}
 
 		TypedQuery<Album> query = em.createQuery(queryBuilder.toString(), Album.class);
 
 		for (int i = 0; i < patterns.size(); i++) {
-			query.setParameter("pattern" + i, patterns.get(i));
+			query.setParameter("pattern" + i, patterns.get(i).toLowerCase(Locale.ENGLISH));
 		}
 		return query.getResultList();
 	}

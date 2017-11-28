@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
@@ -26,6 +27,7 @@ import java.util.List;
 @Service
 @Transactional
 public class AlbumFacadeImpl implements AlbumFacade {
+
 	@Autowired
 	private AlbumService albumService;
 
@@ -39,18 +41,18 @@ public class AlbumFacadeImpl implements AlbumFacade {
 	private BeanMappingService beanMappingService;
 
 	@Override
-	public void create(AlbumDTO albumDTO) {
-		albumService.create(beanMappingService.mapTo(albumDTO, Album.class));
+	public void create(AlbumCreateDTO albumCreateDTO) {
+		albumService.create(beanMappingService.mapTo(albumCreateDTO, Album.class));
 	}
 
 	@Override
-	public void update(AlbumDTO albumDTO) throws IllegalArgumentException {
+	public void update(AlbumDTO albumDTO) {
 		albumService.update(beanMappingService.mapTo(albumDTO, Album.class));
 	}
 
 	@Override
-	public void remove(AlbumDTO albumDTO) throws IllegalArgumentException {
-		albumService.remove(beanMappingService.mapTo(albumDTO, Album.class));
+	public void delete(Long id) {
+		albumService.remove(albumService.findById(id));
 	}
 
 	@Override
@@ -60,20 +62,20 @@ public class AlbumFacadeImpl implements AlbumFacade {
 	}
 
 	@Override
-	public List<AlbumDTO> findByMusician(MusicianDTO musicianDTO) {
-		Musician musician = musicianService.findById(musicianDTO.getId());
+	public List<AlbumDTO> findByMusician(Long musicianId) {
+		Musician musician = musicianService.findById(musicianId);
 		return beanMappingService.mapTo(albumService.findByMusician(musician), AlbumDTO.class);
 	}
 
 	@Override
-	public List<AlbumDTO> findByGenre(GenreDTO genreDTO) {
-		Genre genre = genreService.findById(genreDTO.getId());
+	public List<AlbumDTO> findByGenre(Long genreId) {
+		Genre genre = genreService.findById(genreId);
 		return beanMappingService.mapTo(albumService.findByGenre(genre), AlbumDTO.class);
 	}
 
 	@Override
-	public List<AlbumDTO> findByTitle(String titlePattern) {
-		return beanMappingService.mapTo(albumService.findByTitle(titlePattern), AlbumDTO.class);
+	public List<AlbumDTO> findByTitle(String query) {
+		return beanMappingService.mapTo(albumService.findByTitle(query), AlbumDTO.class);
 	}
 
 	@Override

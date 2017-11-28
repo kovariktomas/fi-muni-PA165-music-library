@@ -1,9 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
-import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.*;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
@@ -48,13 +45,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private Genre jazz;
 	private Song delicate;
 
-	private AlbumDTO albumDTO22;
-	private AlbumDTO albumDTOReputation;
-
-	private GenreDTO jazzDTO;
-	private SongDTO delicateDTO;
-	private MusicianDTO taylorDTO;
-
 	@BeforeMethod
 	public void setUp() {
 		Calendar calendar = Calendar.getInstance();
@@ -77,63 +67,39 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		jazz.setName("jazz");
 		em.persist(jazz);
 
-		taylorDTO = new MusicianDTO();
-		taylorDTO.setId(taylor.getId());
-		taylorDTO.setName(taylor.getName());
-
-		jazzDTO = new GenreDTO();
-		jazzDTO.setId(jazz.getId());
-		jazzDTO.setName(jazz.getName());
-
-		albumDTO22 = new AlbumDTO();
-		albumDTO22.setTitle("22");
-		albumDTO22.setReleaseDate(fabricatedTime);
-		albumDTO22.setCommentary("aa");
-
-		albumDTOReputation = new AlbumDTO();
-		albumDTOReputation.setTitle("Reputation");
-		albumDTOReputation.setReleaseDate(fabricatedTime);
-		albumDTOReputation.setCommentary("aa");
-
 		delicate = new Song();
 		delicate.setTitle("Delicate");
 		delicate.setMusician(taylor);
 		delicate.setGenre(jazz);
 		delicate.setAlbum(album22);
-
-		delicateDTO = new SongDTO();
-		delicateDTO.setMusician(taylorDTO);
-		delicateDTO.setGenre(jazzDTO);
-		delicateDTO.setTitle("Delicate");
-		delicateDTO.setAlbum(albumDTO22);
+		delicate.setBitrate(320);
+		delicate.setPosition(0);
 	}
 
 	@Test
 	public void testCreate() {
-		albumFacade.create(albumDTO22);
+		albumFacade.create(createAlbumCreateDTO(album22));
 		List<Album> albums = em.createQuery("SELECT a FROM Album a", Album.class).getResultList();
 		Assert.assertEquals(1, albums.size());
-		Assert.assertEquals(albumDTO22.getTitle(), albums.get(0).getTitle());
+		Assert.assertEquals(album22.getTitle(), albums.get(0).getTitle());
 	}
 
 	@Test
 	public void testUpdate() {
 		em.persist(album22);
-		String oldName = albumDTO22.getTitle();
-		albumDTO22.setTitle("aaaa");
-		albumDTO22.setId(album22.getId());
-		albumFacade.update(albumDTO22);
-		AlbumDTO updatedDto = albumFacade.findById(albumDTO22.getId());
-		Assert.assertNotEquals(oldName, updatedDto.getTitle());
-		Assert.assertEquals(albumDTO22, updatedDto);
-		Assert.assertEquals(albumDTO22.getTitle(), updatedDto.getTitle());
+		String oldName = album22.getTitle();
+
+		AlbumDTO albumDTO = createAlbumDTO(album22);
+		albumDTO.setTitle("aaaa");
+		albumFacade.update(albumDTO);
+
+		Assert.assertEquals(albumDTO, albumFacade.findById(album22.getId()));
 	}
 
 	@Test
-	public void testRemove() {
+	public void testDelete() {
 		em.persist(album22);
-		albumDTO22.setId(album22.getId());
-		albumFacade.remove(albumDTO22);
+		albumFacade.delete(album22.getId());
 		List<AlbumDTO> result = albumFacade.findAll();
 		Assert.assertEquals(0, result.size());
 	}
@@ -142,44 +108,67 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindById() {
 		em.persist(albumReputation);
 		em.persist(album22);
-		albumDTO22.setId(album22.getId());
-		albumFacade.update(albumDTO22);
-		albumDTOReputation.setId(albumReputation.getId());
-		albumFacade.update(albumDTOReputation);
-		Assert.assertEquals(albumFacade.findById(album22.getId()), albumDTO22);
-		Assert.assertEquals(albumFacade.findById(albumDTOReputation.getId()), albumDTOReputation);
+
+		Assert.assertEquals(createAlbumDTO(albumReputation), albumFacade.findById(albumReputation.getId()));
+		Assert.assertEquals(createAlbumDTO(album22), albumFacade.findById(album22.getId()));
 	}
 
 	@Test
 	public void testFindByMusician() {
 		em.persist(album22);
-		albumDTO22.setId(album22.getId());
-		albumFacade.update(albumDTO22);
-		Assert.assertEquals(albumFacade.findByMusician(taylorDTO).get(0), albumDTO22);
+		em.persist(delicate);
+
+		List<AlbumDTO> albumDTOs = albumFacade.findByMusician(taylor.getId());
+		Assert.assertEquals(1, albumDTOs.size());
+		Assert.assertTrue(albumDTOs.contains(createAlbumDTO(album22)));
 	}
 
 	@Test
 	public void testFindByGenre() {
-		jazzDTO.setId(jazz.getId());
-		delicateDTO.setGenre(jazzDTO);
-		albumFacade.update(albumDTO22);
-		Assert.assertEquals(albumFacade.findByGenre(jazzDTO).get(0), albumDTO22);
+		em.persist(album22);
+		em.persist(delicate);
+
+		List<AlbumDTO> albumDTOs = albumFacade.findByGenre(jazz.getId());
+		Assert.assertEquals(1, albumDTOs.size());
+		Assert.assertTrue(albumDTOs.contains(createAlbumDTO(album22)));
 	}
 
 	@Test
 	public void testFindByTitle() {
-		albumFacade.create(albumDTOReputation);
-		albumDTOReputation.setId(albumReputation.getId());
-		Assert.assertEquals(albumDTOReputation, albumFacade.findByTitle(albumDTOReputation.getTitle()).get(0));
+		em.persist(albumReputation);
+
+		List<AlbumDTO> albumDTOs = albumFacade.findByTitle("rep");
+		Assert.assertEquals(1, albumDTOs.size());
+		Assert.assertTrue(albumDTOs.contains(createAlbumDTO(albumReputation)));
 	}
 
 	@Test
 	public void testFindAll() {
-		albumFacade.create(albumDTO22);
-		albumFacade.create(albumDTOReputation);
+		em.persist(album22);
+		em.persist(albumReputation);
+
 		List<AlbumDTO> result = albumFacade.findAll();
 		Assert.assertEquals(2, result.size());
-		Assert.assertEquals(result.get(0), albumDTO22);
-		Assert.assertEquals(result.get(1), albumDTOReputation);
+		Assert.assertTrue(result.contains(createAlbumDTO(album22)));
+		Assert.assertTrue(result.contains(createAlbumDTO(albumReputation)));
+	}
+
+	private AlbumCreateDTO createAlbumCreateDTO(Album album) {
+		AlbumCreateDTO albumCreateDTO = new AlbumCreateDTO();
+		albumCreateDTO.setReleaseDate(album.getReleaseDate());
+		albumCreateDTO.setTitle(album.getTitle());
+		albumCreateDTO.setCommentary(album.getCommentary());
+		albumCreateDTO.setAlbumArt(album.getAlbumArt());
+		return albumCreateDTO;
+	}
+
+	private AlbumDTO createAlbumDTO(Album album) {
+		AlbumDTO albumDTO = new AlbumDTO();
+		albumDTO.setId(album.getId());
+		albumDTO.setReleaseDate(album.getReleaseDate());
+		albumDTO.setTitle(album.getTitle());
+		albumDTO.setCommentary(album.getCommentary());
+		albumDTO.setAlbumArt(album.getAlbumArt());
+		return albumDTO;
 	}
 }
