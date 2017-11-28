@@ -26,35 +26,6 @@ public class SongDTO {
 		return id;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 3;
-		hash = 19 * hash + Objects.hashCode(this.id);
-		hash = 19 * hash + Objects.hashCode(this.title);
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final SongDTO other = (SongDTO) obj;
-		if (!Objects.equals(this.title, other.title)) {
-			return false;
-		}
-		if (!Objects.equals(this.id, other.id)) {
-			return false;
-		}
-		return true;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -116,4 +87,37 @@ public class SongDTO {
 	}
 
 
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 37 * hash + Objects.hashCode(this.musician);
+		hash = 37 * hash + Objects.hashCode(this.album);
+		hash = 37 * hash + Objects.hashCode(this.genre);
+		hash = 37 * hash + Objects.hashCode(this.title);
+		hash = 37 * hash + Objects.hashCode(this.bitrate);
+		hash = 37 * hash + Objects.hashCode(this.position);
+		hash = 37 * hash + Objects.hashCode(this.commentary);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof SongDTO)) {
+			return false;
+		}
+		SongDTO other = (SongDTO) obj;
+		return Objects.equals(this.musician, other.getMusician()) &&
+			Objects.equals(this.album, other.getAlbum()) &&
+			Objects.equals(this.genre, other.getGenre()) &&
+			Objects.equals(this.title, other.getTitle()) &&
+			Objects.equals(this.bitrate, other.getBitrate()) &&
+			Objects.equals(this.position, other.getPosition()) &&
+			Objects.equals(this.commentary, other.getCommentary());
+	}
 }
