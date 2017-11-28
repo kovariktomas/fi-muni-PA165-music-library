@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
@@ -15,26 +16,27 @@ import java.util.List;
  */
 @Service
 public interface AlbumFacade {
+
 	/**
 	 * Create album data transfer object.
 	 *
 	 * @param album to be created
 	 */
-	void create(AlbumDTO album);
+	void create(AlbumCreateDTO album);
 
 	/**
 	 * Update existing album data transfer object.
 	 *
 	 * @param album to be updated
 	 */
-	void update(AlbumDTO album) throws IllegalArgumentException;
+	void update(AlbumDTO album);
 
 	/**
 	 * Remove existing album data transfer object.
 	 *
-	 * @param album to be removed
+	 * @param id the ID of the album to be removed
 	 */
-	void remove(AlbumDTO album) throws IllegalArgumentException;
+	void delete(Long id);
 
 	/**
 	 * Finds Album data transfer object by id.
@@ -47,26 +49,26 @@ public interface AlbumFacade {
 	/**
 	 * Finds list of Album data transfer object that contain songs from given musician.
 	 *
-	 * @param musician to be found
+	 * @param musicianId the ID of the musician
 	 * @return list of album dto with given musician
 	 */
-	List<AlbumDTO> findByMusician(MusicianDTO musician);
+	List<AlbumDTO> findByMusician(Long musicianId);
 
 	/**
 	 * Finds list of Album data transfer object that contain songs of given genre.
 	 *
-	 * @param genre to be found
+	 * @param genreId the ID of the genre
 	 * @return list of album dtos with songs of given genre
 	 */
-	List<AlbumDTO> findByGenre(GenreDTO genre);
+	List<AlbumDTO> findByGenre(Long genreId);
 
 	/**
-	 * Finds list of Album data objects with given title pattern.
+	 * Finds list of Album data objects with a title matching the given search query.
 	 *
-	 * @param titlePattern to be found
+	 * @param query the search query
 	 * @return list of album dtos with given title pattern
 	 */
-	List<AlbumDTO> findByTitle(String titlePattern);
+	List<AlbumDTO> findByTitle(String query);
 
 	/**
 	 * Finds all album data transfer objects.
