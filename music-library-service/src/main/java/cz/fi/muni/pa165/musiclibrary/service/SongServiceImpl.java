@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +50,9 @@ public class SongServiceImpl implements SongService {
 	}
 
 	@Override
-	public List<Song> findByTitle(String titlePattern) {
-		return songDao.findByTitle(titlePattern);
+	public List<Song> findByTitle(String query) {
+		List<String> patterns = SearchHelper.splitSearchQuery(query);
+		return songDao.findByTitle(patterns);
 	}
 
 }

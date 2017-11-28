@@ -115,7 +115,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByTitle() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByTitle("In The End");
+		List<SongDTO> songDTOs = songFacade.findByTitle("end");
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getId(), songDTOs.get(0).getId());

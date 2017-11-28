@@ -24,7 +24,7 @@ public interface SongFacade {
 
 	List<SongDTO> findByGenre(GenreDTO genre);
 
-	List<SongDTO> findByTitle(String titlePattern);
+	List<SongDTO> findByTitle(String query);
 
 	List<SongDTO> findAll();
 }

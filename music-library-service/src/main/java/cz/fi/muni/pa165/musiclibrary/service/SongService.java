@@ -25,5 +25,5 @@ public interface SongService {
 
 	List<Song> findByGenre(Genre genre);
 
-	List<Song> findByTitle(String titlePattern);
+	List<Song> findByTitle(String query);
 }

@@ -70,8 +70,8 @@ public class SongFacadeImpl implements SongFacade {
 	}
 
 	@Override
-	public List<SongDTO> findByTitle(String titlePattern) {
-		return beanMappingService.mapTo(songService.findByTitle(titlePattern), SongDTO.class);
+	public List<SongDTO> findByTitle(String query) {
+		return beanMappingService.mapTo(songService.findByTitle(query), SongDTO.class);
 	}
 
 	@Override
