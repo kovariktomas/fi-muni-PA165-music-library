@@ -15,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -121,7 +122,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 
 
 		Assert.assertEquals(SONGS_COUNT + 1, songDao.findAll().size());
-		Assert.assertSame(song, songDao.findByTitle(song.getTitle()).get(0));
+		Assert.assertSame(song, songDao.findById(song.getId()));
 		songDao.delete(song);
 	}
 
@@ -138,7 +139,7 @@ public class SongDaoImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindByTitle() {
-		Assert.assertEquals(song1, songDao.findByTitle("Song 01").get(0));
+		Assert.assertEquals(song1, songDao.findByTitle(Arrays.asList("%01%")).get(0));
 	}
 
 	@Test
