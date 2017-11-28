@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
-import cz.fi.muni.pa165.musiclibrary.exceptions.InvalidArgumentException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -22,13 +21,7 @@ public class GenreDaoImpl implements GenreDao {
 
 
 	@Override
-	public void create(Genre genre) throws GenreAlreadyExistsException, InvalidArgumentException {
-		if (genre == null) {
-			throw new InvalidArgumentException("Argument genre must not be null.");
-		}
-		if (em.contains(genre)) {
-			throw new InvalidArgumentException("The given genre already exists.");
-		}
+	public void create(Genre genre) throws GenreAlreadyExistsException {
 		if (nameAlreadyExists(genre.getName())) {
 			throw new GenreAlreadyExistsException("Genre with this name already exists.");
 		}
@@ -43,41 +36,23 @@ public class GenreDaoImpl implements GenreDao {
 	}
 
 	@Override
-	public void delete(Genre genre) throws InvalidArgumentException {
-		if (genre == null) {
-			throw new InvalidArgumentException("Argument genre must not be null.");
-		}
-		if (!em.contains(genre)) {
-			throw new InvalidArgumentException("The given genre does not exist.");
-		}
+	public void delete(Genre genre) {
 		em.remove(genre);
 	}
 
 	@Override
-	public void update(Genre genre) throws InvalidArgumentException {
-		if (genre == null) {
-			throw new InvalidArgumentException("Argument genre must not be null.");
-		}
-		if (!em.contains(genre)) {
-			throw new InvalidArgumentException("The given genre does not exist.");
-		}
+	public void update(Genre genre) {
 		em.merge(genre);
 	}
 
 	@Override
-	public Genre findById(Long id) throws InvalidArgumentException {
-		if (id == null) {
-			throw new InvalidArgumentException("Argument id must not be null.");
-		}
+	public Genre findById(Long id) {
 		return em.find(Genre.class, id);
 	}
 
 	@Override
-	public List<Genre> findByName(List<String> patterns) throws InvalidArgumentException {
-		if (patterns == null) {
-			throw new InvalidArgumentException("Argument name must not be null.");
-		}
-		StringBuilder queryBuilder = new StringBuilder("select g from Genre g");
+	public List<Genre> findByName(List<String> patterns) {
+		StringBuilder queryBuilder = new StringBuilder("SELECT g FROM Genre g");
 
 		for (int i = 0; i < patterns.size(); i++) {
 			if (i == 0) {
@@ -98,7 +73,7 @@ public class GenreDaoImpl implements GenreDao {
 
 	@Override
 	public List<Genre> findAll() {
-		return em.createQuery("select g from Genre g", Genre.class)
+		return em.createQuery("SELECT g FROM Genre g", Genre.class)
 			.getResultList();
 	}
 }

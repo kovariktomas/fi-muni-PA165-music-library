@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import cz.fi.muni.pa165.musiclibrary.exceptions.AlbumAlreadyExistsException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +27,18 @@ public class AlbumDaoImpl implements AlbumDao {
 	private EntityManager em;
 
 	@Override
-	public void create(Album album) {
+	public void create(Album album) throws AlbumAlreadyExistsException {
+		if (titleAlreadyExists(album.getTitle())) {
+			throw new AlbumAlreadyExistsException("Album with this title already exists.");
+		}
 		em.persist(album);
+	}
+
+	private boolean titleAlreadyExists(String title) {
+		Long count = em.createQuery("SELECT COUNT(a) FROM Album a WHERE a.title = :title", Long.class)
+			.setParameter("title", title)
+			.getSingleResult();
+		return count > 0;
 	}
 
 	@Override
