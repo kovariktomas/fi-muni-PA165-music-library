@@ -1,2 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxGraphModel dx="790" dy="403" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="5" value="" style="html=1;" parent="1" vertex="1"><mxGeometry x="209" y="70" width="191" height="620" as="geometry"/></mxCell><mxCell id="20" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="3" target="15" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="21" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="3" target="16" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="22" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="3" target="17" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="24" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0;exitPerimeter=0;jettySize=auto;orthogonalLoop=1;endArrow=block;endFill=0;" parent="1" source="4" edge="1"><mxGeometry relative="1" as="geometry"><mxPoint x="125" y="320" as="targetPoint"/></mxGeometry></mxCell><mxCell id="3" value="User" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" parent="1" vertex="1"><mxGeometry x="109" y="190" width="30" height="60" as="geometry"/></mxCell><mxCell id="9" style="rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="4" target="7" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="13" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="4" target="10" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="14" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;" parent="1" source="4" target="11" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="26" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;endArrow=block;endFill=1;jettySize=auto;orthogonalLoop=1;" parent="1" source="4" target="25" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="4" value="Administrator" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;" parent="1" vertex="1"><mxGeometry x="110" y="485" width="30" height="60" as="geometry"/></mxCell><mxCell id="6" value="Music library" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="1" vertex="1"><mxGeometry x="260" y="30" width="80" height="26" as="geometry"/></mxCell><mxCell id="7" value="Manage songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="229" y="352" width="140" height="70" as="geometry"/></mxCell><mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="4" target="4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="10" value="Manage albums" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="229" y="432" width="140" height="70" as="geometry"/></mxCell><mxCell id="11" value="Manage musicians" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="229" y="515" width="140" height="70" as="geometry"/></mxCell><mxCell id="15" value="Search for songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="230" y="95" width="140" height="70" as="geometry"/></mxCell><mxCell id="16" value="Search for albums" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="230" y="180" width="140" height="70" as="geometry"/></mxCell><mxCell id="17" value="Search for musicians" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="230" y="260" width="140" height="70" as="geometry"/></mxCell><mxCell id="25" value="Manage genres" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1"><mxGeometry x="229" y="600" width="140" height="70" as="geometry"/></mxCell></root></mxGraphModel>
+<mxGraphModel dx="790" dy="403" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
+			  pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+	<root>
+		<mxCell id="0"/>
+		<mxCell id="1" parent="0"/>
+		<mxCell id="5" value="" style="html=1;" parent="1" vertex="1">
+			<mxGeometry x="209" y="70" width="191" height="620" as="geometry"/>
+		</mxCell>
+		<mxCell id="20"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="3" target="15" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="21"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="3" target="16" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="22"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="3" target="17" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="24"
+				style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0;exitPerimeter=0;jettySize=auto;orthogonalLoop=1;endArrow=block;endFill=0;"
+				parent="1" source="4" edge="1">
+			<mxGeometry relative="1" as="geometry">
+				<mxPoint x="125" y="320" as="targetPoint"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="3" value="User"
+				style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;"
+				parent="1" vertex="1">
+			<mxGeometry x="109" y="190" width="30" height="60" as="geometry"/>
+		</mxCell>
+		<mxCell id="9"
+				style="rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="4" target="7" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="13"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="4" target="10" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="14"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="4" target="11" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="26"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.3333333333333333;exitPerimeter=0;entryX=0;entryY=0.5;endArrow=block;endFill=1;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="4" target="25" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="4" value="Administrator"
+				style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;"
+				parent="1" vertex="1">
+			<mxGeometry x="110" y="485" width="30" height="60" as="geometry"/>
+		</mxCell>
+		<mxCell id="6" value="Music library"
+				style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="1" vertex="1">
+			<mxGeometry x="260" y="30" width="80" height="26" as="geometry"/>
+		</mxCell>
+		<mxCell id="7" value="Manage songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="229" y="352" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="8"
+				style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="4" target="4" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="10" value="Manage albums" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="229" y="432" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="11" value="Manage musicians" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="229" y="515" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="15" value="Search for songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="230" y="95" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="16" value="Search for albums" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="230" y="180" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="17" value="Search for musicians" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="230" y="260" width="140" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="25" value="Manage genres" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+			<mxGeometry x="229" y="600" width="140" height="70" as="geometry"/>
+		</mxCell>
+	</root>
+</mxGraphModel>

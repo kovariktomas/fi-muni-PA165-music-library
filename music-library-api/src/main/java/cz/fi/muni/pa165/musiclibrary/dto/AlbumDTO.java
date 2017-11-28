@@ -67,14 +67,6 @@ public class AlbumDTO {
 		this.songs = songs;
 	}
 
-	public void addSong(SongDTO song) {
-		this.songs.add(song);
-	}
-
-	public void removeSong(SongDTO song) {
-		this.songs.remove(song);
-	}
-
 	@Override
 	public int hashCode() {
 		int hash = 7;
