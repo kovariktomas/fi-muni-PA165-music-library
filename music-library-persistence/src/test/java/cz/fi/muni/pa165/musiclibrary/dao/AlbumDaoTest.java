@@ -202,7 +202,7 @@ public class AlbumDaoTest extends AbstractTestNGSpringContextTests {
 
 		calendar.set(2016, Calendar.MARCH, 1);
 		a.setReleaseDate(calendar.getTime());
-		albumDao.create(a);
+		albumDao.update(a);
 		Assert.assertEquals(albumDao.getAlbumsReleasedBetween(dateStart, dateEnd).size(), 1);
 
 		a.setReleaseDate(dateStart);
