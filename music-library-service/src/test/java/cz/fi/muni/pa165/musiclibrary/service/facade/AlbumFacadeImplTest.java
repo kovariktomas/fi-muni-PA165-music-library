@@ -65,12 +65,10 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		album22 = new Album();
 		album22.setTitle("22");
 		album22.setReleaseDate(fabricatedTime);
-		//em.persist(album22);
 
 		albumReputation = new Album();
 		albumReputation.setTitle("Reputation");
 		albumReputation.setReleaseDate(fabricatedTime);
-		//em.persist(albumReputation);
 
 		taylor = new Musician();
 		taylor.setName("Taylor Swift");
@@ -143,28 +141,29 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindById() {
-		albumFacade.create(albumDTO22);
-		//albumDTO22.setId(album22.getId());
-		albumFacade.create(albumDTOReputation);
-		//albumDTOReputation.setId(albumReputation.getId());
+		em.persist(albumReputation);
+		em.persist(album22);
+		albumDTO22.setId(album22.getId());
+		albumFacade.update(albumDTO22);
+		albumDTOReputation.setId(albumReputation.getId());
+		albumFacade.update(albumDTOReputation);
 		Assert.assertEquals(albumFacade.findById(album22.getId()), albumDTO22);
 		Assert.assertEquals(albumFacade.findById(albumDTOReputation.getId()), albumDTOReputation);
 	}
 
 	@Test
 	public void testFindByMusician() {
-		albumFacade.create(albumDTO22);
+		em.persist(album22);
 		albumDTO22.setId(album22.getId());
+		albumFacade.update(albumDTO22);
 		Assert.assertEquals(albumFacade.findByMusician(taylorDTO).get(0), albumDTO22);
 	}
 
 	@Test
 	public void testFindByGenre() {
 		jazzDTO.setId(jazz.getId());
-		em.persist(album22);
-		albumFacade.create(albumDTO22);
-
-		albumDTO22.setId(album22.getId());
+		delicateDTO.setGenre(jazzDTO);
+		albumFacade.update(albumDTO22);
 		Assert.assertEquals(albumFacade.findByGenre(jazzDTO).get(0), albumDTO22);
 	}
 
