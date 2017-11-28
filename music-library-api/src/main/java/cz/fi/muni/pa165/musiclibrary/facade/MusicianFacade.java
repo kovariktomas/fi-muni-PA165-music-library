@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public interface MusicianFacade {
 
-	void create(MusicianDTO musician);
+	void create(MusicianCreateDTO musician);
 
 	void update(MusicianDTO musician);
 
