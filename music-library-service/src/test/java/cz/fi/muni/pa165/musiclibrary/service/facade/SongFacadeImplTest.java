@@ -125,7 +125,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByMusician() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByMusician(createMusicianDTO(musician));
+		List<SongDTO> songDTOs = songFacade.findByMusician(musician.getId());
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
@@ -136,7 +136,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByGenre() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByGenre(createGenreDTO(genre));
+		List<SongDTO> songDTOs = songFacade.findByGenre(genre.getId());
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
