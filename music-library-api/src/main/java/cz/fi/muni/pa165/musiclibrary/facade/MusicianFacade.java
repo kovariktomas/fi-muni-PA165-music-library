@@ -16,7 +16,7 @@ public interface MusicianFacade {
 
 	void update(MusicianDTO musician);
 
-	void delete(MusicianDTO musician);
+	void delete(Long id);
 
 	MusicianDTO findById(Long id);
 
