@@ -111,7 +111,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindById() {
 		when(albumDao.findById(1L)).thenReturn(album22);
-		Assert.assertSame(album22,albumService.findById(1L));
+		Assert.assertSame(album22, albumService.findById(1L));
 	}
 
 	@Test
@@ -126,6 +126,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 		when(albumDao.findByMusician(taylor)).thenReturn(albums);
 		Assert.assertEquals(albums, albumService.findByMusician(taylor));
 	}
+
 	@Test
 	public void testFindByMusicianNotUsed() {
 		when(albumDao.findByMusician(daya)).thenReturn(null);

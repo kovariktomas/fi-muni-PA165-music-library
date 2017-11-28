@@ -79,7 +79,7 @@ public interface AlbumService {
 	 * Returns all albums released between given dates
 	 *
 	 * @param startDate first valid date
-	 * @param endDate last valid date
+	 * @param endDate   last valid date
 	 * @return list of all albums that were released
 	 */
 	List<Album> getAlbumsReleasedBetween(Date startDate, Date endDate);
