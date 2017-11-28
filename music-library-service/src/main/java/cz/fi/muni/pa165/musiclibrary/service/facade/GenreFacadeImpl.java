@@ -45,11 +45,6 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public List<GenreDTO> findAll() {
-		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
-	}
-
-	@Override
 	public GenreDTO findById(Long id) {
 		Genre genre = genreService.findById(id);
 		return (genre == null) ? null : beanMappingService.mapTo(genre, GenreDTO.class);
@@ -59,5 +54,10 @@ public class GenreFacadeImpl implements GenreFacade {
 	public List<GenreDTO> findByName(String query) {
 		List<Genre> genres = genreService.findByName(query);
 		return (genres == null) ? null : beanMappingService.mapTo(genres, GenreDTO.class);
+	}
+
+	@Override
+	public List<GenreDTO> findAll() {
+		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
 	}
 }
