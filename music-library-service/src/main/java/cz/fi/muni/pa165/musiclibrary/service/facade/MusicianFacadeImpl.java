@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
@@ -21,7 +22,7 @@ public class MusicianFacadeImpl implements MusicianFacade {
 	@Autowired
 	private BeanMappingService beanMappingService;
 
-	public void create(MusicianDTO musician) {
+	public void create(MusicianCreateDTO musician) {
 		musicianService.create(beanMappingService.mapTo(musician, Musician.class));
 	}
 

@@ -2,18 +2,13 @@ package cz.fi.muni.pa165.musiclibrary.dto;
 
 import java.util.Objects;
 
-/**
- * @author David
- */
-public class SongDTO {
+public class SongCreateDTO {
 
-	private Long id;
+	private Long musicianId;
 
-	private MusicianDTO musician;
+	private Long albumId;
 
-	private AlbumDTO album;
-
-	private GenreDTO genre;
+	private Long genreId;
 
 	private String title;
 
@@ -23,36 +18,28 @@ public class SongDTO {
 
 	private String commentary;
 
-	public Long getId() {
-		return id;
+	public Long getMusicianId() {
+		return musicianId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setMusicianId(Long musicianId) {
+		this.musicianId = musicianId;
 	}
 
-	public MusicianDTO getMusician() {
-		return musician;
+	public Long getAlbumId() {
+		return albumId;
 	}
 
-	public void setMusician(MusicianDTO musician) {
-		this.musician = musician;
+	public void setAlbumId(Long albumId) {
+		this.albumId = albumId;
 	}
 
-	public AlbumDTO getAlbum() {
-		return album;
+	public Long getGenreId() {
+		return genreId;
 	}
 
-	public void setAlbum(AlbumDTO album) {
-		this.album = album;
-	}
-
-	public GenreDTO getGenre() {
-		return genre;
-	}
-
-	public void setGenre(GenreDTO genre) {
-		this.genre = genre;
+	public void setGenreId(Long genreId) {
+		this.genreId = genreId;
 	}
 
 	public String getTitle() {
@@ -87,13 +74,12 @@ public class SongDTO {
 		this.commentary = commentary;
 	}
 
-
 	@Override
 	public int hashCode() {
 		int hash = 3;
-		hash = 37 * hash + Objects.hashCode(this.musician);
-		hash = 37 * hash + Objects.hashCode(this.album);
-		hash = 37 * hash + Objects.hashCode(this.genre);
+		hash = 37 * hash + Objects.hashCode(this.musicianId);
+		hash = 37 * hash + Objects.hashCode(this.albumId);
+		hash = 37 * hash + Objects.hashCode(this.genreId);
 		hash = 37 * hash + Objects.hashCode(this.title);
 		hash = 37 * hash + Objects.hashCode(this.bitrate);
 		hash = 37 * hash + Objects.hashCode(this.position);
@@ -109,13 +95,13 @@ public class SongDTO {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof SongDTO)) {
+		if (!(obj instanceof SongCreateDTO)) {
 			return false;
 		}
-		SongDTO other = (SongDTO) obj;
-		return Objects.equals(this.musician, other.getMusician()) &&
-			Objects.equals(this.album, other.getAlbum()) &&
-			Objects.equals(this.genre, other.getGenre()) &&
+		SongCreateDTO other = (SongCreateDTO) obj;
+		return Objects.equals(this.musicianId, other.getMusicianId()) &&
+			Objects.equals(this.albumId, other.getAlbumId()) &&
+			Objects.equals(this.genreId, other.getGenreId()) &&
 			Objects.equals(this.title, other.getTitle()) &&
 			Objects.equals(this.bitrate, other.getBitrate()) &&
 			Objects.equals(this.position, other.getPosition()) &&

@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
@@ -33,10 +34,10 @@ public class MusicianFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testCreate() {
-		MusicianDTO musicianDTO = new MusicianDTO();
-		musicianDTO.setName("Parov Stelar");
+		MusicianCreateDTO musicianCreateDTO = new MusicianCreateDTO();
+		musicianCreateDTO.setName("Parov Stelar");
 
-		musicianFacade.create(musicianDTO);
+		musicianFacade.create(musicianCreateDTO);
 
 		List<Musician> musicians = getAllMusicians();
 		Assert.assertEquals(1, musicians.size());

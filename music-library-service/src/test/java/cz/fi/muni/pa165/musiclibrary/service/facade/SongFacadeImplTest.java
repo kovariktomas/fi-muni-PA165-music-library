@@ -1,9 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
-import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.*;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
@@ -40,12 +37,13 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	private Song song1;
 	private SongDTO songDTO;
+	private Album album;
 	private Musician musician;
 	private Genre genre;
 
 	@BeforeMethod
 	public void init() {
-		Album album = createSampleAlbum("Hybrid Theory", "2000-10-24");
+		album = createSampleAlbum("Hybrid Theory", "2000-10-24");
 		musician = createSampleMusician("Linkin Park");
 		genre = createSampleGenre("Nu metal");
 
@@ -69,7 +67,14 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testCreate() {
-		songFacade.create(songDTO);
+		SongCreateDTO songCreateDTO = new SongCreateDTO();
+		songCreateDTO.setAlbumId(album.getId());
+		songCreateDTO.setMusicianId(musician.getId());
+		songCreateDTO.setGenreId(genre.getId());
+		songCreateDTO.setTitle("In The End");
+		songCreateDTO.setBitrate(320);
+		songCreateDTO.setPosition(0);
+		songFacade.create(songCreateDTO);
 
 		List<Song> songs = getAllSongs();
 		Assert.assertEquals(1, songs.size());
