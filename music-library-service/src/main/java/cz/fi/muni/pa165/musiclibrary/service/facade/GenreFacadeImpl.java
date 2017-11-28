@@ -35,8 +35,8 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public void delete(GenreDTO genre) {
-		genreService.delete(beanMappingService.mapTo(genre, Genre.class));
+	public void delete(Long id) {
+		genreService.delete(genreService.findById(id));
 	}
 
 	@Override

@@ -66,10 +66,7 @@ public class GenreFacadeImplTest extends AbstractTestNGSpringContextTests {
 		genre.setName("Popular");
 		em.persist(genre);
 
-		GenreDTO genreDTO = new GenreDTO();
-		genreDTO.setId(genre.getId());
-		genreDTO.setName("Popular");
-		genreFacade.delete(genreDTO);
+		genreFacade.delete(genre.getId());
 
 		List<Genre> genres = em.createQuery("SELECT g FROM Genre g", Genre.class).getResultList();
 		Assert.assertEquals(0, genres.size());

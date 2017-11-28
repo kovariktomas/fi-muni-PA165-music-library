@@ -13,9 +13,9 @@ import java.util.List;
 public interface GenreFacade {
 	Long create(GenreCreateDTO g);
 
-	void delete(GenreDTO genre);
-
 	void update(GenreDTO genre);
+
+	void delete(Long id);
 
 	List<GenreDTO> findAll();
 
