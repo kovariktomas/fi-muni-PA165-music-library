@@ -83,8 +83,9 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testDelete() {
+		em.persist(song1);
 
-		songFacade.delete(songDTO);
+		songFacade.delete(song1.getId());
 
 		List<Song> songs = getAllSongs();
 		Assert.assertEquals(0, songs.size());

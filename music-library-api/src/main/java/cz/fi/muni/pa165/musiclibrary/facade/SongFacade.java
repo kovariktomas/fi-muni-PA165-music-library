@@ -16,7 +16,7 @@ public interface SongFacade {
 
 	void create(SongCreateDTO song);
 
-	void delete(SongDTO song);
+	void delete(Long id);
 
 	SongDTO findById(Long id);
 
