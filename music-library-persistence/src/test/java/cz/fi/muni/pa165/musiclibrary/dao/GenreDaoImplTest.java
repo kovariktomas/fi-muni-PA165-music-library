@@ -3,7 +3,6 @@ package cz.fi.muni.pa165.musiclibrary.dao;
 import cz.fi.muni.pa165.musiclibrary.PersistenceSampleApplicationContext;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
-import cz.fi.muni.pa165.musiclibrary.exceptions.InvalidArgumentException;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,18 +64,6 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertSame(popGenre, genreDao.findById(popGenre.getId()));
 	}
 
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "Argument genre must not be null.")
-	public void testCreateWithNullGenre() {
-		genreDao.create(null);
-	}
-
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "The given genre already exists.")
-	public void testCreateExistingGenre() {
-		genreDao.create(swingGenre);
-	}
-
 	@Test(expectedExceptions = GenreAlreadyExistsException.class,
 		expectedExceptionsMessageRegExp = "Genre with this name already exists.")
 	public void testCreateWithDuplicateName() {
@@ -89,20 +76,6 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 	public void testDelete() {
 		genreDao.delete(rockGenre);
 		Assert.assertEquals(GENRES_COUNT - 1, genreDao.findAll().size());
-	}
-
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "Argument genre must not be null.")
-	public void testDeleteWithNullGenre() {
-		genreDao.delete(null);
-	}
-
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "The given genre does not exist.")
-	public void testDeleteWithNonexistentGenre() {
-		Genre swingGenreCopy = new Genre();
-		swingGenreCopy.setName("Swing");
-		genreDao.delete(swingGenreCopy);
 	}
 
 	@Test
@@ -122,19 +95,6 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertSame(rockGenre, genreDao.findById(rockGenre.getId()));
 	}
 
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "Argument genre must not be null.")
-	public void testUpdateWithNullGenre() {
-		genreDao.update(null);
-	}
-
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "The given genre does not exist.")
-	public void testUpdateWithNonexistentGenre() {
-		Genre swingGenreCopy = new Genre();
-		swingGenreCopy.setName("Swing");
-		genreDao.update(swingGenreCopy);
-	}
 
 	@Test
 	public void testFindById() {
@@ -146,24 +106,12 @@ public class GenreDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(null, genreDao.findById(999L));
 	}
 
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "Argument id must not be null.")
-	public void testFindByNullId() {
-		genreDao.findById(null);
-	}
-
 	@Test
 	public void testFindByName() {
 		List<Genre> genres = genreDao.findByName(Arrays.asList("%Swing%"));
 		Assert.assertEquals(2, genres.size());
 		Assert.assertTrue(genres.contains(swingGenre));
 		Assert.assertTrue(genres.contains(electroSwingGenre));
-	}
-
-	@Test(expectedExceptions = InvalidArgumentException.class,
-		expectedExceptionsMessageRegExp = "Argument name must not be null.")
-	public void testFindByNullName() {
-		genreDao.findByName(null);
 	}
 
 	@Test

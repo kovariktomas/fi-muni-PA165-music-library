@@ -2,9 +2,9 @@ package cz.fi.muni.pa165.musiclibrary.exceptions;
 
 import org.springframework.dao.DataAccessException;
 
-public class InvalidArgumentException extends DataAccessException {
+public class AlbumAlreadyExistsException extends DataAccessException {
 
-	public InvalidArgumentException(String message) {
+	public AlbumAlreadyExistsException(String message) {
 		super(message);
 	}
 }

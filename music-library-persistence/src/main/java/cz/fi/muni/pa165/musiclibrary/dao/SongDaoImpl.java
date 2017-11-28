@@ -19,68 +19,41 @@ public class SongDaoImpl implements SongDao {
 	private EntityManager em;
 
 	@Override
-	public void create(Song song) throws IllegalArgumentException {
-		if (song == null) {
-			throw new IllegalArgumentException("Argument song must not be null.");
-		}
-		if (em.contains(song)) {
-			throw new IllegalArgumentException("The given song already exists.");
-		}
+	public void create(Song song) {
 		em.persist(song);
 	}
 
 	@Override
-	public void update(Song song) throws IllegalArgumentException {
-		if (song == null) {
-			throw new IllegalArgumentException("Argument song must not be null.");
-		}
-		if (!em.contains(song)) {
-			throw new IllegalArgumentException("The given song does not exist.");
-		}
+	public void update(Song song) {
 		em.merge(song);
 	}
 
 	@Override
-	public void delete(Song song) throws IllegalArgumentException {
-		if (song == null) {
-			throw new IllegalArgumentException("Argument song must not be null.");
-		}
+	public void delete(Song song) {
 		em.remove(song);
 	}
 
 	@Override
-	public Song findById(Long id) throws IllegalArgumentException {
-		if (id == null) {
-			throw new IllegalArgumentException("Argument id must not be null.");
-		}
+	public Song findById(Long id) {
 		return em.find(Song.class, id);
 	}
 
 	@Override
-	public List<Song> findByMusician(Musician musician) throws IllegalArgumentException {
-		if (musician == null) {
-			throw new IllegalArgumentException("Argument musician must not be null.");
-		}
+	public List<Song> findByMusician(Musician musician) {
 		return em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician", Song.class)
 			.setParameter("musician", musician)
 			.getResultList();
 	}
 
 	@Override
-	public List<Song> findByGenre(Genre genre) throws IllegalArgumentException {
-		if (genre == null) {
-			throw new IllegalArgumentException("Argument genre must not be null.");
-		}
+	public List<Song> findByGenre(Genre genre) {
 		return em.createQuery("SELECT s FROM Song s WHERE s.genre = :genre", Song.class)
 			.setParameter("genre", genre)
 			.getResultList();
 	}
 
 	@Override
-	public List<Song> findByTitle(String titlePattern) throws IllegalArgumentException {
-		if (titlePattern == null) {
-			throw new IllegalArgumentException("Argument titlePattern must not be null.");
-		}
+	public List<Song> findByTitle(String titlePattern) {
 		return em.createQuery("SELECT s FROM Song s WHERE s.title LIKE :title", Song.class)
 			.setParameter("title", "%" + titlePattern + "%")
 			.getResultList();

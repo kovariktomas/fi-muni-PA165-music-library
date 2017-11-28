@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.musiclibrary.dao;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.exceptions.AlbumAlreadyExistsException;
 
 import java.util.List;
 
@@ -16,22 +17,23 @@ public interface AlbumDao {
 	 * Create new album in database.
 	 *
 	 * @param album that will be created
+	 * @throws AlbumAlreadyExistsException if an album with the same title already exists
 	 */
-	public void create(Album album);
+	void create(Album album) throws AlbumAlreadyExistsException;
 
 	/**
 	 * Update album in database.
 	 *
 	 * @param album that will be modified
 	 */
-	public void update(Album album);
+	void update(Album album);
 
 	/**
 	 * Remove given album from database.
 	 *
 	 * @param album that will be removed
 	 */
-	public void remove(Album album);
+	void remove(Album album);
 
 	/**
 	 * Finds album in database with given id.
@@ -39,7 +41,7 @@ public interface AlbumDao {
 	 * @param id to be found
 	 * @return album with given id
 	 */
-	public Album findById(Long id);
+	Album findById(Long id);
 
 	/**
 	 * Returns all albums that contain song of given musician
@@ -47,7 +49,7 @@ public interface AlbumDao {
 	 * @param musician author of a song
 	 * @return list of albums that contain song of given musician
 	 */
-	public List<Album> findByMusician(Musician musician);
+	List<Album> findByMusician(Musician musician);
 
 	/**
 	 * Returns all albums that contain some song of given genre.
@@ -55,7 +57,7 @@ public interface AlbumDao {
 	 * @param genre of some song in album
 	 * @return list of albums that contain songs of given genre
 	 */
-	public List<Album> findByGenre(Genre genre);
+	List<Album> findByGenre(Genre genre);
 
 	/**
 	 * Returns all albums that contain given patter in title.
@@ -63,12 +65,12 @@ public interface AlbumDao {
 	 * @param titlePattern patter to be found
 	 * @return list of albums containing given pattern.
 	 */
-	public List<Album> findByTitle(String titlePattern);
+	List<Album> findByTitle(String titlePattern);
 
 	/**
 	 * Returns all albums in database.
 	 *
 	 * @return list of all albums
 	 */
-	public List<Album> findAll();
+	List<Album> findAll();
 }
