@@ -2,15 +2,13 @@ package cz.fi.muni.pa165.musiclibrary.service.facade;
 
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.SongCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
-import cz.fi.muni.pa165.musiclibrary.service.BeanMappingService;
-import cz.fi.muni.pa165.musiclibrary.service.GenreService;
-import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
-import cz.fi.muni.pa165.musiclibrary.service.SongService;
+import cz.fi.muni.pa165.musiclibrary.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,14 +29,20 @@ public class SongFacadeImpl implements SongFacade {
 	private MusicianService musicianService;
 
 	@Autowired
+	private AlbumService albumService;
+
+	@Autowired
 	private GenreService genreService;
 
 	@Autowired
 	private BeanMappingService beanMappingService;
 
 	@Override
-	public void create(SongDTO songDTO) {
-		Song song = beanMappingService.mapTo(songDTO, Song.class);
+	public void create(SongCreateDTO songCreateDTO) {
+		Song song = beanMappingService.mapTo(songCreateDTO, Song.class);
+		song.setMusician(musicianService.findById(songCreateDTO.getMusicianId()));
+		song.setAlbum(albumService.findById(songCreateDTO.getAlbumId()));
+		song.setGenre(genreService.findById(songCreateDTO.getGenreId()));
 		songService.create(song);
 	}
 
