@@ -83,8 +83,9 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testDelete() {
+		em.persist(song1);
 
-		songFacade.delete(songDTO);
+		songFacade.delete(song1.getId());
 
 		List<Song> songs = getAllSongs();
 		Assert.assertEquals(0, songs.size());
@@ -114,7 +115,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByTitle() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByTitle("In The End");
+		List<SongDTO> songDTOs = songFacade.findByTitle("end");
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getId(), songDTOs.get(0).getId());
@@ -124,7 +125,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByMusician() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByMusician(createMusicianDTO(musician));
+		List<SongDTO> songDTOs = songFacade.findByMusician(musician.getId());
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());
@@ -135,7 +136,7 @@ public class SongFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByGenre() {
 		em.persist(song1);
 
-		List<SongDTO> songDTOs = songFacade.findByGenre(createGenreDTO(genre));
+		List<SongDTO> songDTOs = songFacade.findByGenre(genre.getId());
 
 		Assert.assertEquals(1, songDTOs.size());
 		Assert.assertEquals(song1.getTitle(), songDTOs.get(0).getTitle());

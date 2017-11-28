@@ -11,15 +11,16 @@ import java.util.List;
  */
 @Service
 public interface GenreFacade {
-	Long create(GenreCreateDTO g);
 
-	void delete(GenreDTO genre);
+	Long create(GenreCreateDTO g);
 
 	void update(GenreDTO genre);
 
-	List<GenreDTO> findAll();
+	void delete(Long id);
 
 	GenreDTO findById(Long id);
 
 	List<GenreDTO> findByName(String query);
+
+	List<GenreDTO> findAll();
 }

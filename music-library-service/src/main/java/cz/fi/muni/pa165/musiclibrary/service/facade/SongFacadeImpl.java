@@ -1,7 +1,5 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
@@ -47,8 +45,8 @@ public class SongFacadeImpl implements SongFacade {
 	}
 
 	@Override
-	public void delete(SongDTO song) {
-		songService.remove(beanMappingService.mapTo(song, Song.class));
+	public void delete(Long id) {
+		songService.remove(songService.findById(id));
 	}
 
 	@Override
@@ -58,20 +56,20 @@ public class SongFacadeImpl implements SongFacade {
 	}
 
 	@Override
-	public List<SongDTO> findByMusician(MusicianDTO musician) {
-		Musician m = musicianService.findById(musician.getId());
+	public List<SongDTO> findByMusician(Long musicianId) {
+		Musician m = musicianService.findById(musicianId);
 		return beanMappingService.mapTo(songService.findByMusician(m), SongDTO.class);
 	}
 
 	@Override
-	public List<SongDTO> findByGenre(GenreDTO genre) {
-		Genre g = genreService.findById(genre.getId());
+	public List<SongDTO> findByGenre(Long genreId) {
+		Genre g = genreService.findById(genreId);
 		return beanMappingService.mapTo(songService.findByGenre(g), SongDTO.class);
 	}
 
 	@Override
-	public List<SongDTO> findByTitle(String titlePattern) {
-		return beanMappingService.mapTo(songService.findByTitle(titlePattern), SongDTO.class);
+	public List<SongDTO> findByTitle(String query) {
+		return beanMappingService.mapTo(songService.findByTitle(query), SongDTO.class);
 	}
 
 	@Override

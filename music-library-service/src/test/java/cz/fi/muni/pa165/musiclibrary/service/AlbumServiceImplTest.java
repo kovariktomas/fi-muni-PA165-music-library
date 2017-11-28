@@ -164,7 +164,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	public void testGetAlbumsFromLastMonth() {
 		List<Album> albums = Arrays.asList(album22);
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date fabricatedTime = calendar.getTime();
 		calendar.add(Calendar.MONTH, -1);
 		Date monthBeforeFabricatedTime = calendar.getTime();
@@ -179,7 +179,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testGetAlbumsFromLastMonthNoAlbum() {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date fabricatedTime = calendar.getTime();
 		calendar.add(Calendar.MONTH, -2);
 		Date twoMonthsBeforeFabricatedTime = calendar.getTime();
@@ -195,7 +195,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	public void testGetAlbumsReleasedBetween() {
 		List<Album> albums = Arrays.asList(album22);
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date fabricatedTime = calendar.getTime();
 		calendar.add(Calendar.MONTH, -1);
 		Date monthBeforeFabricatedTime = calendar.getTime();
@@ -210,7 +210,7 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testGetAlbumsReleasedBetweenNoAlbum() {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date fabricatedTime = calendar.getTime();
 		calendar.add(Calendar.MONTH, -1);
 		Date monthBeforeFabricatedTime = calendar.getTime();

@@ -59,12 +59,12 @@ public interface SongDao {
 	List<Song> findByGenre(Genre genre);
 
 	/**
-	 * Gets songs which contain the given pattern in the title.
+	 * Gets songs with a title matching all the given patterns.
 	 *
-	 * @param titlePattern the title pattern
+	 * @param patterns the patterns
 	 * @return the songs
 	 */
-	List<Song> findByTitle(String titlePattern);
+	List<Song> findByTitle(List<String> patterns);
 
 	/**
 	 * Gets all songs.

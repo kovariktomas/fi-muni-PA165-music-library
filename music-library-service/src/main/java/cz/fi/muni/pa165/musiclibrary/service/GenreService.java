@@ -11,16 +11,17 @@ import java.util.List;
 
 @Service
 public interface GenreService {
+
+	Genre create(Genre g);
+
+	void update(Genre g);
+
+	void delete(Genre g);
+
 	Genre findById(Long id);
 
 	List<Genre> findByName(String query);
 
 	List<Genre> findAll();
-
-	Genre create(Genre g);
-
-	void delete(Genre g);
-
-	void update(Genre g);
 
 }

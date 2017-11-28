@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -86,7 +87,7 @@ public class SongServiceImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByTitle() {
 		List<Song> songs = new ArrayList<>();
 		songs.add(song1);
-		when(songDao.findByTitle("Roots")).thenReturn(songs);
+		when(songDao.findByTitle(Arrays.asList("%Roots%"))).thenReturn(songs);
 
 		List<Song> found = songService.findByTitle("Roots");
 
@@ -97,7 +98,7 @@ public class SongServiceImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByPartOfTitle() {
 		List<Song> songs = new ArrayList<>();
 		songs.add(song2);
-		when(songDao.findByTitle("Bloody")).thenReturn(songs);
+		when(songDao.findByTitle(Arrays.asList("%Bloody%"))).thenReturn(songs);
 
 		List<Song> found = songService.findByTitle("Bloody");
 

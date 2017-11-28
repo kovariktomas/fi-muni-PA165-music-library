@@ -62,10 +62,7 @@ public class MusicianFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testDelete() {
 		Musician musician = createSampleMusician("Parov Stelar");
 
-		MusicianDTO musicianDTO = new MusicianDTO();
-		musicianDTO.setId(musician.getId());
-		musicianDTO.setName("Parov Stelar");
-		musicianFacade.delete(musicianDTO);
+		musicianFacade.delete(musician.getId());
 
 		List<Musician> musicians = getAllMusicians();
 		Assert.assertEquals(0, musicians.size());

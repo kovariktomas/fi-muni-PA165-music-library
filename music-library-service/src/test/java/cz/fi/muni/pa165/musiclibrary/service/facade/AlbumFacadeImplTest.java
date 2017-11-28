@@ -1,12 +1,16 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
-import cz.fi.muni.pa165.musiclibrary.dto.*;
+import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
+import cz.fi.muni.pa165.musiclibrary.service.TimeService;
 import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -14,14 +18,18 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for AlbumFacadeImpl
@@ -32,6 +40,9 @@ import java.util.List;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
+
+	@Mock
+	private TimeService timeService;
 
 	@Autowired
 	private AlbumFacade albumFacade;
@@ -45,19 +56,20 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private Genre jazz;
 	private Song delicate;
 
+	@BeforeClass
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
+
 	@BeforeMethod
 	public void setUp() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
-		Date fabricatedTime = calendar.getTime();
-
 		album22 = new Album();
 		album22.setTitle("22");
-		album22.setReleaseDate(fabricatedTime);
+		album22.setReleaseDate(createDate("2003-06-14"));
 
 		albumReputation = new Album();
 		albumReputation.setTitle("Reputation");
-		albumReputation.setReleaseDate(fabricatedTime);
+		albumReputation.setReleaseDate(createDate("2017-11-10"));
 
 		taylor = new Musician();
 		taylor.setName("Taylor Swift");
@@ -87,7 +99,6 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testUpdate() {
 		em.persist(album22);
-		String oldName = album22.getTitle();
 
 		AlbumDTO albumDTO = createAlbumDTO(album22);
 		albumDTO.setTitle("aaaa");
@@ -116,6 +127,7 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindByMusician() {
 		em.persist(album22);
+		em.persist(albumReputation);
 		em.persist(delicate);
 
 		List<AlbumDTO> albumDTOs = albumFacade.findByMusician(taylor.getId());
@@ -126,6 +138,7 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindByGenre() {
 		em.persist(album22);
+		em.persist(albumReputation);
 		em.persist(delicate);
 
 		List<AlbumDTO> albumDTOs = albumFacade.findByGenre(jazz.getId());
@@ -135,6 +148,7 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testFindByTitle() {
+		em.persist(album22);
 		em.persist(albumReputation);
 
 		List<AlbumDTO> albumDTOs = albumFacade.findByTitle("rep");
@@ -150,6 +164,31 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		List<AlbumDTO> result = albumFacade.findAll();
 		Assert.assertEquals(2, result.size());
 		Assert.assertTrue(result.contains(createAlbumDTO(album22)));
+		Assert.assertTrue(result.contains(createAlbumDTO(albumReputation)));
+	}
+
+	@Test
+	public void testGetAlbumsReleasedBetween() {
+		em.persist(album22);
+		em.persist(albumReputation);
+
+		Date startDate = createDate("2017-01-01");
+		Date endDate = createDate("2017-12-31");
+
+		List<AlbumDTO> result = albumFacade.getAlbumsReleasedBetween(startDate, endDate);
+		Assert.assertEquals(1, result.size());
+		Assert.assertTrue(result.contains(createAlbumDTO(albumReputation)));
+	}
+
+	@Test
+	public void testGetAlbumsFromLastMonth() {
+		em.persist(album22);
+		em.persist(albumReputation);
+
+		when(timeService.getCurrentTime()).thenReturn(createDate("2017-11-30"));
+
+		List<AlbumDTO> result = albumFacade.getAlbumsFromLastMonth();
+		Assert.assertEquals(1, result.size());
 		Assert.assertTrue(result.contains(createAlbumDTO(albumReputation)));
 	}
 
@@ -170,5 +209,14 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 		albumDTO.setCommentary(album.getCommentary());
 		albumDTO.setAlbumArt(album.getAlbumArt());
 		return albumDTO;
+	}
+
+	private Date createDate(String date) {
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.parse(date);
+		} catch (ParseException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 }

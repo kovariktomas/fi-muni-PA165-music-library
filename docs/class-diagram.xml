@@ -1,2 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxGraphModel dx="790" dy="403" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="3" value="Song" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="370" y="280" width="160" height="160" as="geometry"/></mxCell><mxCell id="4" value="- id : Long&#10;- musician : Musician&#10;- album : Album&#10;- genre : Genre&#10;- title : String&#10;- bitrate : Integer&#10;- position : Integer&#10;- commentary : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="3" vertex="1"><mxGeometry y="26" width="160" height="134" as="geometry"/></mxCell><mxCell id="7" value="Album" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="130" y="296" width="160" height="130" as="geometry"/></mxCell><mxCell id="8" value="- id : Long&#10;- releaseDate : Date&#10;- title : String&#10;- commentary : String&#10;- albumArt : byte[]&#10;- songs : List&lt;Song&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="7" vertex="1"><mxGeometry y="26" width="160" height="104" as="geometry"/></mxCell><mxCell id="9" value="Musician" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="600" y="270" width="160" height="70" as="geometry"/></mxCell><mxCell id="10" value="- id : Long&#10;- name : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="9" vertex="1"><mxGeometry y="26" width="160" height="44" as="geometry"/></mxCell><mxCell id="11" value="Genre" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="600" y="369" width="160" height="70" as="geometry"/></mxCell><mxCell id="12" value="- id : Long&#10;- name : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="11" vertex="1"><mxGeometry y="26" width="160" height="44" as="geometry"/></mxCell><mxCell id="13" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" source="8" target="4" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="14" value="1" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="13" vertex="1" connectable="0"><mxGeometry x="-0.1213" y="-3" relative="1" as="geometry"><mxPoint x="-25" y="4" as="offset"/></mxGeometry></mxCell><mxCell id="15" value="0..*" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="13" vertex="1" connectable="0"><mxGeometry x="0.6895" y="-1" relative="1" as="geometry"><mxPoint x="-7" y="6" as="offset"/></mxGeometry></mxCell><mxCell id="17" style="edgeStyle=none;rounded=0;html=1;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" target="10" edge="1"><mxGeometry relative="1" as="geometry"><mxPoint x="531" y="318" as="sourcePoint"/></mxGeometry></mxCell><mxCell id="18" value="1" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="17" vertex="1" connectable="0"><mxGeometry x="0.5303" y="-1" relative="1" as="geometry"><mxPoint x="-4" y="-14" as="offset"/></mxGeometry></mxCell><mxCell id="19" value="0..*" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="17" vertex="1" connectable="0"><mxGeometry x="-0.6344" y="-3" relative="1" as="geometry"><mxPoint x="7" y="-16" as="offset"/></mxGeometry></mxCell><mxCell id="23" style="edgeStyle=none;rounded=0;html=1;exitX=1.016;exitY=0.835;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;exitPerimeter=0;" parent="1" source="4" target="12" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="26" value="1" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="23" vertex="1" connectable="0"><mxGeometry x="0.5715" relative="1" as="geometry"><mxPoint x="-2" y="-13" as="offset"/></mxGeometry></mxCell><mxCell id="27" value="0..*" style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="23" vertex="1" connectable="0"><mxGeometry x="-0.6329" y="-1" relative="1" as="geometry"><mxPoint x="1" y="-13" as="offset"/></mxGeometry></mxCell><mxCell id="32" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;dashed=1;" parent="1" source="28" target="8" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="28" value="AlbumDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="60" y="460" width="300" height="150" as="geometry"/></mxCell><mxCell id="29" value="+ create(Album album) : void&#10;+ update(Album album) : void&#10;+ delete(Album album) : void&#10;+ findById(Long id) : Album&#10;+ findByMusician(Musician musician) : List&lt;Album&gt;&#10;+ findByGenre(Genre genre) : List&lt;Album&gt;&#10;+ findByTitle(List&lt;String&gt; patterns) : List&lt;Album&gt;&#10;+ findAll() : List&lt;Album&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="28" vertex="1"><mxGeometry y="26" width="300" height="124" as="geometry"/></mxCell><mxCell id="37" style="edgeStyle=none;rounded=0;html=1;entryX=0.25;entryY=0;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" target="3" edge="1"><mxGeometry relative="1" as="geometry"><mxPoint x="410" y="250" as="sourcePoint"/></mxGeometry></mxCell><mxCell id="33" value="SongDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="201" y="100" width="310" height="150" as="geometry"/></mxCell><mxCell id="34" value="+ create(Song song) : void&#10;+ update(Song song) : void&#10;+ delete(Song song) : void&#10;+ findById(Long id) : Song&#10;+ findByMusician(Musician musician) : List&lt;Song&gt;&#10;+ findByGenre(Genre genre) : List&lt;Song&gt;&#10;+ findByTitle(List&lt;String&gt; patterns) : List&lt;Song&gt;&#10;+ findAll() : List&lt;Song&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="33" vertex="1"><mxGeometry y="26" width="310" height="124" as="geometry"/></mxCell><mxCell id="46" style="edgeStyle=none;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;" parent="1" target="9" edge="1"><mxGeometry relative="1" as="geometry"><mxPoint x="681" y="237" as="sourcePoint"/></mxGeometry></mxCell><mxCell id="38" value="MusicianDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="560" y="106" width="300" height="130" as="geometry"/></mxCell><mxCell id="39" value="+ create(Musician musician) : void&#10;+ update(Musician musician) : void&#10;+ delete(Musician musician) : void&#10;+ findById(Long id) : Musician&#10;+ findByName(List&lt;String&gt; patterns) : List&lt;Musician&gt;&#10;+ findAll() : List&lt;Musician&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="38" vertex="1"><mxGeometry y="26" width="300" height="104" as="geometry"/></mxCell><mxCell id="45" style="edgeStyle=none;rounded=0;html=1;exitX=0.55;exitY=0.014;entryX=0.531;entryY=0.991;entryPerimeter=0;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;exitPerimeter=0;" parent="1" source="43" target="12" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="43" value="GenreDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" parent="1" vertex="1"><mxGeometry x="520" y="470" width="300" height="120" as="geometry"/></mxCell><mxCell id="44" value="+ create(Genre genre) : void&#10;+ update(Genre genre) : void&#10;+ delete(Genre genre) : void&#10;+ findById(Long id) : Genre&#10;+ findByName(List&lt;String&gt; patterns) : List&lt;Genre&gt;&#10;+ findAll() : List&lt;Genre&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="43" vertex="1"><mxGeometry y="26" width="300" height="94" as="geometry"/></mxCell></root></mxGraphModel>
+<mxGraphModel dx="790" dy="403" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
+			  pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+	<root>
+		<mxCell id="0"/>
+		<mxCell id="1" parent="0"/>
+		<mxCell id="3" value="Song"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="370" y="280" width="160" height="160" as="geometry"/>
+		</mxCell>
+		<mxCell id="4"
+				value="- id : Long&#10;- musician : Musician&#10;- album : Album&#10;- genre : Genre&#10;- title : String&#10;- bitrate : Integer&#10;- position : Integer&#10;- commentary : String"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="3" vertex="1">
+			<mxGeometry y="26" width="160" height="134" as="geometry"/>
+		</mxCell>
+		<mxCell id="7" value="Album"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="130" y="296" width="160" height="130" as="geometry"/>
+		</mxCell>
+		<mxCell id="8"
+				value="- id : Long&#10;- releaseDate : Date&#10;- title : String&#10;- commentary : String&#10;- albumArt : byte[]&#10;- songs : List&lt;Song&gt;"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="7" vertex="1">
+			<mxGeometry y="26" width="160" height="104" as="geometry"/>
+		</mxCell>
+		<mxCell id="9" value="Musician"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="600" y="270" width="160" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="10" value="- id : Long&#10;- name : String"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="9" vertex="1">
+			<mxGeometry y="26" width="160" height="44" as="geometry"/>
+		</mxCell>
+		<mxCell id="11" value="Genre"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="600" y="369" width="160" height="70" as="geometry"/>
+		</mxCell>
+		<mxCell id="12" value="- id : Long&#10;- name : String"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="11" vertex="1">
+			<mxGeometry y="26" width="160" height="44" as="geometry"/>
+		</mxCell>
+		<mxCell id="13"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;"
+				parent="1" source="8" target="4" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="14" value="1"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="13" vertex="1" connectable="0">
+			<mxGeometry x="-0.1213" y="-3" relative="1" as="geometry">
+				<mxPoint x="-25" y="4" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="15" value="0..*"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="13" vertex="1" connectable="0">
+			<mxGeometry x="0.6895" y="-1" relative="1" as="geometry">
+				<mxPoint x="-7" y="6" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="17"
+				style="edgeStyle=none;rounded=0;html=1;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;"
+				parent="1" target="10" edge="1">
+			<mxGeometry relative="1" as="geometry">
+				<mxPoint x="531" y="318" as="sourcePoint"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="18" value="1"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="17" vertex="1" connectable="0">
+			<mxGeometry x="0.5303" y="-1" relative="1" as="geometry">
+				<mxPoint x="-4" y="-14" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="19" value="0..*"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="17" vertex="1" connectable="0">
+			<mxGeometry x="-0.6344" y="-3" relative="1" as="geometry">
+				<mxPoint x="7" y="-16" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="23"
+				style="edgeStyle=none;rounded=0;html=1;exitX=1.016;exitY=0.835;entryX=0;entryY=0.5;endArrow=none;endFill=0;jettySize=auto;orthogonalLoop=1;exitPerimeter=0;"
+				parent="1" source="4" target="12" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="26" value="1"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="23" vertex="1" connectable="0">
+			<mxGeometry x="0.5715" relative="1" as="geometry">
+				<mxPoint x="-2" y="-13" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="27" value="0..*"
+				style="text;html=1;resizable=0;points=[];align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;"
+				parent="23" vertex="1" connectable="0">
+			<mxGeometry x="-0.6329" y="-1" relative="1" as="geometry">
+				<mxPoint x="1" y="-13" as="offset"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="32"
+				style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=0;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;dashed=1;"
+				parent="1" source="28" target="8" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="28" value="AlbumDAO"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="60" y="460" width="300" height="150" as="geometry"/>
+		</mxCell>
+		<mxCell id="29"
+				value="+ create(Album album) : void&#10;+ update(Album album) : void&#10;+ delete(Album album) : void&#10;+ findById(Long id) : Album&#10;+ findByMusician(Musician musician) : List&lt;Album&gt;&#10;+ findByGenre(Genre genre) : List&lt;Album&gt;&#10;+ findByTitle(List&lt;String&gt; patterns) : List&lt;Album&gt;&#10;+ findAll() : List&lt;Album&gt;"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="28" vertex="1">
+			<mxGeometry y="26" width="300" height="124" as="geometry"/>
+		</mxCell>
+		<mxCell id="37"
+				style="edgeStyle=none;rounded=0;html=1;entryX=0.25;entryY=0;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;"
+				parent="1" target="3" edge="1">
+			<mxGeometry relative="1" as="geometry">
+				<mxPoint x="410" y="250" as="sourcePoint"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="33" value="SongDAO"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="201" y="100" width="310" height="150" as="geometry"/>
+		</mxCell>
+		<mxCell id="34"
+				value="+ create(Song song) : void&#10;+ update(Song song) : void&#10;+ delete(Song song) : void&#10;+ findById(Long id) : Song&#10;+ findByMusician(Musician musician) : List&lt;Song&gt;&#10;+ findByGenre(Genre genre) : List&lt;Song&gt;&#10;+ findByTitle(List&lt;String&gt; patterns) : List&lt;Song&gt;&#10;+ findAll() : List&lt;Song&gt;"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="33" vertex="1">
+			<mxGeometry y="26" width="310" height="124" as="geometry"/>
+		</mxCell>
+		<mxCell id="46"
+				style="edgeStyle=none;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;"
+				parent="1" target="9" edge="1">
+			<mxGeometry relative="1" as="geometry">
+				<mxPoint x="681" y="237" as="sourcePoint"/>
+			</mxGeometry>
+		</mxCell>
+		<mxCell id="38" value="MusicianDAO"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="560" y="106" width="300" height="130" as="geometry"/>
+		</mxCell>
+		<mxCell id="39"
+				value="+ create(Musician musician) : void&#10;+ update(Musician musician) : void&#10;+ delete(Musician musician) : void&#10;+ findById(Long id) : Musician&#10;+ findByName(List&lt;String&gt; patterns) : List&lt;Musician&gt;&#10;+ findAll() : List&lt;Musician&gt;"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="38" vertex="1">
+			<mxGeometry y="26" width="300" height="104" as="geometry"/>
+		</mxCell>
+		<mxCell id="45"
+				style="edgeStyle=none;rounded=0;html=1;exitX=0.55;exitY=0.014;entryX=0.531;entryY=0.991;entryPerimeter=0;dashed=1;endArrow=open;endFill=0;jettySize=auto;orthogonalLoop=1;exitPerimeter=0;"
+				parent="1" source="43" target="12" edge="1">
+			<mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+		<mxCell id="43" value="GenreDAO"
+				style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;"
+				parent="1" vertex="1">
+			<mxGeometry x="520" y="470" width="300" height="120" as="geometry"/>
+		</mxCell>
+		<mxCell id="44"
+				value="+ create(Genre genre) : void&#10;+ update(Genre genre) : void&#10;+ delete(Genre genre) : void&#10;+ findById(Long id) : Genre&#10;+ findByName(List&lt;String&gt; patterns) : List&lt;Genre&gt;&#10;+ findAll() : List&lt;Genre&gt;"
+				style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+				parent="43" vertex="1">
+			<mxGeometry y="26" width="300" height="94" as="geometry"/>
+		</mxCell>
+	</root>
+</mxGraphModel>

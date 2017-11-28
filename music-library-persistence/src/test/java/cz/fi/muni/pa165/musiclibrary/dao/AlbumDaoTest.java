@@ -77,7 +77,7 @@ public class AlbumDaoTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void testNonExistentReturnsNull() {
-		Assert.assertNull(albumDao.findById(11l));
+		Assert.assertNull(albumDao.findById(11L));
 	}
 
 
@@ -185,9 +185,9 @@ public class AlbumDaoTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testGetAlbumsReleasedBetweenNoAlbum() {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date dateStart = calendar.getTime();
-		calendar.set(2016, 2, 25);
+		calendar.set(2016, Calendar.MARCH, 25);
 		Date dateEnd = calendar.getTime();
 		Assert.assertEquals(albumDao.getAlbumsReleasedBetween(dateStart, dateEnd).size(), 0);
 	}
@@ -195,12 +195,12 @@ public class AlbumDaoTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testGetAlbumsReleasedBetween() {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(2016, 1, 1);
+		calendar.set(2016, Calendar.FEBRUARY, 1);
 		Date dateStart = calendar.getTime();
-		calendar.set(2016, 2, 25);
+		calendar.set(2016, Calendar.MARCH, 25);
 		Date dateEnd = calendar.getTime();
 
-		calendar.set(2016, 2, 1);
+		calendar.set(2016, Calendar.MARCH, 1);
 		a.setReleaseDate(calendar.getTime());
 		albumDao.create(a);
 		Assert.assertEquals(albumDao.getAlbumsReleasedBetween(dateStart, dateEnd).size(), 1);

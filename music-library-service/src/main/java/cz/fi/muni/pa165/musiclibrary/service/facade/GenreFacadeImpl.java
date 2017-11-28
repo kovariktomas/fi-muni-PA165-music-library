@@ -35,18 +35,13 @@ public class GenreFacadeImpl implements GenreFacade {
 	}
 
 	@Override
-	public void delete(GenreDTO genre) {
-		genreService.delete(beanMappingService.mapTo(genre, Genre.class));
+	public void delete(Long id) {
+		genreService.delete(genreService.findById(id));
 	}
 
 	@Override
 	public void update(GenreDTO genre) {
 		genreService.update(beanMappingService.mapTo(genre, Genre.class));
-	}
-
-	@Override
-	public List<GenreDTO> findAll() {
-		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
 	}
 
 	@Override
@@ -59,5 +54,10 @@ public class GenreFacadeImpl implements GenreFacade {
 	public List<GenreDTO> findByName(String query) {
 		List<Genre> genres = genreService.findByName(query);
 		return (genres == null) ? null : beanMappingService.mapTo(genres, GenreDTO.class);
+	}
+
+	@Override
+	public List<GenreDTO> findAll() {
+		return beanMappingService.mapTo(genreService.findAll(), GenreDTO.class);
 	}
 }

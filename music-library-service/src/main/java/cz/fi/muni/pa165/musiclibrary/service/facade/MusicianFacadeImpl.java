@@ -30,8 +30,8 @@ public class MusicianFacadeImpl implements MusicianFacade {
 		musicianService.update(beanMappingService.mapTo(musician, Musician.class));
 	}
 
-	public void delete(MusicianDTO musician) {
-		musicianService.delete(beanMappingService.mapTo(musician, Musician.class));
+	public void delete(Long id) {
+		musicianService.delete(musicianService.findById(id));
 	}
 
 	public MusicianDTO findById(Long id) {

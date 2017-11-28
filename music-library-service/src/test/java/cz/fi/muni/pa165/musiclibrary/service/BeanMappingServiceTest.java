@@ -20,9 +20,9 @@ public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests {
 
 	@BeforeMethod
 	public void createGenres() {
-		Genre gRock = new Genre(2l);
+		Genre gRock = new Genre(2L);
 		gRock.setName("Rock");
-		Genre gPop = new Genre(3l);
+		Genre gPop = new Genre(3L);
 		gPop.setName("Pop");
 
 	}

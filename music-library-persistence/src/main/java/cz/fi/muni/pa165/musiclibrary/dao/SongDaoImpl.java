@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Jan-Sebastian Fabík
@@ -53,10 +55,25 @@ public class SongDaoImpl implements SongDao {
 	}
 
 	@Override
-	public List<Song> findByTitle(String titlePattern) {
-		return em.createQuery("SELECT s FROM Song s WHERE s.title LIKE :title", Song.class)
-			.setParameter("title", "%" + titlePattern + "%")
-			.getResultList();
+	public List<Song> findByTitle(List<String> patterns) {
+		StringBuilder queryBuilder = new StringBuilder("SELECT s FROM Song s");
+
+		for (int i = 0; i < patterns.size(); i++) {
+			if (i == 0) {
+				queryBuilder.append(" WHERE");
+			} else {
+				queryBuilder.append(" AND");
+			}
+			queryBuilder.append(" LOWER(s.title) LIKE :pattern").append(i);
+		}
+
+		TypedQuery<Song> query = em.createQuery(queryBuilder.toString(), Song.class);
+
+		for (int i = 0; i < patterns.size(); i++) {
+			query.setParameter("pattern" + i, patterns.get(i).toLowerCase(Locale.ENGLISH));
+		}
+
+		return query.getResultList();
 	}
 
 	@Override
