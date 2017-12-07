@@ -10,7 +10,7 @@
 
 	<artifactId>music-library-sample-data</artifactId>
 	<packaging>jar</packaging>
-	<name>Sample Data for eShop</name>
+	<name>Sample Data for music library</name>
 
 	<dependencies>
 		<dependency>
