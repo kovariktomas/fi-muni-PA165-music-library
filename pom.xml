@@ -68,10 +68,11 @@
 	</build>
 
 	<modules>
+		<module>music-library-api</module>
 		<module>music-library-persistence</module>
 		<module>music-library-sample-data</module>
 		<module>music-library-service</module>
-		<module>music-library-api</module>
+		<module>music-library-web</module>
 	</modules>
 </project>
 
