@@ -4,6 +4,11 @@ import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.GenreCreateDTOValidator;
+import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistingException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotFoundException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotModifiedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
+import org.springframework.http.MediaType;
 
 /**
  * SpringMVC Controller for administering genres.
@@ -35,7 +41,7 @@ public class GenreController {
 
     @Autowired
     private GenreFacade genreFacade;
-
+	
     /**
      * Shows a list of genres with the ability to add, delete or edit.
      *
