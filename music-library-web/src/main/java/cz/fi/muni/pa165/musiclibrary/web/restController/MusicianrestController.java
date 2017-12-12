@@ -107,14 +107,15 @@ public class MusicianrestController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final void /*MusicianDTO*/ createGenre(@RequestBody MusicianCreateDTO musician) throws Exception {
+    public final MusicianDTO createGenre(@RequestBody MusicianCreateDTO musician) throws Exception {
 
         log.debug("rest createMusician()");
 
         try {
-            //Long id = musicianFacade.create(musician);
-            //return musicianFacade.findById(id);
-			musicianFacade.create(musician);
+            Long id = musicianFacade.create(musician);
+            return musicianFacade.findById(id);
+			//musicianFacade.create(musician);
+			//return musician;
         } catch (Exception ex) {
             throw new ResourceAlreadyExistingException();
         }

@@ -17,8 +17,9 @@ public class MusicianServiceImpl implements MusicianService {
 	@Autowired
 	private MusicianDao musicianDao;
 
-	public void create(Musician musician) {
+	public Musician create(Musician musician) {
 		musicianDao.create(musician);
+		return musician;
 	}
 
 	public void update(Musician musician) {
