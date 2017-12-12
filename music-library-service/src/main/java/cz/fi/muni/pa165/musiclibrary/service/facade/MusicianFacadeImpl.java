@@ -22,8 +22,9 @@ public class MusicianFacadeImpl implements MusicianFacade {
 	@Autowired
 	private BeanMappingService beanMappingService;
 
-	public void create(MusicianCreateDTO musician) {
-		musicianService.create(beanMappingService.mapTo(musician, Musician.class));
+	public Long create(MusicianCreateDTO musician) {
+		Musician newMusician = musicianService.create(beanMappingService.mapTo(musician, Musician.class));
+		return newMusician.getId();
 	}
 
 	public void update(MusicianDTO musician) {

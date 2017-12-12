@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface MusicianService {
 
-	void create(Musician musician);
+	Musician create(Musician musician);
 
 	void update(Musician musician);
 
