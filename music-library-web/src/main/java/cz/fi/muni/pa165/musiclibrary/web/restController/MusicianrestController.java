@@ -1,17 +1,12 @@
 package cz.fi.muni.pa165.musiclibrary.web.restController;
 
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
-import cz.fi.muni.pa165.musiclibrary.web.forms.GenreCreateDTOValidator;
 import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistingException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotFoundException;
-import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotModifiedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +26,7 @@ import java.util.Locale;
 import org.springframework.http.MediaType;
 
 /**
- * SpringMVC Controller for administering genres.
+ * REST Controller for administering musicians.
  *
  * @author Tomas Kovarik
  */
@@ -105,9 +100,9 @@ public class MusicianrestController {
      * @return void
      * @throws ResourceAlreadyExistingException
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final MusicianDTO createGenre(@RequestBody MusicianCreateDTO musician) throws Exception {
+    public final MusicianDTO createMusician(@RequestBody MusicianCreateDTO musician) throws Exception {
 
         log.debug("rest createMusician()");
 
