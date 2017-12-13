@@ -8,7 +8,7 @@ import java.util.Objects;
 public class MusicianCreateDTO {
 
 	private Long id;
-	
+
 	private String name;
 
 	public String getName() {
