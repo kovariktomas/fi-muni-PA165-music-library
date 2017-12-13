@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface MusicianFacade {
 
-	void create(MusicianCreateDTO musician);
+	Long create(MusicianCreateDTO musician);
 
 	void update(MusicianDTO musician);
 

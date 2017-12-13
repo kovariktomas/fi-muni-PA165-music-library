@@ -7,6 +7,8 @@ import java.util.Objects;
  */
 public class MusicianCreateDTO {
 
+	private Long id;
+
 	private String name;
 
 	public String getName() {
@@ -43,6 +45,7 @@ public class MusicianCreateDTO {
 	@Override
 	public String toString() {
 		return "MusicianCreateDTO{" +
+			"id=" + id +
 			"name='" + name + "'" +
 			"}";
 	}
