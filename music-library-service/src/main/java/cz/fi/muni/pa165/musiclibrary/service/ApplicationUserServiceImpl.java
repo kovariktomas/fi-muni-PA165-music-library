@@ -2,12 +2,11 @@ package cz.fi.muni.pa165.musiclibrary.service;
 
 import cz.fi.muni.pa165.musiclibrary.dao.ApplicationUserDao;
 import cz.fi.muni.pa165.musiclibrary.entity.ApplicationUser;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -19,7 +18,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
 	@Autowired
 	private ApplicationUserDao userDao;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -53,17 +52,17 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 	public List<ApplicationUser> findAll() {
 		return userDao.findAll();
 	}
-	
-	@Override 
-	public void setPassword(Long userId, String rawPassword){
-		 ApplicationUser u = userDao.findById(userId);
-		 u.setPassHash(passwordEncoder.encode(rawPassword));
-		 userDao.update(u);
-	};
-	
-	@Override 
-	public boolean verifyPassword(Long userId, String rawPassword){
-		 ApplicationUser u = userDao.findById(userId);
-		 return passwordEncoder.matches(rawPassword, u.getPassHash());
-	};
+
+	@Override
+	public void setPassword(Long userId, String rawPassword) {
+		ApplicationUser u = userDao.findById(userId);
+		u.setPassHash(passwordEncoder.encode(rawPassword));
+		userDao.update(u);
+	}
+
+	@Override
+	public boolean verifyPassword(Long userId, String rawPassword) {
+		ApplicationUser u = userDao.findById(userId);
+		return passwordEncoder.matches(rawPassword, u.getPassHash());
+	}
 }

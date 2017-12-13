@@ -21,7 +21,7 @@ public interface ApplicationUserFacade {
 	ApplicationUserDTO findById(Long id);
 
 	ApplicationUserDTO findByEmail(String email);
-	
+
 	void setPassword(ApplicationUserDTO user, String password);
 
 	List<ApplicationUserDTO> findAll();

@@ -51,8 +51,8 @@ public class ApplicationUserDaoImpl implements ApplicationUserDao {
 	@Override
 	public ApplicationUser findByEmail(String email) {
 		return em.createQuery("SELECT u FROM ApplicationUser u WHERE u.email = :email", ApplicationUser.class)
-				.setParameter("email", email)
-				.getSingleResult();
+			.setParameter("email", email)
+			.getSingleResult();
 	}
 
 	@Override

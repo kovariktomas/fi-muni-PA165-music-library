@@ -1,10 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary;
 
-import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
-import cz.fi.muni.pa165.musiclibrary.dao.ApplicationUserDao;
-import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
-import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
-import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
+import cz.fi.muni.pa165.musiclibrary.dao.*;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

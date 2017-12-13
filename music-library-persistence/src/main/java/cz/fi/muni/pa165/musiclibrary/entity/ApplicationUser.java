@@ -17,15 +17,15 @@ public class ApplicationUser {
 	@NotNull
 	@Column(nullable = false)
 	private String name;
-	
+
 	@NotNull
 	@Column(nullable = false, unique = true)
 	private String email;
-	
+
 	@NotNull
 	@Column(nullable = false)
 	private String passHash;
-	
+
 	@NotNull
 	@Column(nullable = false)
 	private String role;
@@ -52,7 +52,7 @@ public class ApplicationUser {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

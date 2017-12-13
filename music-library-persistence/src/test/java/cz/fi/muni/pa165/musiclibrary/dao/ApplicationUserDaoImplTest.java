@@ -53,7 +53,7 @@ public class ApplicationUserDaoImplTest extends AbstractTestNGSpringContextTests
 		admin2.setPassHash("samplehash");
 		admin2.setRole("admin");
 		userDao.create(admin2);
-		
+
 		admin3 = new ApplicationUser();
 		admin3.setName("admin3");
 		admin3.setEmail("admin3@muni.cz");

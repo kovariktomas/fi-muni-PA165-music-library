@@ -9,16 +9,8 @@ import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
-import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
-import cz.fi.muni.pa165.musiclibrary.facade.ApplicationUserFacade;
-import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
-import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
-import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
-import cz.fi.muni.pa165.musiclibrary.service.AlbumServiceImpl;
-import cz.fi.muni.pa165.musiclibrary.service.ApplicationUserServiceImpl;
-import cz.fi.muni.pa165.musiclibrary.service.GenreServiceImpl;
-import cz.fi.muni.pa165.musiclibrary.service.MusicianServiceImpl;
-import cz.fi.muni.pa165.musiclibrary.service.SongServiceImpl;
+import cz.fi.muni.pa165.musiclibrary.facade.*;
+import cz.fi.muni.pa165.musiclibrary.service.*;
 import cz.fi.muni.pa165.musiclibrary.service.facade.AlbumFacadeImpl;
 import cz.fi.muni.pa165.musiclibrary.service.facade.ApplicationUserFacadeImpl;
 import cz.fi.muni.pa165.musiclibrary.service.facade.GenreFacadeImpl;
@@ -65,7 +57,7 @@ public class ServiceConfiguration {
 		dozer.addMapping(new DozerCustomConfig());
 		return dozer;
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

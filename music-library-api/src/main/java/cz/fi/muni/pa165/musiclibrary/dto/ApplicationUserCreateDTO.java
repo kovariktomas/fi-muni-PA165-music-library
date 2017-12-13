@@ -13,15 +13,15 @@ public class ApplicationUserCreateDTO {
 	@NotNull
 	@Size(min = 3, max = 50)
 	private String name;
-	
+
 	@NotNull
 	@Size(min = 3, max = 150)
 	private String email;
-	
+
 	@NotNull
 	@Size(min = 3, max = 1024)
 	private String passHash;
-	
+
 	@NotNull
 	@Size(min = 3, max = 50)
 	private String role;
@@ -33,7 +33,7 @@ public class ApplicationUserCreateDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

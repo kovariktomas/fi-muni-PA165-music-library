@@ -23,9 +23,9 @@ public interface ApplicationUserService {
 	ApplicationUser findByEmail(String email);
 
 	List<ApplicationUser> findAll();
-	
+
 	void setPassword(Long userId, String password);
-	
+
 	boolean verifyPassword(Long userId, String rawPassword);
 
 }
