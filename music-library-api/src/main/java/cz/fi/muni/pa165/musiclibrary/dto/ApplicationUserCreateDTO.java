@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * @author Kovarik Tomas
  */
-public class AplicationUserCreateDTO {
+public class ApplicationUserCreateDTO {
 	private Long id;
 
 	@NotNull
@@ -74,10 +74,10 @@ public class AplicationUserCreateDTO {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof AplicationUserCreateDTO)) {
+		if (!(obj instanceof ApplicationUserCreateDTO)) {
 			return false;
 		}
-		AplicationUserCreateDTO other = (AplicationUserCreateDTO) obj;
+		ApplicationUserCreateDTO other = (ApplicationUserCreateDTO) obj;
 		return Objects.equals(this.email, other.getEmail());
 	}
 

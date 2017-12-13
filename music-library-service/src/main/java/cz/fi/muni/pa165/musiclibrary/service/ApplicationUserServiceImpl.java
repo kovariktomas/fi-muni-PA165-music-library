@@ -1,8 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.service;
 
-import cz.fi.muni.pa165.musiclibrary.dao.AplicationUserDao;
-import cz.fi.muni.pa165.musiclibrary.entity.AplicationUser;
-import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
+import cz.fi.muni.pa165.musiclibrary.dao.ApplicationUserDao;
+import cz.fi.muni.pa165.musiclibrary.entity.ApplicationUser;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -16,55 +15,55 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 
 @Service
-public class AplicationUserServiceImpl implements AplicationUserService {
+public class ApplicationUserServiceImpl implements ApplicationUserService {
 
 	@Inject
-	private AplicationUserDao userDao;
+	private ApplicationUserDao userDao;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public AplicationUser create(AplicationUser u) {
+	public ApplicationUser create(ApplicationUser u) {
 		userDao.create(u);
 		return u;
 	}
 
 	@Override
-	public void update(AplicationUser u) {
+	public void update(ApplicationUser u) {
 		userDao.update(u);
 	}
 
 	@Override
-	public void delete(AplicationUser u) {
+	public void delete(ApplicationUser u) {
 		userDao.delete(u);
 	}
 
 	@Override
-	public AplicationUser findById(Long id) {
+	public ApplicationUser findById(Long id) {
 		return userDao.findById(id);
 	}
 
 	@Override
-	public AplicationUser findByEmail(String email) {
+	public ApplicationUser findByEmail(String email) {
 		return userDao.findByEmail(email);
 	}
 
 	@Override
-	public List<AplicationUser> findAll() {
+	public List<ApplicationUser> findAll() {
 		return userDao.findAll();
 	}
 	
 	@Override 
 	public void setPassword(Long userId, String rawPassword){
-		 AplicationUser u = userDao.findById(userId);
+		 ApplicationUser u = userDao.findById(userId);
 		 u.setPassHash(passwordEncoder.encode(rawPassword));
 		 userDao.update(u);
 	};
 	
 	@Override 
 	public boolean verifyPassword(Long userId, String rawPassword){
-		 AplicationUser u = userDao.findById(userId);
+		 ApplicationUser u = userDao.findById(userId);
 		 return passwordEncoder.matches(rawPassword, u.getPassHash());
 	};
 }

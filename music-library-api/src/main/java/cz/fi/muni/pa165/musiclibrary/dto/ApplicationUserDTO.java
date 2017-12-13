@@ -1,41 +1,16 @@
-package cz.fi.muni.pa165.musiclibrary.entity;
+package cz.fi.muni.pa165.musiclibrary.dto;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
  * @author Kovarik Tomas
  */
-@Entity
-public class AplicationUser {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ApplicationUserDTO {
 	private Long id;
-
-	@NotNull
-	@Column(nullable = false)
 	private String name;
-	
-	@NotNull
-	@Column(nullable = false, unique = true)
 	private String email;
-	
-	@NotNull
-	@Column(nullable = false)
 	private String passHash;
-	
-	@NotNull
-	@Column(nullable = false)
 	private String role;
-
-	public AplicationUser() {
-	}
-
-	public AplicationUser(Long genreId) {
-		this.id = genreId;
-	}
 
 	public Long getId() {
 		return id;
@@ -45,6 +20,7 @@ public class AplicationUser {
 		this.id = id;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -93,12 +69,13 @@ public class AplicationUser {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof AplicationUser)) {
+		if (!(obj instanceof ApplicationUserDTO)) {
 			return false;
 		}
-		AplicationUser other = (AplicationUser) obj;
+		ApplicationUserDTO other = (ApplicationUserDTO) obj;
 		return Objects.equals(this.email, other.getEmail());
 	}
+
 
 	@Override
 	public String toString() {

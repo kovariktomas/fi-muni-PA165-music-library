@@ -1,6 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.musiclibrary.entity.AplicationUser;
+import cz.fi.muni.pa165.musiclibrary.entity.ApplicationUser;
 import cz.fi.muni.pa165.musiclibrary.exceptions.UserAlreadyExistsException;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Kovarik Tomas
  */
-public interface AplicationUserDao {
+public interface ApplicationUserDao {
 
 	/**
 	 * Adds the given user to the database.
@@ -16,21 +16,21 @@ public interface AplicationUserDao {
 	 * @param user the user
 	 * @throws UserAlreadyExistsException if a user with the same e-mail already exists
 	 */
-	void create(AplicationUser user) throws UserAlreadyExistsException;
+	void create(ApplicationUser user) throws UserAlreadyExistsException;
 
 	/**
 	 * Deletes the given user from the database.
 	 *
 	 * @param user the user
 	 */
-	void delete(AplicationUser user);
+	void delete(ApplicationUser user);
 
 	/**
 	 * Updates the given user in the database.
 	 *
 	 * @param user the user
 	 */
-	void update(AplicationUser user);
+	void update(ApplicationUser user);
 
 	/**
 	 * Gets a user with the given ID.
@@ -38,7 +38,7 @@ public interface AplicationUserDao {
 	 * @param id the user ID
 	 * @return the user, or null if does not exist
 	 */
-	AplicationUser findById(Long id);
+	ApplicationUser findById(Long id);
 
 	/**
 	 * Gets a user with the given email.
@@ -46,7 +46,7 @@ public interface AplicationUserDao {
 	 * @param email the user ID
 	 * @return the user, or null if does not exist
 	 */
-	AplicationUser findByEmail(String email);
+	ApplicationUser findByEmail(String email);
 
 
 	/**
@@ -54,6 +54,6 @@ public interface AplicationUserDao {
 	 *
 	 * @return the users
 	 */
-	List<AplicationUser> findAll();
+	List<ApplicationUser> findAll();
 }
 

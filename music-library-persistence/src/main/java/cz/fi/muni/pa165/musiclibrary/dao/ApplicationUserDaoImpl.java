@@ -1,27 +1,25 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
-import cz.fi.muni.pa165.musiclibrary.entity.AplicationUser;
+import cz.fi.muni.pa165.musiclibrary.entity.ApplicationUser;
 import cz.fi.muni.pa165.musiclibrary.exceptions.UserAlreadyExistsException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Kovarik Tomas
  */
 @Repository
-public class AplicationUserDaoImpl implements AplicationUserDao {
+public class ApplicationUserDaoImpl implements ApplicationUserDao {
 
 	@PersistenceContext
 	private EntityManager em;
 
 
 	@Override
-	public void create(AplicationUser user) throws UserAlreadyExistsException {
+	public void create(ApplicationUser user) throws UserAlreadyExistsException {
 		if (emailAlreadyExists(user.getEmail())) {
 			throw new UserAlreadyExistsException("User with this e-mail already exists.");
 		}
@@ -29,37 +27,37 @@ public class AplicationUserDaoImpl implements AplicationUserDao {
 	}
 
 	private boolean emailAlreadyExists(String email) {
-		Long count = em.createQuery("SELECT COUNT(u) FROM AplicationUser u WHERE u.email = :email", Long.class)
+		Long count = em.createQuery("SELECT COUNT(u) FROM ApplicationUser u WHERE u.email = :email", Long.class)
 			.setParameter("email", email)
 			.getSingleResult();
 		return count > 0;
 	}
 
 	@Override
-	public void delete(AplicationUser user) {
+	public void delete(ApplicationUser user) {
 		em.remove(findById(user.getId()));
 	}
 
 	@Override
-	public void update(AplicationUser user) {
+	public void update(ApplicationUser user) {
 		em.merge(user);
 	}
 
 	@Override
-	public AplicationUser findById(Long id) {
-		return em.find(AplicationUser.class, id);
+	public ApplicationUser findById(Long id) {
+		return em.find(ApplicationUser.class, id);
 	}
 
 	@Override
-	public AplicationUser findByEmail(String email) {
-		return em.createQuery("SELECT u FROM AplicationUser u WHERE u.email = :email", AplicationUser.class)
+	public ApplicationUser findByEmail(String email) {
+		return em.createQuery("SELECT u FROM ApplicationUser u WHERE u.email = :email", ApplicationUser.class)
 				.setParameter("email", email)
 				.getSingleResult();
 	}
 
 	@Override
-	public List<AplicationUser> findAll() {
-		return em.createQuery("SELECT u FROM AplicationUser u", AplicationUser.class)
+	public List<ApplicationUser> findAll() {
+		return em.createQuery("SELECT u FROM ApplicationUser u", ApplicationUser.class)
 			.getResultList();
 	}
 }

@@ -10,17 +10,17 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
-import cz.fi.muni.pa165.musiclibrary.facade.AplicationUserFacade;
+import cz.fi.muni.pa165.musiclibrary.facade.ApplicationUserFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
 import cz.fi.muni.pa165.musiclibrary.service.AlbumServiceImpl;
-import cz.fi.muni.pa165.musiclibrary.service.AplicationUserServiceImpl;
+import cz.fi.muni.pa165.musiclibrary.service.ApplicationUserServiceImpl;
 import cz.fi.muni.pa165.musiclibrary.service.GenreServiceImpl;
 import cz.fi.muni.pa165.musiclibrary.service.MusicianServiceImpl;
 import cz.fi.muni.pa165.musiclibrary.service.SongServiceImpl;
 import cz.fi.muni.pa165.musiclibrary.service.facade.AlbumFacadeImpl;
-import cz.fi.muni.pa165.musiclibrary.service.facade.AplicationUserFacadeImpl;
+import cz.fi.muni.pa165.musiclibrary.service.facade.ApplicationUserFacadeImpl;
 import cz.fi.muni.pa165.musiclibrary.service.facade.GenreFacadeImpl;
 import cz.fi.muni.pa165.musiclibrary.service.facade.SongFacadeImpl;
 import org.dozer.DozerBeanMapper;
@@ -37,17 +37,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Import(PersistenceSampleApplicationContext.class)
 @ComponentScan(basePackageClasses = {
 	AlbumServiceImpl.class,
-	AplicationUserServiceImpl.class,
+	ApplicationUserServiceImpl.class,
 	GenreServiceImpl.class,
 	MusicianServiceImpl.class,
 	SongServiceImpl.class,
 	AlbumFacade.class,
-	AplicationUserFacade.class,
+	ApplicationUserFacade.class,
 	GenreFacade.class,
 	MusicianFacade.class,
 	SongFacade.class,
 	AlbumFacadeImpl.class,
-	AplicationUserFacadeImpl.class,
+	ApplicationUserFacadeImpl.class,
 	GenreFacadeImpl.class,
 	MusicianServiceImpl.class,
 	SongFacadeImpl.class

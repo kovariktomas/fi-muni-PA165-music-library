@@ -1,7 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
 import cz.fi.muni.pa165.musiclibrary.PersistenceSampleApplicationContext;
-import cz.fi.muni.pa165.musiclibrary.entity.AplicationUser;
+import cz.fi.muni.pa165.musiclibrary.entity.ApplicationUser;
 import cz.fi.muni.pa165.musiclibrary.exceptions.UserAlreadyExistsException;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -15,7 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,38 +23,38 @@ import java.util.List;
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class AplicationUserDaoImplTest extends AbstractTestNGSpringContextTests {
+public class ApplicationUserDaoImplTest extends AbstractTestNGSpringContextTests {
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
 	@Autowired
-	private AplicationUserDao userDao;
+	private ApplicationUserDao userDao;
 
 
 	private static final int USERS_COUNT = 3;
 
-	private AplicationUser admin1;
-	private AplicationUser admin2;
-	private AplicationUser admin3;
+	private ApplicationUser admin1;
+	private ApplicationUser admin2;
+	private ApplicationUser admin3;
 
 	@BeforeMethod
 	public void initializeEntities() {
-		admin1 = new AplicationUser();
+		admin1 = new ApplicationUser();
 		admin1.setName("admin1");
 		admin1.setEmail("admin1@muni.cz");
 		admin1.setPassHash("samplehash");
 		admin1.setRole("admin");
 		userDao.create(admin1);
 
-		admin2 = new AplicationUser();
+		admin2 = new ApplicationUser();
 		admin2.setName("admin2");
 		admin2.setEmail("admin2@muni.cz");
 		admin2.setPassHash("samplehash");
 		admin2.setRole("admin");
 		userDao.create(admin2);
 		
-		admin3 = new AplicationUser();
+		admin3 = new ApplicationUser();
 		admin3.setName("admin3");
 		admin3.setEmail("admin3@muni.cz");
 		admin3.setPassHash("samplehash");
@@ -65,7 +64,7 @@ public class AplicationUserDaoImplTest extends AbstractTestNGSpringContextTests 
 
 	@Test
 	public void testCreate() {
-		AplicationUser admin4 = new AplicationUser();
+		ApplicationUser admin4 = new ApplicationUser();
 		admin4.setName("admin4");
 		admin4.setEmail("admin4@muni.cz");
 		admin4.setPassHash("samplehash");
@@ -79,7 +78,7 @@ public class AplicationUserDaoImplTest extends AbstractTestNGSpringContextTests 
 	@Test(expectedExceptions = UserAlreadyExistsException.class,
 		expectedExceptionsMessageRegExp = "User with this e-mail already exists.")
 	public void testCreateWithDuplicateEmail() {
-		AplicationUser admin33 = new AplicationUser();
+		ApplicationUser admin33 = new ApplicationUser();
 		admin33.setName("admin1");
 		admin33.setEmail("admin1@muni.cz");
 		admin33.setPassHash("samplehash");
@@ -128,7 +127,7 @@ public class AplicationUserDaoImplTest extends AbstractTestNGSpringContextTests 
 
 	@Test
 	public void testFindAll() {
-		List<AplicationUser> genres = userDao.findAll();
+		List<ApplicationUser> genres = userDao.findAll();
 		Assert.assertEquals(USERS_COUNT, genres.size());
 		Assert.assertTrue(genres.contains(admin1));
 		Assert.assertTrue(genres.contains(admin2));
