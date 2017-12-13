@@ -9,15 +9,15 @@
 <jsp:attribute name="body">
 
 	<div class="jumbotron">
-        <h1><f:message key="welcome.title"/></h1>
-        <p class="lead"><f:message key="welcome.text"/></p>
-        <form class="form-inline">
-            <div class="form-group form-group-lg">
-                <input type="text" class="form-control"/>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg"><f:message key="welcome.search"/></button>
-        </form>
-    </div>
+		<h1><f:message key="welcome.title"/></h1>
+		<p class="lead"><f:message key="welcome.text"/></p>
+		<form class="form-inline">
+			<div class="form-group form-group-lg">
+				<input type="text" class="form-control"/>
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg"><f:message key="welcome.search"/></button>
+		</form>
+	</div>
 
 </jsp:attribute>
 </my:pagetemplate>
