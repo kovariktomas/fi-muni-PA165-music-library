@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.musiclibrary.web.restController;
+package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
@@ -24,9 +24,9 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/musicianrest")
-public class MusicianrestController {
+public class MusicianRestController {
 
-	final static Logger log = LoggerFactory.getLogger(MusicianrestController.class);
+	final static Logger log = LoggerFactory.getLogger(MusicianRestController.class);
 
 	@Autowired
 	private MusicianFacade musicianFacade;
