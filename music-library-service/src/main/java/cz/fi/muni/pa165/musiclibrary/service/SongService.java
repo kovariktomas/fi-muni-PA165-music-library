@@ -15,7 +15,7 @@ public interface SongService {
 
 	Song findById(Long id);
 
-	void create(Song song);
+	Song create(Song song);
 
 	void remove(Song song);
 
