@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.musiclibrary.web.controller;
+package cz.fi.muni.pa165.musiclibrary.web.controllers;
 
 import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
