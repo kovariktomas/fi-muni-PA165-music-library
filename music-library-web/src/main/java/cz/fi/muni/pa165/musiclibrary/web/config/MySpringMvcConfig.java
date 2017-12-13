@@ -46,7 +46,6 @@ public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		log.debug("mapping URL / to home view");
 		registry.addViewController("/").setViewName("/index.jsp");
-	//	registry.addViewController("/genre").setViewName("genre");
 	}
 
 

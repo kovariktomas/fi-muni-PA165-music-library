@@ -19,31 +19,31 @@
     </my:a>
 
     <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Název žánru</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${genres}" var="genre">
+	    <thead>
+	    <tr>
+		    <th>ID</th>
+		    <th>Název žánru</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    <c:forEach items="${genres}" var="genre">
             <tr>
-                <td>${genre.id}</td>
-                <td><c:out value="${genre.name}"/></td>
-                <td>
-                    <my:a href="/genre/view/${genre.id}" class="btn btn-primary">Detail</my:a>
-                </td>
-				<td>
-                    <my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
-                </td>
-                <td>
-                    <form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-                        <button type="submit" class="btn btn-primary">Smazat</button>
-                    </form>
-                </td>
+	            <td>${genre.id}</td>
+	            <td><c:out value="${genre.name}"/></td>
+	            <td>
+		            <my:a href="/genre/view/${genre.id}" class="btn btn-primary">Detail</my:a>
+	            </td>
+	            <td>
+		            <my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
+	            </td>
+	            <td>
+		            <form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
+			            <button type="submit" class="btn btn-primary">Smazat</button>
+		            </form>
+	            </td>
             </tr>
         </c:forEach>
-        </tbody>
+	    </tbody>
     </table>
 
 

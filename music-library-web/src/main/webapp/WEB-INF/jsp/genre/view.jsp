@@ -13,31 +13,31 @@
 <my:pagetemplate title="Detail Žánru">
 <jsp:attribute name="body">		
     <table>
-		<tr>
-			<td>			
-				<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-					<button type="submit" class="btn btn-primary">Smazat</button>
-				</form>
-			</td>
-			<td>
-				<my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
-			</td>	
-		</tr>
-	</table>
+	    <tr>
+		    <td>
+			    <form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
+				    <button type="submit" class="btn btn-primary">Smazat</button>
+			    </form>
+		    </td>
+		    <td>
+			    <my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
+		    </td>
+	    </tr>
+    </table>
 
     <table class="table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>Název žánru</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>${genre.id}</td>
-                <td><c:out value="${genre.name}"/></td>
-            </tr>
-        </tbody>
+	    <thead>
+	    <tr>
+		    <th>id</th>
+		    <th>Název žánru</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    <tr>
+		    <td>${genre.id}</td>
+		    <td><c:out value="${genre.name}"/></td>
+	    </tr>
+	    </tbody>
     </table>
 
 </jsp:attribute>
