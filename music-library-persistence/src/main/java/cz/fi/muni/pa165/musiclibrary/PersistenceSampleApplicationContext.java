@@ -1,9 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary;
 
-import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
-import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
-import cz.fi.muni.pa165.musiclibrary.dao.MusicianDao;
-import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
+import cz.fi.muni.pa165.musiclibrary.dao.*;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +22,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses = {MusicianDao.class, AlbumDao.class, GenreDao.class, SongDao.class}, basePackages = "cz.fi.muni.pa165.musiclibrary")
+@ComponentScan(basePackageClasses = {MusicianDao.class, AlbumDao.class, GenreDao.class, SongDao.class, ApplicationUserDao.class}, basePackages = "cz.fi.muni.pa165.musiclibrary")
 public class PersistenceSampleApplicationContext {
 
 	/**

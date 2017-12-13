@@ -3,9 +3,9 @@ package cz.fi.muni.pa165.musiclibrary.service;
 import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.utils.SearchHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
 
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class GenreServiceImpl implements GenreService {
 
-	@Inject
+	@Autowired
 	private GenreDao genreDao;
 
 	@Override
