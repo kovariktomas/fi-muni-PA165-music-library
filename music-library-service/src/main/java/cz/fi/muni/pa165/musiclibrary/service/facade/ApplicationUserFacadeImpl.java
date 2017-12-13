@@ -21,7 +21,7 @@ import java.util.List;
 public class ApplicationUserFacadeImpl implements ApplicationUserFacade {
 
 	@Autowired
-	private ApplicationUserService userService;
+	private ApplicationUserService applicationUserService;
 
 	@Autowired
 	private BeanMappingService beanMappingService;
@@ -30,39 +30,39 @@ public class ApplicationUserFacadeImpl implements ApplicationUserFacade {
 	public Long create(ApplicationUserCreateDTO u) {
 		ApplicationUser mappedUser = beanMappingService.mapTo(u, ApplicationUser.class);
 		//save user
-		ApplicationUser newUser = userService.create(mappedUser);
+		ApplicationUser newUser = applicationUserService.create(mappedUser);
 		return newUser.getId();
 	}
 
 	@Override
 	public void delete(Long id) {
-		userService.delete(userService.findById(id));
+		applicationUserService.delete(applicationUserService.findById(id));
 	}
 
 	@Override
 	public void update(ApplicationUserDTO u) {
-		userService.update(beanMappingService.mapTo(u, ApplicationUser.class));
+		applicationUserService.update(beanMappingService.mapTo(u, ApplicationUser.class));
 	}
 
 	@Override
 	public ApplicationUserDTO findById(Long id) {
-		ApplicationUser user  = userService.findById(id);
+		ApplicationUser user  = applicationUserService.findById(id);
 		return (user == null) ? null : beanMappingService.mapTo(user, ApplicationUserDTO.class);
 	}
 
 	@Override
 	public ApplicationUserDTO findByEmail(String emial) {
-		ApplicationUser user = userService.findByEmail(emial);
+		ApplicationUser user = applicationUserService.findByEmail(emial);
 		return (user == null) ? null : beanMappingService.mapTo(user, ApplicationUserDTO.class);
 	}
 
 	@Override
 	public List<ApplicationUserDTO> findAll() {
-		return beanMappingService.mapTo(userService.findAll(), ApplicationUserDTO.class);
+		return beanMappingService.mapTo(applicationUserService.findAll(), ApplicationUserDTO.class);
 	}
 	
 	@Override
 	public void setPassword(ApplicationUserDTO user, String password){
-		userService.setPassword(user.getId(), password);
+		applicationUserService.setPassword(user.getId(), password);
 	}
 }
