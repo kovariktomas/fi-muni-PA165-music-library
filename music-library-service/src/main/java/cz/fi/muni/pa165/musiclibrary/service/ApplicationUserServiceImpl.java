@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Service
 public class ApplicationUserServiceImpl implements ApplicationUserService {
 
-	@Inject
+	@Autowired
 	private ApplicationUserDao userDao;
 	
 	@Autowired
