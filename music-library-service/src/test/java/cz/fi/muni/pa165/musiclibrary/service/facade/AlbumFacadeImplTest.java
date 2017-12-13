@@ -7,8 +7,10 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
+import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
 import cz.fi.muni.pa165.musiclibrary.service.TimeService;
 import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,11 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 
 	@Mock
 	private TimeService timeService;
+
+	@Autowired
+	@InjectMocks
+	@SuppressWarnings("unused") // this is needed to mock TimeService into AlbumService
+	private AlbumService albumService;
 
 	@Autowired
 	private AlbumFacade albumFacade;
