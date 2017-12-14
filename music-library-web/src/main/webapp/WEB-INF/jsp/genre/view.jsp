@@ -5,17 +5,18 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Detail Žánru">
+<fmt:message key="genreView.title" var="title"/>
+<my:pagetemplate title="${title}">
 <jsp:attribute name="body">		
 	<table>
 		<tr>
 			<td>
 				<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-					<button type="submit" class="btn btn-primary">Smazat</button>
+					<button type="submit" class="btn btn-primary"><fmt:message key="genre.delete"/></button>
 				</form>
 			</td>
 			<td>
-				<my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
+				<my:a href="/genre/update/${genre.id}" class="btn btn-primary"><fmt:message key="genre.edit"/></my:a>
 			</td>
 		</tr>
 	</table>
@@ -23,8 +24,8 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<th>id</th>
-			<th>Název žánru</th>
+			<th><fmt:message key="genre.id"/></th>
+			<th><fmt:message key="genre.name"/></th>
 		</tr>
 		</thead>
 		<tbody>

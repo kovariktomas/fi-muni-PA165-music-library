@@ -4,20 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<my:pagetemplate title="Žánry">
+<fmt:message key="genre.title" var="title"/>
+<my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 
 	<my:a href="/genre/new" class="btn btn-primary">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		Nový žánr
+		<fmt:message key="genreCreate.title"/>
 	</my:a>
 
 	<table class="table">
 		<thead>
 		<tr>
-			<th>ID</th>
-			<th>Název žánru</th>
+			<th><fmt:message key="genre.id"/></th>
+			<th><fmt:message key="genre.name"/></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -26,14 +26,14 @@
 				<td>${genre.id}</td>
 				<td><c:out value="${genre.name}"/></td>
 				<td>
-					<my:a href="/genre/view/${genre.id}" class="btn btn-primary">Detail</my:a>
+					<my:a href="/genre/view/${genre.id}" class="btn btn-primary"><fmt:message key="genre.detail"/></my:a>
 				</td>
 				<td>
-					<my:a href="/genre/update/${genre.id}" class="btn btn-primary">Upravit</my:a>
+					<my:a href="/genre/update/${genre.id}" class="btn btn-primary"><fmt:message key="genre.edit"/></my:a>
 				</td>
 				<td>
 					<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-						<button type="submit" class="btn btn-primary">Smazat</button>
+						<button type="submit" class="btn btn-primary"><fmt:message key="genre.delete"/></button>
 					</form>
 				</td>
 			</tr>
