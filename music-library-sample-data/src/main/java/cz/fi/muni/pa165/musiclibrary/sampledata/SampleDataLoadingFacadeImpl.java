@@ -1,7 +1,13 @@
 package cz.fi.muni.pa165.musiclibrary.sampledata;
 
+import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
+import cz.fi.muni.pa165.musiclibrary.service.GenreService;
+import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
+import cz.fi.muni.pa165.musiclibrary.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +29,40 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
 	public static final String JPEG = "image/jpeg";
 
+	@Autowired
+	private AlbumService albumService;
+
+	@Autowired
+	private GenreService genreService;
+
+	@Autowired
+	private MusicianService musicianService;
+
+	@Autowired
+	private SongService songService;
+
 	@Override
 	@SuppressWarnings("unused")
 	public void loadData() {
+		loadMusicians();
+		loadAlbums();
+		loadGenres();
+		loadSongs();
+	}
+
+	private void loadMusicians() {
+		// TODO
+	}
+
+	private void loadAlbums() {
+		// TODO
+	}
+
+	private void loadGenres() {
+		// TODO
+	}
+
+	private void loadSongs() {
 		// TODO
 	}
 
