@@ -40,16 +40,6 @@ public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 	private static final String TEXTS = "Texts";
 
 	/**
-	 * Maps the main page to a specific view.
-	 */
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		log.debug("mapping URL / to home view");
-		registry.addViewController("/").setViewName("/index.jsp");
-	}
-
-
-	/**
 	 * Enables default Tomcat servlet that serves static files.
 	 */
 	@Override
