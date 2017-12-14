@@ -11,11 +11,12 @@
 	<div class="jumbotron">
 		<h1><f:message key="welcome.title"/></h1>
 		<p class="lead"><f:message key="welcome.text"/></p>
-		<form class="form-inline">
+		<form class="form-inline" method="get" action="${pageContext.request.contextPath}/search/result">
 			<div class="form-group form-group-lg">
-				<input type="text" class="form-control"/>
+				<input pattern=".{3,}"   required title="Minimum 3 char!"type="text" name="searchTerm" class="form-control"/>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg"><f:message key="welcome.search"/></button>
+			<button type="submit" class="btn btn-primary btn-lg"><fmt:message key="welcome.search"/></button>
+			<div class="help-block">Minimum 3 char</div>
 		</form>
 	</div>
 
