@@ -15,7 +15,7 @@
 			<div class="form-group form-group-lg">
 				<input pattern=".{3,}"   required title="Minimum 3 char!"type="text" name="searchTerm" class="form-control"/>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg"><fmt:message key="welcome.search"/></button>
+			<button type="submit" class="btn btn-primary btn-lg"><f:message key="welcome.search"/></button>
 			<div class="help-block">Minimum 3 char</div>
 		</form>
 	</div>
