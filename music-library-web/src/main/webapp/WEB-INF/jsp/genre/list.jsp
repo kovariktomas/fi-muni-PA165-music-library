@@ -26,10 +26,14 @@
 				<td>${genre.id}</td>
 				<td><c:out value="${genre.name}"/></td>
 				<td>
-					<my:a href="/genre/view/${genre.id}" class="btn btn-primary"><fmt:message key="genre.detail"/></my:a>
+					<my:a href="/genre/view/${genre.id}" class="btn btn-primary">
+						<fmt:message key="genre.detail"/>
+					</my:a>
 				</td>
 				<td>
-					<my:a href="/genre/update/${genre.id}" class="btn btn-primary"><fmt:message key="genre.edit"/></my:a>
+					<my:a href="/genre/update/${genre.id}" class="btn btn-primary">
+						<fmt:message key="genre.edit"/>
+					</my:a>
 				</td>
 				<td>
 					<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
@@ -40,7 +44,5 @@
 		</c:forEach>
 		</tbody>
 	</table>
-
-
 </jsp:attribute>
 </my:pagetemplate>
