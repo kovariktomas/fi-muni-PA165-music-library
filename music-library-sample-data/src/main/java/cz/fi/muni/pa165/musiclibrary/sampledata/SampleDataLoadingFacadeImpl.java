@@ -233,7 +233,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		new Record(
 			"Dua Lipa",
 			"Dua Lipa",
-			".jpg",
+			"dua-lipa.jpg",
 			"New Rules"
 		),
 		new Record(
