@@ -24,6 +24,7 @@ public class Album {
 	private String title;
 
 	private String commentary;
+
 	private byte[] albumArt;
 
 	@OneToMany(mappedBy = "album", cascade = CascadeType.REMOVE)
