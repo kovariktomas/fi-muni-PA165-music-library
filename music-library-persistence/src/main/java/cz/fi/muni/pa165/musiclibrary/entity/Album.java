@@ -11,6 +11,7 @@ import java.util.*;
  */
 @Entity
 public class Album {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,6 +26,7 @@ public class Album {
 
 	private String commentary;
 
+	@Lob
 	private byte[] albumArt;
 
 	@OneToMany(mappedBy = "album", cascade = CascadeType.REMOVE)
