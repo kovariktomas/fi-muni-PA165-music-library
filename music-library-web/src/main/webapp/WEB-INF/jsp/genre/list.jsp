@@ -4,40 +4,36 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<fmt:message key="genre.title" var="title"/>
+<fmt:message key="navigation.admin.genres" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 
-	<my:a href="/genre/new" class="btn btn-primary">
+	<my:a href="/genre/new" class="btn btn-success">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		<fmt:message key="genreCreate.title"/>
 	</my:a>
 
-	<table class="table">
+	<table class="table table-align-middle table-striped">
 		<thead>
-		<tr>
-			<th><fmt:message key="genre.id"/></th>
-			<th><fmt:message key="genre.name"/></th>
-		</tr>
+			<tr>
+				<th class="col-xs-1 col-md-1 col-lg-1"><fmt:message key="genre.id"/></th>
+				<th><fmt:message key="genre.name"/></th>
+				<th colspan="2" class="col-xs-2 col-md-3 col-lg-2"><fmt:message key="genre.actions"/></th>
+			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${genres}" var="genre">
 			<tr>
 				<td>${genre.id}</td>
-				<td><c:out value="${genre.name}"/></td>
+				<td><my:a href="/genre/view/${genre.id}" class="btn"><c:out value="${genre.name}"/></my:a></td>
 				<td>
-					<my:a href="/genre/view/${genre.id}" class="btn btn-primary">
-						<fmt:message key="genre.detail"/>
-					</my:a>
-				</td>
-				<td>
-					<my:a href="/genre/update/${genre.id}" class="btn btn-primary">
+					<my:a href="/genre/update/${genre.id}" class="btn btn-default">
 						<fmt:message key="genre.edit"/>
 					</my:a>
 				</td>
 				<td>
 					<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-						<button type="submit" class="btn btn-primary"><fmt:message key="genre.delete"/></button>
+						<button type="submit" class="btn btn-danger"><fmt:message key="genre.delete"/></button>
 					</form>
 				</td>
 			</tr>
