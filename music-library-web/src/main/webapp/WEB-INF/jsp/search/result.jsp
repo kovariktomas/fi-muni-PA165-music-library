@@ -19,13 +19,13 @@
 	<c:if test="${fn:length(albums) gt 0}">
 	<div>
 		<h3>
-			<fmt:message key="search.album"/>
+			<fmt:message key="search.albums"/>
 		</h3>
 		<div class="row">
 		<c:forEach items="${albums}" var="album"  begin = "0" end = "3">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				<img src="${pageContext.request.contextPath}/search/albumImage/${album.id}" alt="${album.name}">
+				<img src="${pageContext.request.contextPath}/search/albumImage/${album.id}" alt="${album.title}">
 				<div class="caption">
 					<h3>${album.title}</h3>
 					<p>${album.commentary}</p>
@@ -42,7 +42,7 @@
 	<c:if test="${fn:length(genres) gt 0}">
 	<div>
 		<h2>
-			<fmt:message key="search.genre"/>
+			<fmt:message key="search.genres"/>
 		</h2>
 		<table class="table">
 		<thead>
@@ -67,7 +67,7 @@
 	<c:if test="${fn:length(songs) gt 0}">
 	<div>
 		<h3>
-			<fmt:message key="search.song"/>
+			<fmt:message key="search.songs"/>
 		</h3>
 		<table class="table">
 		<thead>
@@ -114,7 +114,7 @@
 	</div>
 	</c:if>
 	<c:if test="${(fn:length(albums) lt 1)and(fn:length(songs) lt 1)and(fn:length(musicians) lt 1)and(fn:length(genres) lt 1)}">
-		<h3><fmt:message key="search.noresult"/></h3>
+		<h3><fmt:message key="search.noResult"/></h3>
 	</c:if>
 </jsp:attribute>
 </my:pagetemplate>

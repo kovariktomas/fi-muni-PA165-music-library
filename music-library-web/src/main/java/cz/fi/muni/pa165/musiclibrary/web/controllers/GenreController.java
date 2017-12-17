@@ -56,7 +56,7 @@ public class GenreController {
 		GenreDTO genre = genreFacade.findById(id);
 		genreFacade.delete(id);
 		log.debug("delete({})", id);
-		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.succesDelete", null, loc), genre.getName()));
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successDelete", null, loc), genre.getName()));
 		return "redirect:" + uriBuilder.path("/genre/list").toUriString();
 	}
 
@@ -110,7 +110,7 @@ public class GenreController {
 		//create product
 		Long id = genreFacade.create(formBean);
 		//report success
-		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.succesAdd", null, loc), id));
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successAdd", null, loc), id));
 		return "redirect:" + uriBuilder.path("/genre/view/{id}").buildAndExpand(id).encode().toUriString();
 	}
 
@@ -142,7 +142,7 @@ public class GenreController {
 		genreFacade.update(formBean);
 		Long id = formBean.getId();
 		//report success
-		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.succesEdit", null, loc), id));
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successEdit", null, loc), id));
 		return "redirect:" + uriBuilder.path("/genre/view/{id}").buildAndExpand(id).encode().toUriString();
 	}
 }
