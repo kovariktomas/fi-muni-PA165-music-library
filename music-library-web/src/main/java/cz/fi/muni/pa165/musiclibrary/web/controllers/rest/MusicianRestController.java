@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Controller
 @RestController
-@RequestMapping("/musicianrest")
+@RequestMapping("/rest")
 public class MusicianRestController {
 
 	final static Logger log = LoggerFactory.getLogger(MusicianRestController.class);
@@ -35,7 +35,7 @@ public class MusicianRestController {
 	/**
 	 * Get list of Musicians
 	 * <p>
-	 * curl -i -X GET http://localhost:8080/music-library-web/musicianrest
+	 * curl -i -X GET http://localhost:8080/pa165/rest
 	 *
 	 * @return MusicianDTO
 	 */
@@ -47,7 +47,7 @@ public class MusicianRestController {
 
 	/**
 	 * Get Musician by identifier id
-	 * curl -i -X GET http://localhost:8080/music-library-web/musicianrest/1
+	 * curl -i -X GET http://localhost:8080/pa165/rest/1
 	 *
 	 * @param id identifier for a musician
 	 * @return MusicianDTO
@@ -68,7 +68,7 @@ public class MusicianRestController {
 
 	/**
 	 * Delete one musician by id
-	 * curl -i -X DELETE http://localhost:8080/music-library-web/musicianrest/1
+	 * curl -i -X DELETE http://localhost:8080/pa165/rest/1
 	 *
 	 * @param id identifier for musician
 	 * @throws ResourceNotFoundException
@@ -86,7 +86,7 @@ public class MusicianRestController {
 	/**
 	 * Create a new musician by POST method
 	 * <p>
-	 * curl -X POST -i -H "Content-Type: application/json" --data '{"name":"test"}' http://localhost:8080/music-library-web/musicianrest/create
+	 * curl -X POST -i -H "Content-Type: application/json" --data '{"name":"test"}' http://localhost:8080/pa165/rest/create
 	 *
 	 * @param musician MusicianCreateDTO with required fields for creation
 	 * @return void
@@ -110,7 +110,7 @@ public class MusicianRestController {
 
 	/**
 	 * Update the name for one musician by PUT method
-	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/music-library-web/musicianrest/1
+	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/pa165/rest/1
 	 *
 	 * @param id      identified of the musician to be updated
 	 * @param newName required fields as specified in MusicianCreateDTO
