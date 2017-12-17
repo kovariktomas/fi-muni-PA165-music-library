@@ -19,6 +19,7 @@
 			crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
 			crossorigin="anonymous">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css?v=1">
 	<jsp:invoke fragment="head"/>
 </head>
 <body>
