@@ -1,6 +1,7 @@
 <%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="title" required="false" %>
 <%@ attribute name="head" fragment="true" %>
+<%@ attribute name="pageHeader" fragment="true" %>
 <%@ attribute name="body" fragment="true" required="true" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,6 +20,7 @@
 			crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
 			crossorigin="anonymous">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css?v=1">
 	<jsp:invoke fragment="head"/>
 </head>
 <body>
@@ -54,12 +56,19 @@
 
 <div class="container">
 
-	<!-- page title -->
-	<c:if test="${not empty title}">
-		<div class="page-header">
-			<h1><c:out value="${title}"/></h1>
-		</div>
-	</c:if>
+	<!-- page header -->
+	<c:choose>
+		<c:when test="${not empty pageHeader}">
+			<jsp:invoke fragment="pageHeader"/>
+		</c:when>
+		<c:otherwise>
+			<c:if test="${not empty title}">
+				<div class="page-header">
+					<h1><c:out value="${title}"/></h1>
+				</div>
+			</c:if>
+		</c:otherwise>
+	</c:choose>
 
 	<!-- authenticated user info -->
 	<c:if test="${not empty authenticatedUser}">
