@@ -1,6 +1,5 @@
 package cz.fi.muni.pa165.musiclibrary.sampledata;
 
-import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
 import cz.fi.muni.pa165.musiclibrary.service.GenreService;
 import cz.fi.muni.pa165.musiclibrary.service.MusicianService;

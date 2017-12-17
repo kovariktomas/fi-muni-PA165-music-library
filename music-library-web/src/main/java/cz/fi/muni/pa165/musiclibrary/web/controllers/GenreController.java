@@ -7,6 +7,7 @@ import cz.fi.muni.pa165.musiclibrary.web.forms.GenreCreateDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 /**
  * SpringMVC Controller for administering genres.
@@ -34,6 +36,9 @@ public class GenreController {
 	@Autowired
 	private GenreFacade genreFacade;
 
+	@Autowired
+	private MessageSource messageSource;
+
 	/**
 	 * Shows a list of genres with the ability to add, delete or edit.
 	 *
@@ -47,11 +52,11 @@ public class GenreController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-	public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes, Locale loc) {
 		GenreDTO genre = genreFacade.findById(id);
 		genreFacade.delete(id);
 		log.debug("delete({})", id);
-		redirectAttributes.addFlashAttribute("alert_success", "Žánr \"" + genre.getName() + "\" byl smazán.");
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successDelete", null, loc), genre.getName()));
 		return "redirect:" + uriBuilder.path("/genre/list").toUriString();
 	}
 
@@ -89,7 +94,7 @@ public class GenreController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute("genreCreate") GenreCreateDTO formBean, BindingResult bindingResult,
-						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale loc) {
 		log.debug("create(genreCreate={})", formBean);
 		//in case of validation error forward back to the the form
 		if (bindingResult.hasErrors()) {
@@ -105,7 +110,7 @@ public class GenreController {
 		//create product
 		Long id = genreFacade.create(formBean);
 		//report success
-		redirectAttributes.addFlashAttribute("alert_success", "Žánr " + id + " byl vytvořen");
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successAdd", null, loc), id));
 		return "redirect:" + uriBuilder.path("/genre/view/{id}").buildAndExpand(id).encode().toUriString();
 	}
 
@@ -120,7 +125,7 @@ public class GenreController {
 
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("genreUpdate") GenreDTO formBean, BindingResult bindingResult,
-						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale loc) {
 		log.debug("update(genreUpdate={})", formBean);
 		//in case of validation error forward back to the the form
 		if (bindingResult.hasErrors()) {
@@ -137,7 +142,7 @@ public class GenreController {
 		genreFacade.update(formBean);
 		Long id = formBean.getId();
 		//report success
-		redirectAttributes.addFlashAttribute("alert_success", "Žánr " + id + " byl upraven");
+		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successEdit", null, loc), id));
 		return "redirect:" + uriBuilder.path("/genre/view/{id}").buildAndExpand(id).encode().toUriString();
 	}
 }
