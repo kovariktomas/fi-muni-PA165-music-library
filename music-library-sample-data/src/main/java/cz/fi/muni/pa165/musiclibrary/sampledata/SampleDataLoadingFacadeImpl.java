@@ -1,6 +1,9 @@
 package cz.fi.muni.pa165.musiclibrary.sampledata;
 
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
+import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
+import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
 import cz.fi.muni.pa165.musiclibrary.service.GenreService;
 import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
@@ -17,7 +20,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  * Loads some sample data to populate the music library database.
@@ -42,9 +45,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 	@Autowired
 	private SongService songService;
 
+	private HashMap<String, Musician> musicians = new HashMap<>();
+
+	private HashMap<String, Album> albums = new HashMap<>();
+
+	private HashMap<String, Integer> albumSizes = new HashMap<>();
+
+	private HashMap<String, Genre> genres = new HashMap<>();
+
+	private HashMap<String, Song> songs = new HashMap<>();
+
 	@Override
 	@SuppressWarnings("unused")
-	public void loadData() {
+	public void loadData() throws IOException {
 		loadMusicians();
 		loadAlbums();
 		loadGenres();
@@ -52,29 +65,60 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 	}
 
 	private void loadMusicians() {
-		HashSet<String> existing = new HashSet<>();
-
 		for (Record record : records) {
-			String name = record.getMusicianName();
-			if (existing.contains(name)) continue;
-			existing.add(name);
+			if (musicians.containsKey(record.musicianName)) continue;
 
 			Musician musician = new Musician();
-			musician.setName(name);
+			musician.setName(record.musicianName);
 			musicianService.create(musician);
+			musicians.put(record.musicianName, musician);
 		}
 	}
 
-	private void loadAlbums() {
-		// TODO
+	private void loadAlbums() throws IOException {
+		for (Record record : records) {
+			if (albums.containsKey(record.albumTitle)) continue;
+
+			Album album = new Album();
+			album.setReleaseDate(record.albumReleaseDate);
+			album.setTitle(record.albumTitle);
+			album.setCommentary("");
+			album.setAlbumArt(readImage("album-arts/" + record.albumArtPath));
+			albumService.create(album);
+			albums.put(record.albumTitle, album);
+		}
 	}
 
 	private void loadGenres() {
-		// TODO
+		for (Record record : records) {
+			if (genres.containsKey(record.genreName)) continue;
+
+			Genre genre = new Genre();
+			genre.setName(record.genreName);
+			genreService.create(genre);
+			genres.put(record.genreName, genre);
+		}
 	}
 
 	private void loadSongs() {
-		// TODO
+		for (Record record : records) {
+			if (songs.containsKey(record.songTitle)) continue;
+
+			Song song = new Song();
+			song.setMusician(musicians.get(record.musicianName));
+			song.setAlbum(albums.get(record.albumTitle));
+			song.setGenre(genres.get(record.genreName));
+			song.setTitle(record.songTitle);
+			song.setBitrate(320);
+
+			int position = albumSizes.getOrDefault(record.albumTitle, 0);
+			song.setPosition(position);
+			albumSizes.put(record.albumTitle, position + 1);
+
+			song.setCommentary("");
+			songService.create(song);
+			songs.put(record.songTitle, song);
+		}
 	}
 
 	private Record[] records = new Record[] {
@@ -203,30 +247,18 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 	private class Record {
 		private String musicianName;
 		private String albumTitle;
+		private Date albumReleaseDate;
 		private String albumArtPath;
+		private String genreName;
 		private String songTitle;
 
 		Record(String musicianName, String albumTitle, String albumArtPath, String songTitle) {
 			this.musicianName = musicianName;
 			this.albumTitle = albumTitle;
+			this.albumReleaseDate = toDate(2017, 11, 1); // TODO
 			this.albumArtPath = albumArtPath;
+			this.genreName = "foo"; // TODO
 			this.songTitle = songTitle;
-		}
-
-		String getMusicianName() {
-			return musicianName;
-		}
-
-		String getAlbumTitle() {
-			return albumTitle;
-		}
-
-		String getAlbumArtPath() {
-			return albumArtPath;
-		}
-
-		String getSongTitle() {
-			return songTitle;
 		}
 	}
 
