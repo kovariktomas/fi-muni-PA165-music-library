@@ -6,6 +6,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <fmt:message key="genreEdit.title" var="title"/>
 <my:pagetemplate title="${title} ${genre.id}">
+<jsp:attribute name="pageHeader">
+	<div class="page-header">
+		<div class="pull-right">
+			<my:a href="/genre/view/${genre.id}" class="btn btn-default">
+				<fmt:message key="musicians.edit.backToDetail"/>
+			</my:a>
+		</div>
+		<h1>
+			<my:a href="/genre/list"><fmt:message key="navigation.admin.genres"/></my:a> /
+			<c:out value="${genre.name}"/>
+		</h1>
+	</div>
+</jsp:attribute>
 <jsp:attribute name="body">
 	<form:form method="post" action="${pageContext.request.contextPath}/genre/saveUpdate"
 			modelAttribute="genreUpdate" cssClass="form-horizontal">

@@ -114,7 +114,7 @@
 					<tr>
 						<td><c:out value="${musician.name}"/></td>
 						<td>
-							<my:a href="/musician/view/${musician.id}" class="btn btn-primary">
+							<my:a href="/musician/detail/${musician.id}" class="btn btn-primary">
 								<fmt:message key="search.musician.detail"/>
 							</my:a>
 						</td>
