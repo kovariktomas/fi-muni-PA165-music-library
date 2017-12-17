@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class MusicianServiceImpl implements MusicianService {
 
+	private final MusicianDao musicianDao;
+
 	@Autowired
-	private MusicianDao musicianDao;
+	public MusicianServiceImpl(MusicianDao musicianDao) {
+		this.musicianDao = musicianDao;
+	}
 
 	public Musician create(Musician musician) {
 		musicianDao.create(musician);

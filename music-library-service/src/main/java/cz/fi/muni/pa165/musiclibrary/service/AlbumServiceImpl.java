@@ -20,11 +20,15 @@ import java.util.List;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
-	@Autowired
-	private AlbumDao albumDao;
+
+	private final AlbumDao albumDao;
+	private final TimeService timeService;
 
 	@Autowired
-	private TimeService timeService;
+	public AlbumServiceImpl(AlbumDao albumDao, TimeService timeService) {
+		this.albumDao = albumDao;
+		this.timeService = timeService;
+	}
 
 	@Override
 	public void create(Album album) {

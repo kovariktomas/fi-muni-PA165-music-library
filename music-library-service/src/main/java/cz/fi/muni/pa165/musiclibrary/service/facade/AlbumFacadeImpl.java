@@ -26,17 +26,18 @@ import java.util.List;
 @Transactional
 public class AlbumFacadeImpl implements AlbumFacade {
 
-	@Autowired
-	private AlbumService albumService;
+	private final AlbumService albumService;
+	private final MusicianService musicianService;
+	private final GenreService genreService;
+	private final BeanMappingService beanMappingService;
 
 	@Autowired
-	private MusicianService musicianService;
-
-	@Autowired
-	private GenreService genreService;
-
-	@Autowired
-	private BeanMappingService beanMappingService;
+	public AlbumFacadeImpl(AlbumService albumService, MusicianService musicianService, GenreService genreService, BeanMappingService beanMappingService) {
+		this.albumService = albumService;
+		this.musicianService = musicianService;
+		this.genreService = genreService;
+		this.beanMappingService = beanMappingService;
+	}
 
 	@Override
 	public void create(AlbumCreateDTO albumCreateDTO) {

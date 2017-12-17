@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service.facade;
 
+import cz.fi.muni.pa165.musiclibrary.dao.AlbumDao;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.entity.Album;
@@ -7,10 +8,8 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
-import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
-import cz.fi.muni.pa165.musiclibrary.service.TimeService;
+import cz.fi.muni.pa165.musiclibrary.service.*;
 import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +46,19 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private TimeService timeService;
 
 	@Autowired
-	@InjectMocks
-	@SuppressWarnings("unused") // this is needed to mock TimeService into AlbumService
-	private AlbumService albumService;
+	private AlbumDao albumDao;
 
 	@Autowired
+	private MusicianService musicianService;
+
+	@Autowired
+	private GenreService genreService;
+
+	@Autowired
+	private BeanMappingService beanMappingService;
+
+	private AlbumService albumService;
+
 	private AlbumFacade albumFacade;
 
 	@PersistenceContext
@@ -64,8 +71,10 @@ public class AlbumFacadeImplTest extends AbstractTestNGSpringContextTests {
 	private Song delicate;
 
 	@BeforeClass
-	public void setup() {
+	public void setUpClass() {
 		MockitoAnnotations.initMocks(this);
+		albumService = new AlbumServiceImpl(albumDao, timeService);
+		albumFacade = new AlbumFacadeImpl(albumService, musicianService, genreService, beanMappingService);
 	}
 
 	@BeforeMethod
