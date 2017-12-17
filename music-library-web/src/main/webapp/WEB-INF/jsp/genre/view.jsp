@@ -7,34 +7,33 @@
 
 <fmt:message key="genreView.title" var="title"/>
 <my:pagetemplate title="${title}">
-<jsp:attribute name="body">		
-	<table>
-		<tr>
-			<td>
-				<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}">
-					<button type="submit" class="btn btn-primary"><fmt:message key="genre.delete"/></button>
-				</form>
-			</td>
-			<td>
-				<my:a href="/genre/update/${genre.id}" class="btn btn-primary"><fmt:message key="genre.edit"/></my:a>
-			</td>
-		</tr>
-	</table>
+	<jsp:attribute name="pageHeader">
+	<div class="page-header">
+		<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}" class="pull-right">
+		<my:a href="/genre/update/${genre.id}" class="btn btn-default"><fmt:message key="genre.edit"/></my:a>
+					<button type="submit" class="btn btn-danger"><fmt:message key="genre.delete"/></button>
+		</form>
+		<h1>
+			<my:a href="/genre/list"><fmt:message key="navigation.admin.genres"/></my:a> /
+			<c:out value="${genre.name}"/>
+		</h1>
+	</div>
+	</jsp:attribute>
+	<jsp:attribute name="body">		
+		<table class="table">
+			<thead>
+			<tr>
+				<th><fmt:message key="genre.id"/></th>
+				<th><fmt:message key="genre.name"/></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>${genre.id}</td>
+				<td><c:out value="${genre.name}"/></td>
+			</tr>
+			</tbody>
+		</table>
 
-	<table class="table">
-		<thead>
-		<tr>
-			<th><fmt:message key="genre.id"/></th>
-			<th><fmt:message key="genre.name"/></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td>${genre.id}</td>
-			<td><c:out value="${genre.name}"/></td>
-		</tr>
-		</tbody>
-	</table>
-
-</jsp:attribute>
+	</jsp:attribute>
 </my:pagetemplate>
