@@ -5,7 +5,7 @@ import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
 import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
-import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistingException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,7 +90,7 @@ public class MusicianRestController {
 	 *
 	 * @param musician MusicianCreateDTO with required fields for creation
 	 * @return void
-	 * @throws ResourceAlreadyExistingException
+	 * @throws ResourceAlreadyExistsException
 	 */
 	@RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
@@ -104,7 +104,7 @@ public class MusicianRestController {
 			//musicianFacade.create(musician);
 			//return musician;
 		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
+			throw new ResourceAlreadyExistsException();
 		}
 	}
 
