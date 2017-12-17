@@ -20,7 +20,7 @@ public interface AlbumService {
 	 *
 	 * @param album that will be created
 	 */
-	void create(Album album);
+	Album create(Album album);
 
 	/**
 	 * Updates existing album
