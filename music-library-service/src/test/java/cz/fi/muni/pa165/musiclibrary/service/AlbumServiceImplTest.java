@@ -6,10 +6,8 @@ import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
 import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -33,14 +31,13 @@ import static org.mockito.Mockito.when;
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
+
 	@Mock
 	private AlbumDao albumDao;
 
 	@Mock
 	private TimeService timeService;
 
-	@Autowired
-	@InjectMocks
 	private AlbumService albumService;
 
 	private Album album22;
@@ -53,8 +50,9 @@ public class AlbumServiceImplTest extends AbstractTestNGSpringContextTests {
 	private Song dress;
 
 	@BeforeClass
-	public void setup() {
+	public void setUpClass() {
 		MockitoAnnotations.initMocks(this);
+		albumService = new AlbumServiceImpl(albumDao, timeService);
 	}
 
 	@BeforeMethod

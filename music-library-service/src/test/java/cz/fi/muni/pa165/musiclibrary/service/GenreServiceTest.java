@@ -3,10 +3,8 @@ package cz.fi.muni.pa165.musiclibrary.service;
 import cz.fi.muni.pa165.musiclibrary.dao.GenreDao;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.service.config.ServiceConfiguration;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -29,13 +27,12 @@ public class GenreServiceTest extends AbstractTestNGSpringContextTests {
 	@Mock
 	private GenreDao genreDao;
 
-	@Autowired
-	@InjectMocks
 	private GenreService genreService;
 
 	@BeforeClass
-	public void setup() {
+	public void setUpClass() {
 		MockitoAnnotations.initMocks(this);
+		genreService = new GenreServiceImpl(genreDao);
 	}
 
 	@Test

@@ -31,12 +31,16 @@ public class SongServiceImplTest extends AbstractTestNGSpringContextTests {
 	@Mock
 	private SongDao songDao;
 
-	@Autowired
-	@InjectMocks
 	private SongService songService;
 
 	private Song song1;
 	private Song song2;
+
+	@BeforeClass
+	public void setUpClass() {
+		MockitoAnnotations.initMocks(this);
+		songService = new SongServiceImpl(songDao);
+	}
 
 	@BeforeMethod
 	public void createSongs() {
@@ -47,11 +51,6 @@ public class SongServiceImplTest extends AbstractTestNGSpringContextTests {
 		song1.setId(1L);
 		song2.setTitle("Bloody Roots");
 		song2.setId(2L);
-	}
-
-	@BeforeClass
-	public void setup() throws ServiceException {
-		MockitoAnnotations.initMocks(this);
 	}
 
 	@Test

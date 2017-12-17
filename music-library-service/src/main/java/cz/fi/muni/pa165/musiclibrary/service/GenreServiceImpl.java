@@ -16,8 +16,12 @@ import java.util.List;
 @Service
 public class GenreServiceImpl implements GenreService {
 
+	private final GenreDao genreDao;
+
 	@Autowired
-	private GenreDao genreDao;
+	public GenreServiceImpl(GenreDao genreDao) {
+		this.genreDao = genreDao;
+	}
 
 	@Override
 	public Genre create(Genre g) {
