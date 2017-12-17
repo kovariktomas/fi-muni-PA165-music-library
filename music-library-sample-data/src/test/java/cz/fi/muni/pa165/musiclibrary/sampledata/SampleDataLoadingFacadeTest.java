@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.IOException;
 
 /**
  * Tests data loading.
@@ -32,7 +33,7 @@ public class SampleDataLoadingFacadeTest extends AbstractTestNGSpringContextTest
 	private EntityManager em;
 
 	@Test
-	public void loadData() {
+	public void loadData() throws IOException {
 		sampleDataLoadingFacade.loadData();
 
 		Musician musician = em.createQuery("SELECT m FROM Musician m WHERE m.name = :name", Musician.class)
