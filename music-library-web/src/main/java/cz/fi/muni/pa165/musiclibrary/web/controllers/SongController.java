@@ -38,6 +38,10 @@ public class SongController {
 	@Autowired
 	private MusicianFacade musicianFacade;
 
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("songs_section", true);
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
