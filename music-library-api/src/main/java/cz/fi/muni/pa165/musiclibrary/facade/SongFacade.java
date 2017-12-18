@@ -20,6 +20,8 @@ public interface SongFacade {
 
 	List<SongDTO> findByMusician(Long musicianId);
 
+	List<SongDTO> findByAlbum(Long genreId);
+
 	List<SongDTO> findByGenre(Long genreId);
 
 	List<SongDTO> findByTitle(String query);

@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
@@ -49,6 +50,14 @@ public interface SongDao {
 	 * @return the songs
 	 */
 	List<Song> findByMusician(Musician musician);
+
+	/**
+	 * Gets songs with the given album.
+	 *
+	 * @param album the album
+	 * @return the songs
+	 */
+	List<Song> findByAlbum(Album album);
 
 	/**
 	 * Gets songs with the given genre.

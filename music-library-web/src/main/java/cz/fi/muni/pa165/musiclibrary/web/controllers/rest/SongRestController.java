@@ -53,6 +53,11 @@ public class SongRestController {
 
 	}
 
+	@RequestMapping(value = "/by_album/{album_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<SongDTO> findByAlbum(@PathVariable("album_id") long albumId) {
+		return songFacade.findByAlbum(albumId);
+	}
+
 	@RequestMapping(value = "/by_genre/{genre_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final List<SongDTO> findByGenre(@PathVariable("genre_id") long genreId) {
 		return songFacade.findByGenre(genreId);
@@ -65,7 +70,7 @@ public class SongRestController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final SongDTO createSong(@RequestBody SongCreateDTO song) throws Exception {
+	public final SongDTO create(@RequestBody SongCreateDTO song) throws Exception {
 		try {
 			Long id = songFacade.create(song);
 			return songFacade.findById(id);

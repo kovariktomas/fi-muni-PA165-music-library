@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.service;
 
 import cz.fi.muni.pa165.musiclibrary.dao.SongDao;
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
@@ -47,6 +48,11 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> findByMusician(Musician musician) {
 		return songDao.findByMusician(musician);
+	}
+
+	@Override
+	public List<Song> findByAlbum(Album album) {
+		return songDao.findByAlbum(album);
 	}
 
 	@Override
