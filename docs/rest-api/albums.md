@@ -12,6 +12,24 @@ curl -i -X GET http://localhost:8080/pa165/rest/albums
 curl -i -X GET http://localhost:8080/pa165/rest/albums/1
 ```
 
+## Find albums by musician ID
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/albums/by_musician/1
+```
+
+## Find albums by genre ID
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/albums/by_genre/1
+```
+
+## Find albums by title
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/albums/by_title?title=Hybrid+Theory
+```
+
 ### Create album
 
 ```

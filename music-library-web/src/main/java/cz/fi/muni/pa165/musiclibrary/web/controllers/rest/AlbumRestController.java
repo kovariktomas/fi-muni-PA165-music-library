@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
@@ -123,8 +124,23 @@ public class AlbumRestController {
 			album.setTitle(newAlbum.getTitle());
 			albumFacade.update(album);
 			return albumFacade.findById(id);
-		} catch (MusicLibraryServiceException esse) {
+		} catch (MusicLibraryServiceException ex) {
 			throw new InvalidParameterException();
 		}
+	}
+
+	@RequestMapping(value = "/by_musician/{musician_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByMusician(@PathVariable("musician_id") long musicianId) {
+		return albumFacade.findByMusician(musicianId);
+	}
+
+	@RequestMapping(value = "/by_genre/{genre_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByGenre(@PathVariable("genre_id") long genreId) {
+		return albumFacade.findByGenre(genreId);
+	}
+
+	@RequestMapping(value = "/by_title", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByTitle(@RequestParam("title") String title) {
+		return albumFacade.findByTitle(title);
 	}
 }
