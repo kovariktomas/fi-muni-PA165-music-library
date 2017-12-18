@@ -22,31 +22,24 @@ public class SongRestController {
 	@Autowired
 	private SongFacade songFacade;
 
-	/**
-	 * @param id
-	 * @return
-	 * @throws Exception
-	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final SongDTO getSong(@PathVariable("id") long id) throws Exception {
-
-
+	public final SongDTO find(@PathVariable("id") long id) throws Exception {
 		SongDTO songDTO = songFacade.findById(id);
+
 		if (songDTO == null) {
 			throw new ResourceNotFoundException();
 		}
 
 		return songDTO;
-
 	}
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final List<SongDTO> getSongs() {
+	public final List<SongDTO> findAll() {
 		return songFacade.findAll();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final void deleteSong(@PathVariable("id") long id) throws Exception {
+	public final void delete(@PathVariable("id") long id) throws Exception {
 		try {
 			songFacade.delete(id);
 		} catch (Exception ex) {
@@ -54,52 +47,23 @@ public class SongRestController {
 		}
 	}
 
-	/**
-	 * @param musicianId
-	 * @return
-	 */
-	@RequestMapping(value = "by_musician/{musician_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final List<SongDTO> getSongsByMusician(@PathVariable("musician_id") long musicianId) {
-
-		List<SongDTO> songDTOs = songFacade.findByMusician(musicianId);
-		if (songDTOs == null) {
-			throw new ResourceNotFoundException();
-		}
-		return songDTOs;
+	@RequestMapping(value = "/by_musician/{musician_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<SongDTO> findByMusician(@PathVariable("musician_id") long musicianId) {
+		return songFacade.findByMusician(musicianId);
 
 	}
 
-	/**
-	 * @param genreId
-	 * @return
-	 */
-	@RequestMapping(value = "by_genre/{genre_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final List<SongDTO> getSongsByGenre(@PathVariable("genre_id") long genreId) {
-
-		List<SongDTO> songDTOs = songFacade.findByGenre(genreId);
-		if (songDTOs == null) {
-			throw new ResourceNotFoundException();
-		}
-		return songDTOs;
-
+	@RequestMapping(value = "/by_genre/{genre_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<SongDTO> findByGenre(@PathVariable("genre_id") long genreId) {
+		return songFacade.findByGenre(genreId);
 	}
 
-	/**
-	 * @param title
-	 * @return
-	 */
-	@RequestMapping(value = "by_title/{title}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final List<SongDTO> getSongsByTitle(@PathVariable("title") String title) {
-
-		List<SongDTO> songDTOs = songFacade.findByTitle(title);
-		if (songDTOs == null) {
-			throw new ResourceNotFoundException();
-		}
-		return songDTOs;
-
+	@RequestMapping(value = "/by_title", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<SongDTO> findByTitle(@RequestParam("title") String title) {
+		return songFacade.findByTitle(title);
 	}
 
-	@RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final SongDTO createSong(@RequestBody SongCreateDTO song) throws Exception {
 		try {
@@ -109,5 +73,4 @@ public class SongRestController {
 			throw new ResourceNotFoundException();
 		}
 	}
-
 }

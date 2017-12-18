@@ -31,7 +31,6 @@ public class MusicianRestController {
 	@Autowired
 	private MusicianFacade musicianFacade;
 
-
 	/**
 	 * Get list of Musicians
 	 * <p>
@@ -40,8 +39,8 @@ public class MusicianRestController {
 	 * @return MusicianDTO
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final List<MusicianDTO> getMusicians() {
-		log.debug("rest getMusicians()");
+	public final List<MusicianDTO> findAll() {
+		log.debug("findAll()");
 		return musicianFacade.findAll();
 	}
 
@@ -54,16 +53,16 @@ public class MusicianRestController {
 	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO getMusician(@PathVariable("id") long id) throws Exception {
-		log.debug("rest getMusician({})", id);
+	public final MusicianDTO find(@PathVariable("id") long id) throws Exception {
+		log.debug("find({})", id);
 
-		try {
-			MusicianDTO musicianDTO = musicianFacade.findById(id);
-			return musicianDTO;
-		} catch (Exception ex) {
+		MusicianDTO musician = musicianFacade.findById(id);
+
+		if (musician == null) {
 			throw new ResourceNotFoundException();
 		}
 
+		return musician;
 	}
 
 	/**
@@ -74,8 +73,8 @@ public class MusicianRestController {
 	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final void deleteMusician(@PathVariable("id") long id) throws Exception {
-		log.debug("rest deleteMusician({})", id);
+	public final void delete(@PathVariable("id") long id) throws Exception {
+		log.debug("delete({})", id);
 		try {
 			musicianFacade.delete(id);
 		} catch (Exception ex) {
@@ -92,17 +91,15 @@ public class MusicianRestController {
 	 * @return void
 	 * @throws ResourceAlreadyExistsException
 	 */
-	@RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO createMusician(@RequestBody MusicianCreateDTO musician) throws Exception {
+	public final MusicianDTO create(@RequestBody MusicianCreateDTO musician) throws Exception {
 
-		log.debug("rest createMusician()");
+		log.debug("create({})", musician);
 
 		try {
 			Long id = musicianFacade.create(musician);
 			return musicianFacade.findById(id);
-			//musicianFacade.create(musician);
-			//return musician;
 		} catch (Exception ex) {
 			throw new ResourceAlreadyExistsException();
 		}
@@ -113,24 +110,22 @@ public class MusicianRestController {
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/pa165/rest/musicians/1
 	 *
 	 * @param id      identified of the musician to be updated
-	 * @param newName required fields as specified in MusicianCreateDTO
+	 * @param musicianUpdate required fields as specified in MusicianCreateDTO
 	 * @return the updated musician MusicianDTO
 	 * @throws InvalidParameterException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO changeName(@PathVariable("id") long id, @RequestBody MusicianCreateDTO newName) throws Exception {
-
-		log.debug("rest changeName({})", id);
+	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianCreateDTO musicianUpdate) throws Exception {
+		log.debug("update({}, {})", id, musicianUpdate);
 
 		try {
 			MusicianDTO musician = musicianFacade.findById(id);
-			musician.setName(newName.getName());
+			musician.setName(musicianUpdate.getName());
 			musicianFacade.update(musician);
 			return musicianFacade.findById(id);
 		} catch (MusicLibraryServiceException esse) {
 			throw new InvalidParameterException();
 		}
-
 	}
 }
