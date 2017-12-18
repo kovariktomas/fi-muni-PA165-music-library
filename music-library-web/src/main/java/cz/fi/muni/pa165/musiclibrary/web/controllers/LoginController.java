@@ -49,7 +49,7 @@ public class LoginController {
 
 		ApplicationUserDTO found = applicationUserFacade.findByEmail(form.getEmail());
 
-		if (found == null || applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) { 
+		if (found == null || applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
 			redirectAttributes.addFlashAttribute("alert_warning", "Login with username " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}

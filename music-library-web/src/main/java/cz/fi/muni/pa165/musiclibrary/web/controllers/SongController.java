@@ -1,18 +1,11 @@
 package cz.fi.muni.pa165.musiclibrary.web.controllers;
 
-import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongCreateDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
-import cz.fi.muni.pa165.musiclibrary.entity.Album;
+import cz.fi.muni.pa165.musiclibrary.dto.*;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.SongCreateDTOValidator;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author David
@@ -34,17 +28,16 @@ public class SongController {
 
 	@Autowired
 	private SongFacade songFacade;
-        
-        @Autowired
+
+	@Autowired
 	private GenreFacade genreFacade;
-        
-        @Autowired
+
+	@Autowired
 	private AlbumFacade albumFacade;
-        
-        @Autowired
+
+	@Autowired
 	private MusicianFacade musicianFacade;
-        
-        
+
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -60,10 +53,10 @@ public class SongController {
 	 */
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newSong(Model model) {
-                List<AlbumDTO> albums = albumFacade.findAll();
-                List<GenreDTO> genres = genreFacade.findAll();
-                List<MusicianDTO> musicians = musicianFacade.findAll();
-                
+		List<AlbumDTO> albums = albumFacade.findAll();
+		List<GenreDTO> genres = genreFacade.findAll();
+		List<MusicianDTO> musicians = musicianFacade.findAll();
+
 		model.addAttribute("songCreate", new SongCreateDTO());
 		model.addAttribute("genres", genres);
 		model.addAttribute("albums", albums);
@@ -80,7 +73,7 @@ public class SongController {
 			});
 			return "song/new";
 		}
-                
+
 		Long id = songFacade.create(formBean);
 		redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
 		return "redirect:" + uriBuilder.path("/song/list").toUriString();

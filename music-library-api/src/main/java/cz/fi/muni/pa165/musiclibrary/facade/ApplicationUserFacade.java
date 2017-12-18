@@ -25,6 +25,6 @@ public interface ApplicationUserFacade {
 	void setPassword(ApplicationUserDTO user, String password);
 
 	List<ApplicationUserDTO> findAll();
-        
-        boolean verifyPassword(Long userId, String rawPassword);
+
+	boolean verifyPassword(Long userId, String rawPassword);
 }
