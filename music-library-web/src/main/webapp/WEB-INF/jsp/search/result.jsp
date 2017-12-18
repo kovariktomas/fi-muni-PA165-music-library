@@ -31,9 +31,9 @@
 								<p>${album.commentary}</p>
 								<p>Released: <fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/></p>
 								<p>
-									<a href="/album/view/${album.id}" class="btn btn-primary" role="button">
+									<my:a href="/album/detail/${album.id}" class="btn btn-primary" role="button">
 										<fmt:message key="search.result.album.detail"/>
-									</a>
+									</my:a>
 								</p>
 							</div>
 						</div>
