@@ -8,7 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/musician/*", "/album/*", "/song/*", "/genre/*"})
+@WebFilter(
+	urlPatterns = {
+		"/musician/create",
+		"/musician/edit/*",
+		"/musician/delete",
+		"/album/create",
+		"/album/edit/*",
+		"/album/delete",
+		"/song/newSong",
+		"/song/create",
+		"/song/delete",
+		"/genre/newGenre",
+		"/genre/create",
+		"/genre/showUpdateGenreForm/*",
+		"/genre/update",
+		"/genre/delete"
+	}
+)
 public class ProtectFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest r, ServletResponse s, FilterChain chain) throws IOException, ServletException {

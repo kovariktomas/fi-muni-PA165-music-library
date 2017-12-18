@@ -35,19 +35,26 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
+			<my:a href="/" class="navbar-brand">
+				<f:message key="navigation.project"/>
+			</my:a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b
-							class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><my:a href="/musician/list"><f:message key="navigation.admin.musicians"/></my:a></li>
-						<li><my:a href="/album/list"><f:message key="navigation.admin.albums"/></my:a></li>
-						<li><my:a href="/song/list"><f:message key="navigation.admin.songs"/></my:a></li>
-						<li><my:a href="/genre/list"><f:message key="navigation.admin.genres"/></my:a></li>
-					</ul>
+				<li class="${browse_section ? 'active' : ''}">
+					<my:a href="/"><f:message key="navigation.browse"/></my:a>
+				</li>
+				<li class="${musicians_section ? 'active' : ''}">
+					<my:a href="/musician/list"><f:message key="navigation.musicians"/></my:a>
+				</li>
+				<li class="${albums_section ? 'active' : ''}">
+					<my:a href="/album/list"><f:message key="navigation.albums"/></my:a>
+				</li>
+				<li class="${songs_section ? 'active' : ''}">
+					<my:a href="/song/list"><f:message key="navigation.songs"/></my:a>
+				</li>
+				<li class="${genres_section ? 'active' : ''}">
+					<my:a href="/genre/list"><f:message key="navigation.genres"/></my:a>
 				</li>
 			</ul>
 		</div><!--/.nav-collapse -->

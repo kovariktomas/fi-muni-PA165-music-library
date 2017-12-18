@@ -15,7 +15,7 @@
 			</my:a>
 		</div>
 		<h1>
-			<my:a href="/album/list"><fmt:message key="navigation.admin.albums"/></my:a> /
+			<my:a href="/album/list"><fmt:message key="navigation.albums"/></my:a> /
 			<c:out value="${album.title}"/>
 		</h1>
 	</div>

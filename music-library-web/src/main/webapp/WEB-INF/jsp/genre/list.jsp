@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<fmt:message key="navigation.admin.genres" var="title"/>
+<fmt:message key="navigation.genres" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 

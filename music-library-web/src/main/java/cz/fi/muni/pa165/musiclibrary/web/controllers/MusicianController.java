@@ -43,6 +43,11 @@ public class MusicianController {
 	@Autowired
 	private MessageSource messageSource;
 
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("musicians_section", true);
+	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		log.debug("list()");

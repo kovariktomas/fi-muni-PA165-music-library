@@ -14,7 +14,7 @@
 			<button type="submit" class="btn btn-danger"><fmt:message key="genre.delete"/></button>
 		</form>
 		<h1>
-			<my:a href="/genre/list"><fmt:message key="navigation.admin.genres"/></my:a> /
+			<my:a href="/genre/list"><fmt:message key="navigation.genres"/></my:a> /
 			<c:out value="${genre.name}"/>
 		</h1>
 	</div>

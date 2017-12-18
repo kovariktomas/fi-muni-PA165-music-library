@@ -39,6 +39,11 @@ public class GenreController {
 	@Autowired
 	private MessageSource messageSource;
 
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("genres_section", true);
+	}
+
 	/**
 	 * Shows a list of genres with the ability to add, delete or edit.
 	 *
