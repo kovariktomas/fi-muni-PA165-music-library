@@ -40,8 +40,9 @@ public class AlbumFacadeImpl implements AlbumFacade {
 	}
 
 	@Override
-	public void create(AlbumCreateDTO albumCreateDTO) {
-		albumService.create(beanMappingService.mapTo(albumCreateDTO, Album.class));
+	public Long create(AlbumCreateDTO albumCreateDTO) {
+		Album album = albumService.create(beanMappingService.mapTo(albumCreateDTO, Album.class));
+		return album.getId();
 	}
 
 	@Override

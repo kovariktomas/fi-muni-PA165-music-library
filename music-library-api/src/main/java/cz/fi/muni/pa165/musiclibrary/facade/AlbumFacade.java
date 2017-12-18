@@ -20,7 +20,7 @@ public interface AlbumFacade {
 	 *
 	 * @param album to be created
 	 */
-	void create(AlbumCreateDTO album);
+	Long create(AlbumCreateDTO album);
 
 	/**
 	 * Update existing album data transfer object.
