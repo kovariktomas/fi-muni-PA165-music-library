@@ -64,13 +64,13 @@ public class LoginController {
 			found = applicationUserFacade.findByEmail(form.getEmail());
 		} catch (EmptyResultDataAccessException ex) {
 			String flashMessage = messageSource.getMessage("login.invalid.email", null, locale);
-			redirectAttributes.addFlashAttribute("alert_warning", flashMessage);
+			redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}
 
 		if (found == null || !applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
 			String flashMessage = messageSource.getMessage("login.invalid.password", null, locale);
-			redirectAttributes.addFlashAttribute("alert_warning", flashMessage);
+			redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}
 
