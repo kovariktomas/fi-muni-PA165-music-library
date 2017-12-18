@@ -62,14 +62,10 @@ public class SongController {
 	 */
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newSong(Model model) {
-		List<AlbumDTO> albums = albumFacade.findAll();
-		List<GenreDTO> genres = genreFacade.findAll();
-		List<MusicianDTO> musicians = musicianFacade.findAll();
-
 		model.addAttribute("songCreate", new SongCreateDTO());
-		model.addAttribute("genres", genres);
-		model.addAttribute("albums", albums);
-		model.addAttribute("musicians", musicians);
+		model.addAttribute("genres", genreFacade.findAll());
+		model.addAttribute("albums", albumFacade.findAll());
+		model.addAttribute("musicians", musicianFacade.findAll());
 		return "song/new";
 	}
 
@@ -82,6 +78,10 @@ public class SongController {
 		UriComponentsBuilder uriBuilder,
 		Locale locale
 	) {
+		model.addAttribute("genres", genreFacade.findAll());
+		model.addAttribute("albums", albumFacade.findAll());
+		model.addAttribute("musicians", musicianFacade.findAll());
+
 		if (bindingResult.hasErrors()) {
 			bindingResult.getFieldErrors().forEach((fe) -> {
 				model.addAttribute(fe.getField() + "_error", true);
