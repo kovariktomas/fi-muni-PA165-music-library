@@ -7,7 +7,6 @@ import java.util.Objects;
  * @author Kovarik Tomas
  */
 public class ApplicationUserCreateDTO {
-	private Long id;
 
 	@NotNull
 	private String name;
@@ -80,7 +79,6 @@ public class ApplicationUserCreateDTO {
 	@Override
 	public String toString() {
 		return "User{" +
-			"id=" + id +
 			", name='" + name + '\'' +
 			", email='" + email + '\'' +
 			", passHash='" + passHash + '\'' +
