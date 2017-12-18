@@ -7,16 +7,32 @@
 <fmt:message key="albumCreate.title" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
-	<form:form method="post" action="${pageContext.request.contextPath}/album/create"
-			   modelAttribute="albumCreate" cssClass="form-horizontal">
-		<div class="form-group ${name_error?'has-error':''}">
-			<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.name"/></form:label>
-			<div class="col-sm-10">
-				<form:input path="title" cssClass="form-control"/>
-				<form:errors path="title" cssClass="help-block"/>
-			</div>
-		</div>
-		<button class="btn btn-primary" type="submit"><fmt:message key="albumCreate.createNew"/></button>
+	<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/admin/album/new" modelAttribute="albumCreate">
+    <table>
+		<tr>
+			<th><form:label path="title"><fmt:message key="album.name"/>:</form:label></th>
+			<td><form:input path="title"/></td>
+			<td><form:errors path="title" cssClass="error"/></td>
+		</tr>
+		<tr>
+			<th><form:label path="releaseDate"><fmt:message key="album.releaseDate"/> <c:out value="(dd-mm-yyyy):"/></form:label></th>
+			<td><form:input path="releaseDate"/></td>
+			<td><form:errors path="releaseDate" cssClass="error"/></td>
+		</tr>
+		<tr>
+			<th><form:label path="albumArt"><fmt:message key="album.albumArt"/>:</form:label></th>
+			<td><form:input path="albumArt"/></td>
+			<td><form:errors path="albumArt" cssClass="error"/></td>
+		</tr>
+		<tr>
+			<th><form:label path="commentary"><fmt:message key="album.commentary"/>:</form:label></th>
+			<td><form:textarea path="commentary"/></td>
+			<td><form:errors path="commentary" cssClass="error"/></td>
+		</tr>
+	</table>
+    <input type="hidden" name="id" value="${album.id}"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <button class="btn btn-primary" type="submit"><fmt:message key="albumCreate.createNew"/></button>
 	</form:form>
 
 </jsp:attribute>
