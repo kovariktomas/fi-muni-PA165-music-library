@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 import cz.fi.muni.pa165.musiclibrary.dto.ApplicationUserDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.ApplicationUserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,11 +47,16 @@ public class LoginController {
 			model.addAttribute("userLogin", new ApplicationUserDTO());
 			return "/login";
 		}
+		ApplicationUserDTO found;
+		try {
+			found = applicationUserFacade.findByEmail(form.getEmail());
+		} catch (EmptyResultDataAccessException ex) {
+			redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
+			return "redirect:" + uriBuilder.path("/login").toUriString();
+		}
 
-		ApplicationUserDTO found = applicationUserFacade.findByEmail(form.getEmail());
-
-		if (found == null || applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
-			redirectAttributes.addFlashAttribute("alert_warning", "Login with username " + form.getEmail() + " has failed.");
+		if (found == null || !applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
+			redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}
 

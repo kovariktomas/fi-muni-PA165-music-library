@@ -101,7 +101,7 @@ public class MusicianRestController {
 	 * Update a musician with the given ID by PUT method
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/pa165/rest/musicians/1
 	 *
-	 * @param id      identified of the musician to be updated
+	 * @param id       identified of the musician to be updated
 	 * @param musician required fields as specified in MusicianDTO
 	 * @return the updated musician MusicianDTO
 	 * @throws ResourceNotFoundException
