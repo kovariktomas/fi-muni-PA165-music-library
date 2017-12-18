@@ -1,5 +1,9 @@
 package cz.fi.muni.pa165.musiclibrary.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class SongCreateDTO {
@@ -10,12 +14,23 @@ public class SongCreateDTO {
 
 	private Long genreId;
 
+	@NotNull
+	@Size(min = 3, max = 50, message = "The title must be between 3 and 50"
+		+ "characters long")
 	private String title;
 
+	@NotNull
+	@Min(value = 1, message = "The value must be more than 1")
+	@Max(value = 18000, message = "The value must be less than 18000")
 	private Integer bitrate;
 
+	@NotNull
+	@Min(value = 1, message = "The value must be more than 1")
+	@Max(value = 30, message = "The value must be less than 18000")
 	private Integer position;
 
+	@Size(min = 3, max = 500, message = "Comment must be between 3 and 500"
+		+ "characters long")
 	private String commentary;
 
 	public Long getMusicianId() {

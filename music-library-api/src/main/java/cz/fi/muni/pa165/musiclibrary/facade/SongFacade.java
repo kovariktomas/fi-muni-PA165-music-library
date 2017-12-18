@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface SongFacade {
 
-	void create(SongCreateDTO song);
+	Long create(SongCreateDTO song);
 
 	void delete(Long id);
 

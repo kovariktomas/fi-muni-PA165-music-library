@@ -36,12 +36,13 @@ public class SongFacadeImpl implements SongFacade {
 	private BeanMappingService beanMappingService;
 
 	@Override
-	public void create(SongCreateDTO songCreateDTO) {
+	public Long create(SongCreateDTO songCreateDTO) {
 		Song song = beanMappingService.mapTo(songCreateDTO, Song.class);
 		song.setMusician(musicianService.findById(songCreateDTO.getMusicianId()));
 		song.setAlbum(albumService.findById(songCreateDTO.getAlbumId()));
 		song.setGenre(genreService.findById(songCreateDTO.getGenreId()));
 		songService.create(song);
+		return song.getId();
 	}
 
 	@Override

@@ -2,5 +2,5 @@
 .table.table-align-middle > thead > tr > th,
 .table.table-align-middle > tbody > tr > td,
 .table.table-align-middle > tbody > tr > th {
-    vertical-align: middle;
+	vertical-align: middle;
 }
