@@ -4,34 +4,34 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <fmt:message key="albumEdit.title" var="title"/>
 <my:pagetemplate title="${title} ${album.id}">
 <jsp:attribute name="pageHeader">
 	<div class="page-header">
 		<div class="pull-right">
-			<my:a href="/album/view/${album.id}" class="btn btn-default">
-				<fmt:message key="musicians.edit.backToDetail"/>
+			<my:a href="/album/detail/${album.id}" class="btn btn-default">
+				<fmt:message key="albums.edit.backToDetail"/>
 			</my:a>
 		</div>
 		<h1>
 			<my:a href="/album/list"><fmt:message key="navigation.admin.albums"/></my:a> /
-			<c:out value="${album.name}"/>
+			<c:out value="${album.title}"/>
 		</h1>
 	</div>
 </jsp:attribute>
 	<jsp:attribute name="body">
-	<form:form method="post" action="${pageContext.request.contextPath}/album/saveUpdate"
-			   modelAttribute="albumUpdate" cssClass="form-horizontal">
-		<div class="form-group ${name_error?'has-error':''}">
-			<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.name"/></form:label>
-			<div class="col-sm-10">
-				<form:input path="title" cssClass="form-control"/>
-				<form:errors path="title" cssClass="help-block"/>
+		<form:form method="post" action="${pageContext.request.contextPath}/album/edit/${album.id}"
+				   modelAttribute="album" cssClass="form-horizontal">
+			<div class="form-group ${name_error?'has-error':''}">
+				<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.name"/></form:label>
+				<div class="col-sm-10">
+					<form:input path="title" cssClass="form-control"/>
+					<form:errors path="title" cssClass="help-block"/>
+				</div>
 			</div>
-		</div>
-		<form:hidden path="id"/>
-		<button class="btn btn-primary" type="submit"><fmt:message key="albumUpdate.save"/></button>
-	</form:form>
-
-</jsp:attribute>
+			<form:hidden path="id"/>
+			<button class="btn btn-primary" type="submit"><fmt:message key="albums.edit.save"/></button>
+		</form:form>
+	</jsp:attribute>
 </my:pagetemplate>

@@ -10,12 +10,16 @@
 	<jsp:attribute name="pageHeader">
 	<div class="page-header">
 		<form method="post" action="${pageContext.request.contextPath}/album/delete/${album.id}" class="pull-right">
-			<my:a href="/album/update/${album.id}" class="btn btn-default"><fmt:message key="album.edit"/></my:a>
-			<button type="submit" class="btn btn-danger"><fmt:message key="album.delete"/></button>
+			<my:a href="/album/edit/${album.id}" class="btn btn-default">
+				<fmt:message key="album.edit"/>
+			</my:a>
+			<button type="submit" class="btn btn-danger">
+				<fmt:message key="album.delete"/>
+			</button>
 		</form>
 		<h1>
-			<my:a href="/album/list"><fmt:message key="navigation.admin.albums"/></my:a> /
-			<c:out value="${album.name}"/>
+			<my:a href="/album/list"><fmt:message key="album.detail.albums"/></my:a> /
+			<c:out value="${album.title}"/>
 		</h1>
 	</div>
 	</jsp:attribute>
@@ -25,15 +29,16 @@
 			<tr>
 				<th><fmt:message key="album.id"/></th>
 				<th><fmt:message key="album.name"/></th>
+				<th><fmt:message key="album.commentary"/></th>
 			</tr>
 			</thead>
 			<tbody>
 			<tr>
 				<td>${album.id}</td>
-				<td><c:out value="${album.name}"/></td>
+				<td><c:out value="${album.title}"/></td>
+				<td><c:out value="${album.commentary}"/></td>
 			</tr>
 			</tbody>
 		</table>
-
 	</jsp:attribute>
 </my:pagetemplate>

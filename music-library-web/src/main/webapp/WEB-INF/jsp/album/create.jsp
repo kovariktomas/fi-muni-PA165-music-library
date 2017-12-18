@@ -7,7 +7,7 @@
 <fmt:message key="albumCreate.title" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
-	<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/admin/album/new" modelAttribute="albumCreate">
+	<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/album/create" modelAttribute="albumCreate">
     <table>
 		<tr>
 			<th><form:label path="title"><fmt:message key="album.name"/>:</form:label></th>
