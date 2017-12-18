@@ -4,11 +4,12 @@ import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumCreateDTOValidator;
+import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -22,16 +23,15 @@ import javax.validation.Valid;
 import java.util.Locale;
 
 /**
- * SpringMVC Controller for administering albums.
+ * Controller for albums administration.
  *
  * @author Iva Liberova
  */
-
 @Controller
 @RequestMapping("/album")
 public class AlbumController {
 
-    final static Logger log = LoggerFactory.getLogger(AlbumController.class);
+    private final static Logger log = LoggerFactory.getLogger(AlbumController.class);
 
     @Autowired
     private AlbumFacade albumFacade;
@@ -39,107 +39,157 @@ public class AlbumController {
     @Autowired
     private MessageSource messageSource;
 
-    /**
-     * Shows a list of albums with the ability to add, delete or edit.
-     *
-     * @param model data to display
-     * @return JSP page name
-     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
+        log.debug("list()");
         model.addAttribute("albums", albumFacade.findAll());
         return "album/list";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes, Locale loc) {
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes, Locale locale) {
+        log.debug("detail({})", id);
+
         AlbumDTO album = albumFacade.findById(id);
-        albumFacade.delete(id);
-        log.debug("delete({})", id);
-        redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("albumMessage.successDelete", null, loc), album.getTitle()));
-        return "redirect:" + uriBuilder.path("/album/list").toUriString();
+
+        if (album == null) {
+            String flashMessage = messageSource.getMessage("albums.detail.notFound", null, locale);
+            redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
+            return "redirect:/album/list";
+        }
+
+        model.addAttribute("album", album);
+        return "album/detail";
     }
 
-    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable long id, Model model) {
-        log.debug("view({})", id);
-        model.addAttribute("album", albumFacade.findById(id));
-        return "album/view";
-    }
-
-    /**
-     * Prepares an empty form.
-     *
-     * @param model data to be displayed
-     * @return JSP page
-     */
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newAlbum(Model model) {
-        log.debug("new()");
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model) {
+        log.debug("create()");
         model.addAttribute("albumCreate", new AlbumCreateDTO());
-        return "album/new";
+        return "album/create";
     }
 
-    /**
-     * Spring Validator added to JSR-303 Validator for this @Controller only.
-     * It is useful  for custom validations that are not defined on the form bean by annotations.
-     * http://docs.spring.io/spring/docs/current/spring-framework-reference/html/validation.html#validation-mvc-configuring
-     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(
+            @Valid @ModelAttribute("albumCreate") AlbumCreateDTO albumCreate,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder,
+            Locale locale
+    ) {
+        log.debug("create({})", albumCreate);
+
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", error);
+            }
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                model.addAttribute(error.getField() + "_error", true);
+                log.trace("FieldError: {}", error);
+            }
+            return "album/create";
+        }
+
+        Long id = albumFacade.create(albumCreate);
+
+        String flashMessage = messageSource.getMessage(
+                "albums.create.saved",
+                new Object[]{ albumCreate.getTitle() },
+                locale
+        );
+
+        redirectAttributes.addFlashAttribute("alert_success", flashMessage);
+        return "redirect:" + uriBuilder.path("/album/detail/{id}").buildAndExpand(id).encode().toUriString();
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model model, RedirectAttributes redirectAttributes, Locale locale) {
+        log.debug("edit({})", id);
+        AlbumDTO album = albumFacade.findById(id);
+
+        if (album == null) {
+            String flashMessage = messageSource.getMessage("albums.edit.notFound", null, locale);
+            redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
+            return "redirect:/album/list";
+        }
+
+        model.addAttribute("album", album);
+        return "album/edit";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String edit(
+            @PathVariable long id,
+            @Valid @ModelAttribute("album") AlbumDTO album,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder,
+            Locale locale
+    ) {
+        log.debug("edit({})", album);
+
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getGlobalErrors()) {
+                log.trace("ObjectError: {}", error);
+            }
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                model.addAttribute(error.getField() + "_error", true);
+                log.trace("FieldError: {}", error);
+            }
+            return "album/edit";
+        }
+
+        album.setId(id);
+        albumFacade.update(album);
+
+        String flashMessage = messageSource.getMessage(
+                "albums.edit.saved",
+                new Object[]{ album.getTitle() },
+                locale
+        );
+
+        redirectAttributes.addFlashAttribute("alert_success", flashMessage);
+        return "redirect:" + uriBuilder.path("/album/detail/{id}").buildAndExpand(id).encode().toUriString();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(
+            @PathVariable long id,
+            RedirectAttributes redirectAttributes,
+            Locale locale
+    ) {
+        log.debug("delete({})", id);
+        AlbumDTO album = albumFacade.findById(id);
+
+        if (album == null) {
+            String flashMessage = messageSource.getMessage("albums.delete.notFound", null, locale);
+            redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
+            return "redirect:/album/list";
+        }
+
+        albumFacade.delete(id);
+
+        String flashMessage = messageSource.getMessage(
+                "albums.delete.deleted",
+                new Object[]{ album.getTitle() },
+                locale
+        );
+
+        redirectAttributes.addFlashAttribute("alert_success", flashMessage);
+        return "redirect:/album/list";
+    }
+
     @InitBinder
+    @SuppressWarnings("unused")
     protected void initBinder(WebDataBinder binder) {
         if (binder.getTarget() instanceof AlbumCreateDTO) {
             binder.addValidators(new AlbumCreateDTOValidator());
         }
-    }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("albumCreate") AlbumCreateDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale loc) {
-        log.debug("create(albumCreate={})", formBean);
-        if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "album/new";
+        if (binder.getTarget() instanceof AlbumDTO) {
+            binder.addValidators(new AlbumDTOValidator());
         }
-        Long id = albumFacade.create(formBean);
-        redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("albumMessage.successAdd", null, loc), id));
-        return "redirect:" + uriBuilder.path("/album/view/{id}").buildAndExpand(id).encode().toUriString();
-    }
-
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public String showUpdateAlbumForm(@PathVariable long id, Model model) {
-        log.debug("update()");
-        AlbumDTO album = albumFacade.findById(id);
-        model.addAttribute("album", album);
-        model.addAttribute("albumUpdate", album);
-        return "album/update";
-    }
-
-    @RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("albumUpdate") AlbumDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale loc) {
-        log.debug("update(albumUpdate={})", formBean);
-        //in case of validation error forward back to the the form
-        if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "album/update";
-        }
-        //update album
-        albumFacade.update(formBean);
-        Long id = formBean.getId();
-        //report success
-        redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("albumMessage.successEdit", null, loc), id));
-        return "redirect:" + uriBuilder.path("/album/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 }
