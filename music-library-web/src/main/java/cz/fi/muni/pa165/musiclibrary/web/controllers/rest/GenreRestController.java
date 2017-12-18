@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;

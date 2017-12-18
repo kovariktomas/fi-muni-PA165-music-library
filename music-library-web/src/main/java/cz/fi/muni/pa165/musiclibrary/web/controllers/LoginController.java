@@ -2,8 +2,8 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 
 import cz.fi.muni.pa165.musiclibrary.dto.ApplicationUserDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.ApplicationUserFacade;
-import javax.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.springframework.dao.EmptyResultDataAccessException;
 
 @Controller
 @RequestMapping("/login")
@@ -48,19 +47,19 @@ public class LoginController {
 			model.addAttribute("userLogin", new ApplicationUserDTO());
 			return "/login";
 		}
-                ApplicationUserDTO found;
-                try{
-                    found = applicationUserFacade.findByEmail(form.getEmail());}
-                catch(EmptyResultDataAccessException ex){
-                    redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
+		ApplicationUserDTO found;
+		try {
+			found = applicationUserFacade.findByEmail(form.getEmail());
+		} catch (EmptyResultDataAccessException ex) {
+			redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
-                }
+		}
 
 		if (found == null || !applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
 			redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}
-                
+
 		request.getSession().setAttribute("authenticatedUser", found);
 
 		redirectAttributes.addFlashAttribute("alert_success", "Login was successful");
