@@ -2,10 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
-import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
-import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +50,7 @@ public class MusicianRestController {
 	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO find(@PathVariable("id") long id) throws Exception {
+	public final MusicianDTO find(@PathVariable("id") long id) throws ResourceNotFoundException {
 		log.debug("find({})", id);
 
 		MusicianDTO musician = musicianFacade.findById(id);
@@ -73,7 +70,7 @@ public class MusicianRestController {
 	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final void delete(@PathVariable("id") long id) throws Exception {
+	public final void delete(@PathVariable("id") long id) throws ResourceNotFoundException {
 		log.debug("delete({})", id);
 		try {
 			musicianFacade.delete(id);
@@ -89,43 +86,42 @@ public class MusicianRestController {
 	 *
 	 * @param musician MusicianCreateDTO with required fields for creation
 	 * @return void
-	 * @throws ResourceAlreadyExistsException
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO create(@RequestBody MusicianCreateDTO musician) throws Exception {
+	public final MusicianDTO create(@RequestBody MusicianCreateDTO musician) {
 
 		log.debug("create({})", musician);
 
-		try {
-			Long id = musicianFacade.create(musician);
-			return musicianFacade.findById(id);
-		} catch (Exception ex) {
-			throw new ResourceAlreadyExistsException();
-		}
+		Long id = musicianFacade.create(musician);
+		return musicianFacade.findById(id);
 	}
 
 	/**
-	 * Update the name for one musician by PUT method
+	 * Update a musician with the given ID by PUT method
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/pa165/rest/musicians/1
 	 *
 	 * @param id      identified of the musician to be updated
-	 * @param musicianUpdate required fields as specified in MusicianCreateDTO
+	 * @param musician required fields as specified in MusicianDTO
 	 * @return the updated musician MusicianDTO
-	 * @throws InvalidParameterException
+	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianCreateDTO musicianUpdate) throws Exception {
-		log.debug("update({}, {})", id, musicianUpdate);
+	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianDTO musician) throws ResourceNotFoundException {
+		log.debug("update({}, {})", id, musician);
 
-		try {
-			MusicianDTO musician = musicianFacade.findById(id);
-			musician.setName(musicianUpdate.getName());
-			musicianFacade.update(musician);
-			return musicianFacade.findById(id);
-		} catch (MusicLibraryServiceException esse) {
-			throw new InvalidParameterException();
+		if (musicianFacade.findById(id) == null) {
+			throw new ResourceNotFoundException();
 		}
+
+		musician.setId(id);
+		musicianFacade.update(musician);
+		return musicianFacade.findById(id);
+	}
+
+	@RequestMapping(value = "/by_name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<MusicianDTO> findByName(@RequestParam("name") String name) {
+		return musicianFacade.findByName(name);
 	}
 }

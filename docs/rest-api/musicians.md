@@ -12,6 +12,12 @@ curl -i -X GET http://localhost:8080/pa165/rest/musicians
 curl -i -X GET http://localhost:8080/pa165/rest/musicians/1
 ```
 
+## Find musicians by name
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/musicians/by_name?name=Linkin+Park
+```
+
 ### Create musician
 
 ```

@@ -103,7 +103,7 @@ public class AlbumRestController {
 	}
 
 	/**
-	 * Update the title for one album by PUT method
+	 * Update an album with the given ID by PUT method
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"title":"UpdatedName"}' http://localhost:8080/pa165/rest/albums/1
 	 *
 	 * @param id       identified of the album to be updated
@@ -116,6 +116,10 @@ public class AlbumRestController {
 	public final AlbumDTO update(@PathVariable("id") long id, @RequestBody AlbumDTO album) throws Exception {
 
 		log.debug("update({}, {})", id, album);
+
+		if (albumFacade.findById(id) == null) {
+			throw new ResourceNotFoundException();
+		}
 
 		try {
 			album.setId(id);
