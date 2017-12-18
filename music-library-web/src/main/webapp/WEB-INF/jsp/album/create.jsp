@@ -7,7 +7,8 @@
 <fmt:message key="albumCreate.title" var="title"/>
 <my:pagetemplate title="${title}">
 	<jsp:attribute name="body">
-		<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/album/create" modelAttribute="albumCreate">
+		<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/album/create"
+				modelAttribute="albumCreate">
 			<table>
 				<tr>
 					<th><form:label path="title"><fmt:message key="album.name"/>:</form:label></th>
@@ -15,14 +16,19 @@
 					<td><form:errors path="title" cssClass="error"/></td>
 				</tr>
 				<tr>
-					<th><form:label path="releaseDate"><fmt:message key="album.releaseDate"/> <c:out value="(dd-mm-yyyy):"/></form:label></th>
+					<th>
+						<form:label path="releaseDate">
+							<fmt:message key="album.releaseDate"/>
+							<c:out value="(dd-mm-yyyy):"/>
+						</form:label>
+					</th>
 					<td><form:input path="releaseDate"/></td>
 					<td><form:errors path="releaseDate" cssClass="error"/></td>
 				</tr>
 				<tr>
 
 					<th><form:label path="albumArt"><fmt:message key="album.albumArt"/>:</form:label></th>
-					<td><form:input type = "file" path="albumArt"/></td>
+					<td><form:input type="file" path="albumArt"/></td>
 					<td><form:errors path="albumArt" cssClass="error"/></td>
 				</tr>
 				<tr>
