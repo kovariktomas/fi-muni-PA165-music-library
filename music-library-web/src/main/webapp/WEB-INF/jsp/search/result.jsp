@@ -5,21 +5,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<fmt:message key="search.title" var="title"/>
+
+<fmt:message key="search.result.title" var="title"/>
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 	<form class="form-inline" method="get" action="${pageContext.request.contextPath}/search/result">
 		<div class="form-group form-group-lg">
-			<input pattern=".{3,}" required title="Minimum 3 char!" type="text" name="searchTerm" class="form-control"/>
+			<input type="text" name="searchTerm" class="form-control" value="${fn:escapeXml(searchTerm)}" required/>
 		</div>
-		<button type="submit" class="btn btn-primary btn-lg"><fmt:message key="welcome.search"/></button>
-		<div class="help-block">Minimum 3 char</div>
+		<button type="submit" class="btn btn-primary btn-lg"><fmt:message key="search.result.search"/></button>
 	</form>
-	<h2><fmt:message key="search.result"/> ${searchTerm}</h2>
 	<c:if test="${fn:length(albums) gt 0}">
 		<div>
 			<h3>
-				<fmt:message key="search.albums"/>
+				<fmt:message key="search.result.albums"/>
 			</h3>
 			<div class="row">
 				<c:forEach items="${albums}" var="album" begin="0" end="3">
@@ -33,7 +32,7 @@
 								<p>Released: <fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/></p>
 								<p>
 									<a href="/album/view/${album.id}" class="btn btn-primary" role="button">
-										<fmt:message key="search.album.detail"/>
+										<fmt:message key="search.result.album.detail"/>
 									</a>
 								</p>
 							</div>
@@ -47,12 +46,12 @@
 	<c:if test="${fn:length(genres) gt 0}">
 		<div>
 			<h2>
-				<fmt:message key="search.genres"/>
+				<fmt:message key="search.result.genres"/>
 			</h2>
 			<table class="table">
 				<thead>
 				<tr>
-					<th><fmt:message key="search.genre.name"/></th>
+					<th><fmt:message key="search.result.genre.name"/></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -61,7 +60,7 @@
 							<td><c:out value="${genre.name}"/></td>
 							<td>
 								<my:a href="/genre/view/${genre.id}" class="btn btn-primary">
-									<fmt:message key="search.genre.detail"/>
+									<fmt:message key="search.result.genre.detail"/>
 								</my:a>
 							</td>
 						</tr>
@@ -74,12 +73,12 @@
 	<c:if test="${fn:length(songs) gt 0}">
 		<div>
 			<h3>
-				<fmt:message key="search.songs"/>
+				<fmt:message key="search.result.songs"/>
 			</h3>
 			<table class="table">
 				<thead>
 				<tr>
-					<th><fmt:message key="search.song.name"/></th>
+					<th><fmt:message key="search.result.song.name"/></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -88,7 +87,7 @@
 							<td><c:out value="${song.title}"/></td>
 							<td>
 								<my:a href="/song/view/${song.id}" class="btn btn-primary">
-									<fmt:message key="search.song.detail"/>
+									<fmt:message key="search.result.song.detail"/>
 								</my:a>
 							</td>
 						</tr>
@@ -101,12 +100,12 @@
 	<c:if test="${fn:length(musicians) gt 0}">
 		<div>
 			<h3>
-				<fmt:message key="search.musicians"/>
+				<fmt:message key="search.result.musicians"/>
 			</h3>
 			<table class="table">
 				<thead>
 				<tr>
-					<th><fmt:message key="search.musician.name"/></th>
+					<th><fmt:message key="search.result.musician.name"/></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -115,7 +114,7 @@
 							<td><c:out value="${musician.name}"/></td>
 							<td>
 								<my:a href="/musician/detail/${musician.id}" class="btn btn-primary">
-									<fmt:message key="search.musician.detail"/>
+									<fmt:message key="search.result.musician.detail"/>
 								</my:a>
 							</td>
 						</tr>
@@ -124,8 +123,10 @@
 			</table>
 		</div>
 	</c:if>
-	<c:if test="${(fn:length(albums) lt 1)and(fn:length(songs) lt 1)and(fn:length(musicians) lt 1)and(fn:length(genres) lt 1)}">
-		<h3><fmt:message key="search.noResult"/></h3>
+	<c:if test="${(fn:length(albums) lt 1) and (fn:length(songs) lt 1) and (fn:length(musicians) lt 1) and (fn:length(genres) lt 1)}">
+		<p>
+			<div class="alert alert-info"><fmt:message key="search.result.noResult"/></div>
+		</p>
 	</c:if>
 </jsp:attribute>
 </my:pagetemplate>
