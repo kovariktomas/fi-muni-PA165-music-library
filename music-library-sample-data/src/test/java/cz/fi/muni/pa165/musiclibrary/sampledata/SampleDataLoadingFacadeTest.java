@@ -1,9 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.sampledata;
 
-import cz.fi.muni.pa165.musiclibrary.entity.Album;
-import cz.fi.muni.pa165.musiclibrary.entity.Genre;
-import cz.fi.muni.pa165.musiclibrary.entity.Musician;
-import cz.fi.muni.pa165.musiclibrary.entity.Song;
+import cz.fi.muni.pa165.musiclibrary.entity.*;
+import cz.fi.muni.pa165.musiclibrary.service.ApplicationUserService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +35,26 @@ public class SampleDataLoadingFacadeTest extends AbstractTestNGSpringContextTest
 	@Autowired
 	private SampleDataLoadingFacade sampleDataLoadingFacade;
 
+	@Autowired
+	private ApplicationUserService applicationUserService;
+
 	@PersistenceContext
 	private EntityManager em;
 
 	@Test
 	public void loadData() throws IOException {
 		sampleDataLoadingFacade.loadData();
+
+		ApplicationUser user = em.createQuery("SELECT u FROM ApplicationUser u WHERE u.email = :email", ApplicationUser.class)
+			.setParameter("email", "admin@example.com")
+			.getSingleResult();
+
+		Assert.assertNotNull(user);
+		Assert.assertNotNull(user.getId());
+		Assert.assertEquals("admin", user.getName());
+		Assert.assertEquals("admin@example.com", user.getEmail());
+		Assert.assertTrue(applicationUserService.verifyPassword(user.getId(), "password"));
+		Assert.assertFalse(applicationUserService.verifyPassword(user.getId(), "invalid"));
 
 		Musician musician = em.createQuery("SELECT m FROM Musician m WHERE m.name = :name", Musician.class)
 			.setParameter("name", "Ed Sheeran")
