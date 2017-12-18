@@ -9,19 +9,19 @@ import org.springframework.validation.Validator;
  */
 public class AlbumCreateDTOValidator implements Validator {
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return AlbumCreateDTO.class.isAssignableFrom(clazz);
-    }
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return AlbumCreateDTO.class.isAssignableFrom(clazz);
+	}
 
-    @Override
-    public void validate(Object target, Errors errors) {
-        AlbumCreateDTO albumCreateDTO = (AlbumCreateDTO) target;
-        if (albumCreateDTO.getTitle() == null|| albumCreateDTO.getTitle().isEmpty()) {
-            errors.rejectValue("name", "AlbumCreateDTOValidator.name.required");
-        }
-        if (albumCreateDTO.getReleaseDate() == null) {
-            errors.rejectValue("releaseDate", "AlbumCreateDTOValidator.releaseDate.required");
-        }
-    }
+	@Override
+	public void validate(Object target, Errors errors) {
+		AlbumCreateDTO albumCreateDTO = (AlbumCreateDTO) target;
+		if (albumCreateDTO.getTitle() == null || albumCreateDTO.getTitle().isEmpty()) {
+			errors.rejectValue("name", "AlbumCreateDTOValidator.name.required");
+		}
+		if (albumCreateDTO.getReleaseDate() == null) {
+			errors.rejectValue("releaseDate", "AlbumCreateDTOValidator.releaseDate.required");
+		}
+	}
 }

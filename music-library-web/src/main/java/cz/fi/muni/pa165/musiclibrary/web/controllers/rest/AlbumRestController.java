@@ -26,106 +26,106 @@ import java.util.List;
 @RequestMapping("/albumrest")
 public class AlbumRestController {
 
-    final static Logger log = LoggerFactory.getLogger(AlbumRestController.class);
+	final static Logger log = LoggerFactory.getLogger(AlbumRestController.class);
 
-    @Autowired
-    private AlbumFacade albumFacade;
+	@Autowired
+	private AlbumFacade albumFacade;
 
 
-    /**
-     * Get list of Albums
-     * curl -i -X GET http://localhost:8080/music-library-web/albumrest
-     *
-     * @return AlbumDTO
-     */
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final List<AlbumDTO> getAlbums() {
-        log.debug("rest getAlbums()");
-        return albumFacade.findAll();
-    }
+	/**
+	 * Get list of Albums
+	 * curl -i -X GET http://localhost:8080/music-library-web/albumrest
+	 *
+	 * @return AlbumDTO
+	 */
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> getAlbums() {
+		log.debug("rest getAlbums()");
+		return albumFacade.findAll();
+	}
 
-    /**
-     * Get Album by identifier id
-     * curl -i -X GET http://localhost:8080/music-library-web/albumrest/1
-     *
-     * @param id identifier for a album
-     * @return AlbumDTO
-     * @throws ResourceNotFoundException
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final AlbumDTO getAlbum(@PathVariable("id") long id) throws Exception {
-        log.debug("rest getAlbum({})", id);
+	/**
+	 * Get Album by identifier id
+	 * curl -i -X GET http://localhost:8080/music-library-web/albumrest/1
+	 *
+	 * @param id identifier for a album
+	 * @return AlbumDTO
+	 * @throws ResourceNotFoundException
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final AlbumDTO getAlbum(@PathVariable("id") long id) throws Exception {
+		log.debug("rest getAlbum({})", id);
 
-        try {
-            AlbumDTO albumDTO = albumFacade.findById(id);
-            return albumDTO;
-        } catch (Exception ex) {
-            throw new ResourceNotFoundException();
-        }
-    }
+		try {
+			AlbumDTO albumDTO = albumFacade.findById(id);
+			return albumDTO;
+		} catch (Exception ex) {
+			throw new ResourceNotFoundException();
+		}
+	}
 
-    /**
-     * Delete one album by id
-     * curl -i -X DELETE http://localhost:8080/music-library-web/albumrest/1
-     *
-     * @param id identifier for album
-     * @throws ResourceNotFoundException
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final void deleteAlbum(@PathVariable("id") long id) throws Exception {
-        log.debug("rest deleteAlbum({})", id);
-        try {
-            albumFacade.delete(id);
-        } catch (Exception ex) {
-            throw new ResourceNotFoundException();
-        }
-    }
+	/**
+	 * Delete one album by id
+	 * curl -i -X DELETE http://localhost:8080/music-library-web/albumrest/1
+	 *
+	 * @param id identifier for album
+	 * @throws ResourceNotFoundException
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final void deleteAlbum(@PathVariable("id") long id) throws Exception {
+		log.debug("rest deleteAlbum({})", id);
+		try {
+			albumFacade.delete(id);
+		} catch (Exception ex) {
+			throw new ResourceNotFoundException();
+		}
+	}
 
-    /**
-     * Create a new album by POST method
-     * <p>
-     * curl -X POST -i -H "Content-Type: application/json" --data '{"title":"test"}' http://localhost:8080/music-library-web/albumrest/create
-     *
-     * @param album AlbumCreateDTO with required fields for creation
-     * @return void
-     * @throws ResourceAlreadyExistsException
-     */
-    @RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public final AlbumDTO createAlbum(@RequestBody AlbumCreateDTO album) throws Exception {
+	/**
+	 * Create a new album by POST method
+	 * <p>
+	 * curl -X POST -i -H "Content-Type: application/json" --data '{"title":"test"}' http://localhost:8080/music-library-web/albumrest/create
+	 *
+	 * @param album AlbumCreateDTO with required fields for creation
+	 * @return void
+	 * @throws ResourceAlreadyExistsException
+	 */
+	@RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final AlbumDTO createAlbum(@RequestBody AlbumCreateDTO album) throws Exception {
 
-        log.debug("rest createAlbum()");
+		log.debug("rest createAlbum()");
 
-        try {
-            Long id = albumFacade.create(album);
-            return albumFacade.findById(id);
-        } catch (Exception ex) {
-            throw new ResourceAlreadyExistsException();
-        }
-    }
+		try {
+			Long id = albumFacade.create(album);
+			return albumFacade.findById(id);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistsException();
+		}
+	}
 
-    /**
-     * Update the title for one album by PUT method
-     * curl -X PUT -i -H "Content-Type: application/json" --data '{"title":"UpdatedName"}' http://localhost:8080/music-library-web/albumrest/1
-     *
-     * @param id      identified of the album to be updated
-     * @param newAlbum required fields as specified in AlbumCreateDTO
-     * @return the updated album AlbumDTO
-     * @throws InvalidParameterException
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public final AlbumDTO changeTitle(@PathVariable("id") long id, @RequestBody AlbumCreateDTO newAlbum) throws Exception {
+	/**
+	 * Update the title for one album by PUT method
+	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"title":"UpdatedName"}' http://localhost:8080/music-library-web/albumrest/1
+	 *
+	 * @param id       identified of the album to be updated
+	 * @param newAlbum required fields as specified in AlbumCreateDTO
+	 * @return the updated album AlbumDTO
+	 * @throws InvalidParameterException
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final AlbumDTO changeTitle(@PathVariable("id") long id, @RequestBody AlbumCreateDTO newAlbum) throws Exception {
 
-        log.debug("rest changeTitle({})", id);
+		log.debug("rest changeTitle({})", id);
 
-        try {
-            AlbumDTO album = albumFacade.findById(id);
-            album.setTitle(newAlbum.getTitle());
-            albumFacade.update(album);
-            return albumFacade.findById(id);
-        } catch (MusicLibraryServiceException esse) {
-            throw new InvalidParameterException();
-        }
-    }
+		try {
+			AlbumDTO album = albumFacade.findById(id);
+			album.setTitle(newAlbum.getTitle());
+			albumFacade.update(album);
+			return albumFacade.findById(id);
+		} catch (MusicLibraryServiceException esse) {
+			throw new InvalidParameterException();
+		}
+	}
 }
