@@ -15,9 +15,8 @@ public class AlbumDTO {
 	private String title;
 
 	private String commentary;
-	private byte[] albumArt;
 
-	private List<SongDTO> songs = new ArrayList<>();
+	private byte[] albumArt;
 
 	public Long getId() {
 		return id;
@@ -57,14 +56,6 @@ public class AlbumDTO {
 
 	public void setAlbumArt(byte[] albumArt) {
 		this.albumArt = albumArt;
-	}
-
-	public List<SongDTO> getSongs() {
-		return Collections.unmodifiableList(songs);
-	}
-
-	public void setSongs(List<SongDTO> songs) {
-		this.songs = songs;
 	}
 
 	@Override
