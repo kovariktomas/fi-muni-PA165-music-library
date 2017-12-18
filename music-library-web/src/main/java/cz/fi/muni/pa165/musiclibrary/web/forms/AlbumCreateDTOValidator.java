@@ -17,6 +17,11 @@ public class AlbumCreateDTOValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         AlbumCreateDTO albumCreateDTO = (AlbumCreateDTO) target;
-        if (albumCreateDTO.getTitle() == null) return;
+        if (albumCreateDTO.getTitle() == null|| albumCreateDTO.getTitle().isEmpty()) {
+            errors.rejectValue("name", "AlbumCreateDTOValidator.name.required");
+        }
+        if (albumCreateDTO.getReleaseDate() == null) {
+            errors.rejectValue("releaseDate", "AlbumCreateDTOValidator.releaseDate.required");
+        }
     }
 }
