@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
-import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
@@ -108,23 +107,37 @@ public class AlbumRestController {
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"title":"UpdatedName"}' http://localhost:8080/pa165/rest/albums/1
 	 *
 	 * @param id       identified of the album to be updated
-	 * @param newAlbum required fields as specified in AlbumCreateDTO
+	 * @param album required fields as specified in AlbumDTO
 	 * @return the updated album AlbumDTO
 	 * @throws InvalidParameterException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final AlbumDTO update(@PathVariable("id") long id, @RequestBody AlbumCreateDTO newAlbum) throws Exception {
+	public final AlbumDTO update(@PathVariable("id") long id, @RequestBody AlbumDTO album) throws Exception {
 
-		log.debug("update({}, {})", id, newAlbum);
+		log.debug("update({}, {})", id, album);
 
 		try {
-			AlbumDTO album = albumFacade.findById(id);
-			album.setTitle(newAlbum.getTitle());
+			album.setId(id);
 			albumFacade.update(album);
 			return albumFacade.findById(id);
-		} catch (MusicLibraryServiceException esse) {
-			throw new InvalidParameterException();
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistsException();
 		}
+	}
+
+	@RequestMapping(value = "/by_musician/{musician_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByMusician(@PathVariable("musician_id") long musicianId) {
+		return albumFacade.findByMusician(musicianId);
+	}
+
+	@RequestMapping(value = "/by_genre/{genre_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByGenre(@PathVariable("genre_id") long genreId) {
+		return albumFacade.findByGenre(genreId);
+	}
+
+	@RequestMapping(value = "/by_title", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<AlbumDTO> findByTitle(@RequestParam("title") String title) {
+		return albumFacade.findByTitle(title);
 	}
 }

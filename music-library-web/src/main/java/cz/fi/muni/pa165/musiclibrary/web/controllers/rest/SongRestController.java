@@ -50,7 +50,6 @@ public class SongRestController {
 	@RequestMapping(value = "/by_musician/{musician_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final List<SongDTO> findByMusician(@PathVariable("musician_id") long musicianId) {
 		return songFacade.findByMusician(musicianId);
-
 	}
 
 	@RequestMapping(value = "/by_album/{album_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
