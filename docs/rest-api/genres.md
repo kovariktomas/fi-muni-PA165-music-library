@@ -12,6 +12,12 @@ curl -i -X GET http://localhost:8080/pa165/rest/genres
 curl -i -X GET http://localhost:8080/pa165/rest/genres/1
 ```
 
+## Find genres by name
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/genres/by_name?name=Rock
+```
+
 ### Create genre
 
 ```
