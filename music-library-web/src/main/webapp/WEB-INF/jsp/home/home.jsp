@@ -32,7 +32,7 @@
 						<h3>${album.title}</h3>
 						<p>${album.commentary}</p>
 						<p>
-							<fmt:message key="homepage.home.album.released"/>
+							<fmt:message key="homepage.home.album.releaseDate"/>:
 							<fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/>
 						</p>
 						<p>
