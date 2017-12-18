@@ -30,6 +30,7 @@ public class Album {
 	private byte[] albumArt;
 
 	@OneToMany(mappedBy = "album", cascade = CascadeType.REMOVE)
+	@OrderBy("position")
 	private List<Song> songs = new ArrayList<>();
 
 	public Album() {
