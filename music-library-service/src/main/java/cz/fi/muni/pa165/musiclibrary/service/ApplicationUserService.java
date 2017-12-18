@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface ApplicationUserService {
 
-	ApplicationUser create(ApplicationUser u);
+	void create(ApplicationUser u, String password);
 
 	void update(ApplicationUser u);
 

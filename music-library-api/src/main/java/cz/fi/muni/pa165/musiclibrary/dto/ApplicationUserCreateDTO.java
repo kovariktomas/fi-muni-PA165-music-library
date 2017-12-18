@@ -15,7 +15,7 @@ public class ApplicationUserCreateDTO {
 	private String email;
 
 	@NotNull
-	private String passHash;
+	private String password;
 
 	@NotNull
 	private String role;
@@ -36,12 +36,12 @@ public class ApplicationUserCreateDTO {
 		this.email = email;
 	}
 
-	public String getPassHash() {
-		return passHash;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassHash(String passHash) {
-		this.passHash = passHash;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
@@ -81,7 +81,7 @@ public class ApplicationUserCreateDTO {
 		return "User{" +
 			", name='" + name + '\'' +
 			", email='" + email + '\'' +
-			", passHash='" + passHash + '\'' +
+			", password='" + password + '\'' +
 			", role='" + role + '\'' +
 			'}';
 	}

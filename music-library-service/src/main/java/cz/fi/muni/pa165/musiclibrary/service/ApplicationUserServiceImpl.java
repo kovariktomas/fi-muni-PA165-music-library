@@ -23,9 +23,9 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public ApplicationUser create(ApplicationUser u) {
+	public void create(ApplicationUser u, String password) {
+		u.setPassHash(passwordEncoder.encode(password));
 		userDao.create(u);
-		return u;
 	}
 
 	@Override
