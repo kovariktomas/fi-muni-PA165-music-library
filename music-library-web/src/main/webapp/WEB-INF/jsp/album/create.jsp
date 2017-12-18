@@ -39,7 +39,13 @@
 			</table>
 			<input type="hidden" name="id" value="${album.id}"/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			<button class="btn btn-primary" type="submit"><fmt:message key="albumCreate.createNew"/></button>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-primary" type="submit">
+						<fmt:message key="albumCreate.createNew"/>
+					</button>
+				</div>
+			</div>
 		</form:form>
 	</jsp:attribute>
 </my:pagetemplate>

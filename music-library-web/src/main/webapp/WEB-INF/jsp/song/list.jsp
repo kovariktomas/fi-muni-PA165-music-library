@@ -5,40 +5,39 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Songs">
+<fmt:message key="songs.list.title" var="title"/>
+<my:pagetemplate title="${title}">
 <jsp:attribute name="body">
-	<my:a href="/song/new" class="btn btn-primary">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		New Song
-	</my:a>
+	<p>
+		<my:a href="/song/new" class="btn btn-success">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			<fmt:message key="songs.list.create"/>
+		</my:a>
+	</p>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>musician</th>
-				<th>genre</th>
-				<th>album</th>
-				<th>title</th>
-				<th>bitrate</th>
-				<th>position</th>
-				<th>commentary</th>
+				<th><fmt:message key="songs.list.song.id"/></th>
+				<th><fmt:message key="songs.list.song.title"/></th>
+				<th><fmt:message key="songs.list.song.musician"/></th>
+				<th><fmt:message key="songs.list.song.genre"/></th>
+				<th><fmt:message key="songs.list.song.album"/></th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${songs}" var="song">
 				<tr>
 					<td>${song.id}</td>
+					<td>${song.title}</td>
 					<td><c:out value="${song.musician.name}"/></td>
 					<td><c:out value="${song.genre.name}"/></td>
 					<td><c:out value="${song.album.title}"/></td>
-					<td>${song.title}</td>
-					<td>${song.bitrate}</td>
-					<td>${song.position}</td>
-					<td>${song.commentary}</td>
 					<td>
 						<form method="post" action="${pageContext.request.contextPath}/song/delete/${song.id}">
-							<button type="submit" class="btn btn-primary">Delete</button>
+							<button type="submit" class="btn btn-danger">
+								<fmt:message key="songs.list.delete"/>
+							</button>
 						</form>
 					</td>
 				</tr>
