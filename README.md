@@ -4,4 +4,7 @@ Let us introduce you the Music Library used for managing songs. Each song has a 
 
 ## REST API documentation
 
+- [Albums](docs/rest-api/albums.md)
+- [Musicians](docs/rest-api/musicians.md)
 - [Genres](docs/rest-api/genres.md)
+- [Songs](docs/rest-api/songs.md)
