@@ -255,7 +255,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		Record(String musicianName, String albumTitle, String albumArtPath, String songTitle) {
 			this.musicianName = musicianName;
 			this.albumTitle = albumTitle;
-			this.albumReleaseDate = toDate(2017, 11, 1); // TODO
+			this.albumReleaseDate = toDate(2017, 12, 1); // TODO
 			this.albumArtPath = albumArtPath;
 			this.genreName = "foo"; // TODO
 			this.songTitle = songTitle;

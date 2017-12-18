@@ -58,7 +58,7 @@ public class SampleDataLoadingFacadeTest extends AbstractTestNGSpringContextTest
 
 		Assert.assertNotNull(album);
 		Assert.assertNotNull(album.getId());
-		Assert.assertEquals("2017-11-01", DateFormatUtils.format(album.getReleaseDate(), "yyyy-MM-dd", Locale.ENGLISH));
+		Assert.assertEquals("2017-12-01", DateFormatUtils.format(album.getReleaseDate(), "yyyy-MM-dd", Locale.ENGLISH));
 		Assert.assertEquals("÷", album.getTitle());
 		Assert.assertEquals("", album.getCommentary());
 		Assert.assertNotNull(album.getAlbumArt());
