@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.MusicianDTO;
-import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
@@ -106,26 +105,25 @@ public class MusicianRestController {
 	}
 
 	/**
-	 * Update the name for one musician by PUT method
+	 * Update a musician with the given ID by PUT method
 	 * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/pa165/rest/musicians/1
 	 *
 	 * @param id      identified of the musician to be updated
-	 * @param musicianUpdate required fields as specified in MusicianCreateDTO
+	 * @param musician required fields as specified in MusicianDTO
 	 * @return the updated musician MusicianDTO
 	 * @throws InvalidParameterException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianCreateDTO musicianUpdate) throws Exception {
-		log.debug("update({}, {})", id, musicianUpdate);
+	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianDTO musician) throws Exception {
+		log.debug("update({}, {})", id, musician);
 
 		try {
-			MusicianDTO musician = musicianFacade.findById(id);
-			musician.setName(musicianUpdate.getName());
+			musician.setId(id);
 			musicianFacade.update(musician);
 			return musicianFacade.findById(id);
-		} catch (MusicLibraryServiceException esse) {
-			throw new InvalidParameterException();
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistsException();
 		}
 	}
 }
