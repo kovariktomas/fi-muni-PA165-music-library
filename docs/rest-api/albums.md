@@ -17,7 +17,7 @@ curl -i -X GET http://localhost:8080/pa165/rest/albums/1
 ```
 curl -i -X POST \
 	--header "Content-Type: application/json" \
-	--data '{"name":"Hybrid Theory"}' \
+	--data '{"releaseDate":"2000-10-24","title":"Hybrid Theory","commentary":"","albumArt":null}' \
 	http://localhost:8080/pa165/rest/albums/create
 ```
 
@@ -26,7 +26,7 @@ curl -i -X POST \
 ```
 curl -i -X PUT \
 	--header "Content-Type: application/json" \
-	--data '{"name":"Meteora"}' \
+	--data '{"releaseDate":"2003-03-25","title":"Meteora"}' \
 	http://localhost:8080/pa165/rest/albums/1
 ```
 
