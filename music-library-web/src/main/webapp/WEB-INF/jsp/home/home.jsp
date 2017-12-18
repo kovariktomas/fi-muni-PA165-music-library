@@ -13,7 +13,7 @@
 		<p class="lead"><fmt:message key="homepage.home.search.text"/></p>
 		<form class="form-inline" method="get" action="${pageContext.request.contextPath}/search/result">
 			<div class="form-group form-group-lg">
-				<input type="text" name="searchTerm" class="form-control" required />
+				<input type="text" name="searchTerm" class="form-control" required/>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg">
 				<fmt:message key="homepage.home.search.button"/>

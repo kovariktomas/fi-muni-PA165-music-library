@@ -121,7 +121,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		}
 	}
 
-	private Record[] records = new Record[] {
+	private Record[] records = new Record[]{
 		new Record(
 			"Post Malone",
 			"Rockstar",

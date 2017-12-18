@@ -14,38 +14,38 @@
     </my:a>
 
     <table class="table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>musician</th>
-            <th>genre</th>
-            <th>album</th>
-            <th>title</th>
-            <th>bitrate</th>
-            <th>position</th>
-            <th>commentary</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${songs}" var="song">
+		<thead>
+		<tr>
+			<th>id</th>
+			<th>musician</th>
+			<th>genre</th>
+			<th>album</th>
+			<th>title</th>
+			<th>bitrate</th>
+			<th>position</th>
+			<th>commentary</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${songs}" var="song">
             <tr>
-                <td>${song.id}</td>
-                <td><c:out value="${song.musician.name}"/></td>
-                <td><c:out value="${song.genre.name}"/></td>
-                <td><c:out value="${song.album.title}"/></td>
-                <td>${song.title}</td>
-                <td>${song.bitrate}</td>
-                <td>${song.position}</td>
-                <td>${song.commentary}</td>
-                <td>
-                    <form method="post" action="${pageContext.request.contextPath}/song/delete/${song.id}">
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
-                </td>
-            </tr>
+				<td>${song.id}</td>
+				<td><c:out value="${song.musician.name}"/></td>
+				<td><c:out value="${song.genre.name}"/></td>
+				<td><c:out value="${song.album.title}"/></td>
+				<td>${song.title}</td>
+				<td>${song.bitrate}</td>
+				<td>${song.position}</td>
+				<td>${song.commentary}</td>
+				<td>
+					<form method="post" action="${pageContext.request.contextPath}/song/delete/${song.id}">
+						<button type="submit" class="btn btn-primary">Delete</button>
+					</form>
+				</td>
+			</tr>
         </c:forEach>
-        </tbody>
-    </table>
+		</tbody>
+	</table>
 
 </jsp:attribute>
 </my:pagetemplate>

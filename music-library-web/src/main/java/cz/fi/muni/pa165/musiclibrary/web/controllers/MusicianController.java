@@ -100,7 +100,7 @@ public class MusicianController {
 
 		String flashMessage = messageSource.getMessage(
 			"musicians.create.saved",
-			new Object[]{ musicianCreate.getName() },
+			new Object[]{musicianCreate.getName()},
 			locale
 		);
 
@@ -151,7 +151,7 @@ public class MusicianController {
 
 		String flashMessage = messageSource.getMessage(
 			"musicians.edit.saved",
-			new Object[]{ musician.getName() },
+			new Object[]{musician.getName()},
 			locale
 		);
 
@@ -178,7 +178,7 @@ public class MusicianController {
 
 		String flashMessage = messageSource.getMessage(
 			"musicians.delete.deleted",
-			new Object[]{ musician.getName() },
+			new Object[]{musician.getName()},
 			locale
 		);
 
