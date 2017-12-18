@@ -1,4 +1,4 @@
-# Genre
+# Genres
 
 ## Find all genres
 
