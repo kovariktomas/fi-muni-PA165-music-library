@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebFilter(urlPatterns = {"/song/*"}) //add pages that need loging in
+@WebFilter(urlPatterns = {"/musician/*", "/album/*", "/song/*", "/genre/*"})
 public class ProtectFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest r, ServletResponse s, FilterChain chain) throws IOException, ServletException {
