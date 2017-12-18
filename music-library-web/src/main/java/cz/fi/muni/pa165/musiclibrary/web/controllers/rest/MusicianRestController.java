@@ -126,4 +126,9 @@ public class MusicianRestController {
 			throw new ResourceAlreadyExistsException();
 		}
 	}
+
+	@RequestMapping(value = "/by_name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<MusicianDTO> findByName(@RequestParam("name") String name) {
+		return musicianFacade.findByName(name);
+	}
 }
