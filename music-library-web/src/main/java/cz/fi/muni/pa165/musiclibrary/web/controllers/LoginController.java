@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
 	private ApplicationUserFacade applicationUserFacade;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request) {
 		if (request.getSession().getAttribute("authenticatedUser") != null) {
 			return "redirect:/";
@@ -33,7 +33,7 @@ public class LoginController {
 		return "/login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String postLogin(@Valid @ModelAttribute("userLogin") ApplicationUserDTO form,
 							BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
 							UriComponentsBuilder uriBuilder, HttpServletRequest request) {
