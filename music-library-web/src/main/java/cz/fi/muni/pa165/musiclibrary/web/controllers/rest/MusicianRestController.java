@@ -104,11 +104,16 @@ public class MusicianRestController {
 	 * @param id      identified of the musician to be updated
 	 * @param musician required fields as specified in MusicianDTO
 	 * @return the updated musician MusicianDTO
+	 * @throws ResourceNotFoundException
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianDTO musician) {
+	public final MusicianDTO update(@PathVariable("id") long id, @RequestBody MusicianDTO musician) throws ResourceNotFoundException {
 		log.debug("update({}, {})", id, musician);
+
+		if (musicianFacade.findById(id) == null) {
+			throw new ResourceNotFoundException();
+		}
 
 		musician.setId(id);
 		musicianFacade.update(musician);

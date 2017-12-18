@@ -117,6 +117,10 @@ public class AlbumRestController {
 
 		log.debug("update({}, {})", id, album);
 
+		if (albumFacade.findById(id) == null) {
+			throw new ResourceNotFoundException();
+		}
+
 		try {
 			album.setId(id);
 			albumFacade.update(album);
