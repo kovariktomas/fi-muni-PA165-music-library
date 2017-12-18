@@ -1,13 +1,7 @@
 package cz.fi.muni.pa165.musiclibrary.sampledata;
 
-import cz.fi.muni.pa165.musiclibrary.entity.Album;
-import cz.fi.muni.pa165.musiclibrary.entity.Genre;
-import cz.fi.muni.pa165.musiclibrary.entity.Musician;
-import cz.fi.muni.pa165.musiclibrary.entity.Song;
-import cz.fi.muni.pa165.musiclibrary.service.AlbumService;
-import cz.fi.muni.pa165.musiclibrary.service.GenreService;
-import cz.fi.muni.pa165.musiclibrary.service.MusicianService;
-import cz.fi.muni.pa165.musiclibrary.service.SongService;
+import cz.fi.muni.pa165.musiclibrary.entity.*;
+import cz.fi.muni.pa165.musiclibrary.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +28,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 	public static final String JPEG = "image/jpeg";
 
 	@Autowired
+	private ApplicationUserService applicationUserService;
+
+	@Autowired
 	private AlbumService albumService;
 
 	@Autowired
@@ -44,6 +41,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
 	@Autowired
 	private SongService songService;
+
+	private ApplicationUser user;
 
 	private HashMap<String, Musician> musicians = new HashMap<>();
 
@@ -58,10 +57,21 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 	@Override
 	@SuppressWarnings("unused")
 	public void loadData() throws IOException {
+		loadApplicationUser();
 		loadMusicians();
 		loadAlbums();
 		loadGenres();
 		loadSongs();
+	}
+
+	private void loadApplicationUser() {
+		if (user != null) return;
+
+		user = new ApplicationUser();
+		user.setName("admin");
+		user.setEmail("admin@example.com");
+		user.setRole("admin");
+		applicationUserService.create(user, "password");
 	}
 
 	private void loadMusicians() {

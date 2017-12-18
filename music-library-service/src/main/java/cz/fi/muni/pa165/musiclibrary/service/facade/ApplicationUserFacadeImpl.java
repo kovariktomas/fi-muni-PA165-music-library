@@ -28,10 +28,12 @@ public class ApplicationUserFacadeImpl implements ApplicationUserFacade {
 
 	@Override
 	public Long create(ApplicationUserCreateDTO u) {
-		ApplicationUser mappedUser = beanMappingService.mapTo(u, ApplicationUser.class);
-		//save user
-		ApplicationUser newUser = applicationUserService.create(mappedUser);
-		return newUser.getId();
+		ApplicationUser user = new ApplicationUser();
+		user.setName(u.getName());
+		user.setEmail(u.getEmail());
+		user.setRole(u.getRole());
+		applicationUserService.create(user, u.getPassword());
+		return user.getId();
 	}
 
 	@Override

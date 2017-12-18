@@ -33,10 +33,6 @@ public class ApplicationUser {
 	public ApplicationUser() {
 	}
 
-	public ApplicationUser(Long genreId) {
-		this.id = genreId;
-	}
-
 	public Long getId() {
 		return id;
 	}
