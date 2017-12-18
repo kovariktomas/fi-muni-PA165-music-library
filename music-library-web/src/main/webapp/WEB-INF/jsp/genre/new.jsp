@@ -16,7 +16,11 @@
 				<form:errors path="name" cssClass="help-block"/>
 			</div>
 		</div>
-		<button class="btn btn-primary" type="submit"><fmt:message key="genreCreate.createNew"/></button>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" type="submit"><fmt:message key="genreCreate.createNew"/></button>
+			</div>
+		</div>
 	</form:form>
 
 </jsp:attribute>
