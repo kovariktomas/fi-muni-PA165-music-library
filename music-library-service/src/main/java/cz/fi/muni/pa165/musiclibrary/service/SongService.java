@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.service;
 
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
@@ -22,6 +23,8 @@ public interface SongService {
 	List<Song> findAll();
 
 	List<Song> findByMusician(Musician musician);
+
+	List<Song> findByAlbum(Album album);
 
 	List<Song> findByGenre(Genre genre);
 

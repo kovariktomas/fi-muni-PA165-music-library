@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.service.facade;
 
 import cz.fi.muni.pa165.musiclibrary.dto.SongCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
@@ -60,6 +61,12 @@ public class SongFacadeImpl implements SongFacade {
 	public List<SongDTO> findByMusician(Long musicianId) {
 		Musician m = musicianService.findById(musicianId);
 		return beanMappingService.mapTo(songService.findByMusician(m), SongDTO.class);
+	}
+
+	@Override
+	public List<SongDTO> findByAlbum(Long albumId) {
+		Album album = albumService.findById(albumId);
+		return beanMappingService.mapTo(songService.findByAlbum(album), SongDTO.class);
 	}
 
 	@Override

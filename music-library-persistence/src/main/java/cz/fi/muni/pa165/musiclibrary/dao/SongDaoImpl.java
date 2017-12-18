@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.dao;
 
+import cz.fi.muni.pa165.musiclibrary.entity.Album;
 import cz.fi.muni.pa165.musiclibrary.entity.Genre;
 import cz.fi.muni.pa165.musiclibrary.entity.Musician;
 import cz.fi.muni.pa165.musiclibrary.entity.Song;
@@ -44,6 +45,13 @@ public class SongDaoImpl implements SongDao {
 	public List<Song> findByMusician(Musician musician) {
 		return em.createQuery("SELECT s FROM Song s WHERE s.musician = :musician", Song.class)
 			.setParameter("musician", musician)
+			.getResultList();
+	}
+
+	@Override
+	public List<Song> findByAlbum(Album album) {
+		return em.createQuery("SELECT s FROM Song s WHERE s.album = :album", Song.class)
+			.setParameter("album", album)
 			.getResultList();
 	}
 
