@@ -12,6 +12,24 @@ curl -i -X GET http://localhost:8080/pa165/rest/songs
 curl -i -X GET http://localhost:8080/pa165/rest/songs/1
 ```
 
+## Find songs by musician ID
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/songs/by_musician/1
+```
+
+## Find songs by album ID
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/songs/by_album/1
+```
+
+## Find songs by title
+
+```
+curl -i -X GET http://localhost:8080/pa165/rest/songs/by_title?title=Rock
+```
+
 ### Create song
 
 ```
