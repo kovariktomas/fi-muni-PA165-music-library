@@ -17,14 +17,14 @@
 		<thead>
 		<tr>
 			<th><fmt:message key="album.id"/></th>
-			<th><fmt:message key="album.name"/></th>
+			<th><fmt:message key="album.title"/></th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${albums}" var="album">
 			<tr>
 				<td>${album.id}</td>
-				<td><c:out value="${album.name}"/></td>
+				<td><c:out value="${album.title}"/></td>
 				<td>
 					<my:a href="/album/view/${album.id}" class="btn btn-primary">
 						<fmt:message key="album.detail"/>

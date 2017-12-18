@@ -25,13 +25,13 @@
 		<thead>
 		<tr>
 			<th><fmt:message key="album.id"/></th>
-			<th><fmt:message key="album.name"/></th>
+			<th><fmt:message key="album.title"/></th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td>${album.id}</td>
-			<td><c:out value="${album.name}"/></td>
+			<td><c:out value="${album.title}"/></td>
 		</tr>
 		</tbody>
 	</table>
