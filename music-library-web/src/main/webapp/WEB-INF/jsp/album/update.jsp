@@ -6,11 +6,24 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <fmt:message key="albumEdit.title" var="title"/>
 <my:pagetemplate title="${title} ${album.id}">
-<jsp:attribute name="body">
+<jsp:attribute name="pageHeader">
+	<div class="page-header">
+		<div class="pull-right">
+			<my:a href="/album/view/${album.id}" class="btn btn-default">
+				<fmt:message key="musicians.edit.backToDetail"/>
+			</my:a>
+		</div>
+		<h1>
+			<my:a href="/album/list"><fmt:message key="navigation.admin.albums"/></my:a> /
+			<c:out value="${album.name}"/>
+		</h1>
+	</div>
+</jsp:attribute>
+	<jsp:attribute name="body">
 	<form:form method="post" action="${pageContext.request.contextPath}/album/saveUpdate"
-			modelAttribute="albumUpdate" cssClass="form-horizontal">
+			   modelAttribute="albumUpdate" cssClass="form-horizontal">
 		<div class="form-group ${name_error?'has-error':''}">
-			<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.title"/></form:label>
+			<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.name"/></form:label>
 			<div class="col-sm-10">
 				<form:input path="title" cssClass="form-control"/>
 				<form:errors path="title" cssClass="help-block"/>
