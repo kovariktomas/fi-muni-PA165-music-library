@@ -1,7 +1,6 @@
 package cz.fi.muni.pa165.musiclibrary.dto;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -11,19 +10,15 @@ public class ApplicationUserCreateDTO {
 	private Long id;
 
 	@NotNull
-	@Size(min = 3, max = 50)
 	private String name;
 
 	@NotNull
-	@Size(min = 3, max = 150)
 	private String email;
 
 	@NotNull
-	@Size(min = 3, max = 1024)
 	private String passHash;
 
 	@NotNull
-	@Size(min = 3, max = 50)
 	private String role;
 
 	public String getName() {
