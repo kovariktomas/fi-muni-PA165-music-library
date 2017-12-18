@@ -1,7 +1,9 @@
 package cz.fi.muni.pa165.musiclibrary.web.controllers;
 
-import cz.fi.muni.pa165.musiclibrary.dto.SongCreateDTO;
-import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.*;
+import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
+import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
+import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.SongCreateDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author David
@@ -25,6 +28,16 @@ public class SongController {
 
 	@Autowired
 	private SongFacade songFacade;
+
+	@Autowired
+	private GenreFacade genreFacade;
+
+	@Autowired
+	private AlbumFacade albumFacade;
+
+	@Autowired
+	private MusicianFacade musicianFacade;
+
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -40,10 +53,14 @@ public class SongController {
 	 */
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newSong(Model model) {
+		List<AlbumDTO> albums = albumFacade.findAll();
+		List<GenreDTO> genres = genreFacade.findAll();
+		List<MusicianDTO> musicians = musicianFacade.findAll();
+
 		model.addAttribute("songCreate", new SongCreateDTO());
-		//model.addAttribute("genres", genreFacade.findAll());
-		//model.addAttribute("albums", albumFacade.findAll());
-		//model.addAttribute("musicians", musicianFacade.findAll());
+		model.addAttribute("genres", genres);
+		model.addAttribute("albums", albums);
+		model.addAttribute("musicians", musicians);
 		return "song/new";
 	}
 
@@ -66,7 +83,7 @@ public class SongController {
 	public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
 		SongDTO song = songFacade.findById(id);
 		songFacade.delete(id);
-		redirectAttributes.addFlashAttribute("alert_success", "Song " + song.getTitle() + " was created");
+		redirectAttributes.addFlashAttribute("alert_success", "Song " + song.getTitle() + " was deleted");
 		return "redirect:" + uriBuilder.path("/song/list").toUriString();
 	}
 

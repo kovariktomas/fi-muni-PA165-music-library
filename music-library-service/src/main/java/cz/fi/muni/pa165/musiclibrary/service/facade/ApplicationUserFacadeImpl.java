@@ -65,4 +65,9 @@ public class ApplicationUserFacadeImpl implements ApplicationUserFacade {
 	public void setPassword(ApplicationUserDTO user, String password) {
 		applicationUserService.setPassword(user.getId(), password);
 	}
+
+	@Override
+	public boolean verifyPassword(Long userId, String rawPassword) {
+		return applicationUserService.verifyPassword(userId, rawPassword);
+	}
 }

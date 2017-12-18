@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebFilter(urlPatterns = {"/musician/*", "/album/*", "/song/*", "/genre/*"})
 public class ProtectFilter implements Filter {
 	@Override
