@@ -17,13 +17,7 @@ public class AlbumDTOValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        AlbumDTO albumDTO = (AlbumDTO) target;
-        if (albumDTO.getTitle() == null|| albumDTO.getTitle().isEmpty()) {
-            errors.rejectValue("title", "AlbumDTOValidator.title.required");
-        }
-        if (albumDTO.getReleaseDate() == null) {
-            errors.rejectValue("releaseDate", "AlbumDTOValidator.releaseDate.required");
-        }
-
+        AlbumDTO albumCreateDTO = (AlbumDTO) target;
+        if (albumCreateDTO.getTitle() == null) return;
     }
 }

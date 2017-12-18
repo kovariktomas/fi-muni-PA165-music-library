@@ -5,7 +5,7 @@ import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.exceptions.MusicLibraryServiceException;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.InvalidParameterException;
-import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
+import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistingException;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,11 +84,11 @@ public class AlbumRestController {
     /**
      * Create a new album by POST method
      * <p>
-     * curl -X POST -i -H "Content-Type: application/json" --data '{"title":"test"}' http://localhost:8080/music-library-web/albumrest/create
+     * curl -X POST -i -H "Content-Type: application/json" --data '{"name":"test"}' http://localhost:8080/music-library-web/albumrest/create
      *
      * @param album AlbumCreateDTO with required fields for creation
      * @return void
-     * @throws ResourceAlreadyExistsException
+     * @throws ResourceAlreadyExistingException
      */
     @RequestMapping(value = "/1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -100,13 +100,13 @@ public class AlbumRestController {
             Long id = albumFacade.create(album);
             return albumFacade.findById(id);
         } catch (Exception ex) {
-            throw new ResourceAlreadyExistsException();
+            throw new ResourceAlreadyExistingException();
         }
     }
 
     /**
-     * Update the title for one album by PUT method
-     * curl -X PUT -i -H "Content-Type: application/json" --data '{"title":"UpdatedName"}' http://localhost:8080/music-library-web/albumrest/1
+     * Update the name for one album by PUT method
+     * curl -X PUT -i -H "Content-Type: application/json" --data '{"name":"UpdatedName"}' http://localhost:8080/music-library-web/albumrest/1
      *
      * @param id      identified of the album to be updated
      * @param newAlbum required fields as specified in AlbumCreateDTO
