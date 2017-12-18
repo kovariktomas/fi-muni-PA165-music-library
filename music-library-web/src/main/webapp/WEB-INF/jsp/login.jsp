@@ -29,10 +29,6 @@
 				<form:errors path="passHash" cssClass="help-block"/>
 			</div>
 		</div>
-		<c:if test="${not empty alert_warning}">
-			<p class="text-warning"><c:out value="${alert_warning}"></c:out></p>
-		</c:if>
-
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button class="btn btn-primary" type="submit"><fmt:message key="login.submit"/></button>

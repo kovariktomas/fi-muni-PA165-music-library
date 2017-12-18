@@ -7,6 +7,7 @@ import cz.fi.muni.pa165.musiclibrary.facade.MusicianFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.SongCreateDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author David
@@ -37,6 +39,9 @@ public class SongController {
 
 	@Autowired
 	private MusicianFacade musicianFacade;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@ModelAttribute
 	public void addAttributes(Model model) {
@@ -69,8 +74,14 @@ public class SongController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("songCreate") SongCreateDTO formBean, BindingResult bindingResult,
-						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+	public String create(
+		@Valid @ModelAttribute("songCreate") SongCreateDTO formBean,
+		BindingResult bindingResult,
+		Model model,
+		RedirectAttributes redirectAttributes,
+		UriComponentsBuilder uriBuilder,
+		Locale locale
+	) {
 		if (bindingResult.hasErrors()) {
 			bindingResult.getFieldErrors().forEach((fe) -> {
 				model.addAttribute(fe.getField() + "_error", true);
@@ -79,16 +90,22 @@ public class SongController {
 		}
 
 		Long id = songFacade.create(formBean);
-		redirectAttributes.addFlashAttribute("alert_success", "Song " + id + " was created");
+		String flashMessage = messageSource.getMessage("songs.create.saved", new Object[]{id}, locale);
+		redirectAttributes.addFlashAttribute("alert_success", flashMessage);
 		return "redirect:" + uriBuilder.path("/song/list").toUriString();
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-	public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+	public String delete(
+		@PathVariable long id,
+		RedirectAttributes redirectAttributes,
+		Locale locale
+	) {
 		SongDTO song = songFacade.findById(id);
 		songFacade.delete(id);
-		redirectAttributes.addFlashAttribute("alert_success", "Song " + song.getTitle() + " was deleted");
-		return "redirect:" + uriBuilder.path("/song/list").toUriString();
+		String flashMessage = messageSource.getMessage("songs.delete.deleted", new Object[]{song.getTitle()}, locale);
+		redirectAttributes.addFlashAttribute("alert_success", flashMessage);
+		return "redirect:/song/list";
 	}
 
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)

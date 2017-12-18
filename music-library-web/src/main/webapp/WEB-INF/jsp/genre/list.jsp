@@ -8,10 +8,12 @@
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 
-	<my:a href="/genre/new" class="btn btn-success">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		<fmt:message key="genreCreate.title"/>
-	</my:a>
+	<p>
+		<my:a href="/genre/new" class="btn btn-success">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			<fmt:message key="genreCreate.title"/>
+		</my:a>
+	</p>
 
 	<table class="table table-align-middle table-striped">
 		<thead>

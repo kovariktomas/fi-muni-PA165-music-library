@@ -29,7 +29,10 @@
 							<div class="caption">
 								<h3>${album.title}</h3>
 								<p>${album.commentary}</p>
-								<p>Released: <fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/></p>
+								<p>
+									<fmt:message key="search.result.album.releaseDate"/>:
+									<fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/>
+								</p>
 								<p>
 									<my:a href="/album/detail/${album.id}" class="btn btn-primary" role="button">
 										<fmt:message key="search.result.album.detail"/>
