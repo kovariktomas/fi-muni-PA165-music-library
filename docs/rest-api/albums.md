@@ -1,4 +1,4 @@
-# Album
+# Albums
 
 ## Find all albums
 
@@ -17,7 +17,7 @@ curl -i -X GET http://localhost:8080/pa165/rest/albums/1
 ```
 curl -i -X POST \
 	--header "Content-Type: application/json" \
-	--data '{"name":"Jazz"}' \
+	--data '{"name":"Hybrid Theory"}' \
 	http://localhost:8080/pa165/rest/albums/create
 ```
 
@@ -26,7 +26,7 @@ curl -i -X POST \
 ```
 curl -i -X PUT \
 	--header "Content-Type: application/json" \
-	--data '{"name":"Rock"}' \
+	--data '{"name":"Meteora"}' \
 	http://localhost:8080/pa165/rest/albums/1
 ```
 
