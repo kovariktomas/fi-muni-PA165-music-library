@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers.rest;
 
 import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.dto.SongDTO;
 import cz.fi.muni.pa165.musiclibrary.exceptions.GenreAlreadyExistsException;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.web.exceptions.ResourceAlreadyExistsException;
@@ -47,6 +48,11 @@ public class GenreRestController {
 		}
 
 		return genre;
+	}
+
+	@RequestMapping(value = "/by_name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final List<GenreDTO> findByName(@RequestParam("name") String name) {
+		return genreFacade.findByName(name);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
