@@ -52,16 +52,14 @@ public class LoginController {
                 try{
                     found = applicationUserFacade.findByEmail(form.getEmail());}
                 catch(EmptyResultDataAccessException ex){
-                    redirectAttributes.addFlashAttribute("alert_warning", "Login with username " + form.getEmail() + " has failed.");
+                    redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
                 }
 
-		if (found == null || applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
-			redirectAttributes.addFlashAttribute("alert_warning", "Login with username " + form.getEmail() + " has failed.");
+		if (found == null || !applicationUserFacade.verifyPassword(found.getId(), form.getPassHash())) {
+			redirectAttributes.addFlashAttribute("alert_warning", "Login with email " + form.getEmail() + " has failed.");
 			return "redirect:" + uriBuilder.path("/login").toUriString();
 		}
-                
-                applicationUserFacade.verifyPassword(found.getId(), form.getPassHash());
                 
 		request.getSession().setAttribute("authenticatedUser", found);
 
