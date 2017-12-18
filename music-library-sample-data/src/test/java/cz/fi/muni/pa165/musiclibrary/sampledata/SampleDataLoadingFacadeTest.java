@@ -70,18 +70,18 @@ public class SampleDataLoadingFacadeTest extends AbstractTestNGSpringContextTest
 
 		Assert.assertNotNull(album);
 		Assert.assertNotNull(album.getId());
-		Assert.assertEquals("2017-12-01", DateFormatUtils.format(album.getReleaseDate(), "yyyy-MM-dd", Locale.ENGLISH));
+		Assert.assertEquals("2017-03-03", DateFormatUtils.format(album.getReleaseDate(), "yyyy-MM-dd", Locale.ENGLISH));
 		Assert.assertEquals("÷", album.getTitle());
 		Assert.assertEquals("", album.getCommentary());
 		Assert.assertNotNull(album.getAlbumArt());
 
 		Genre genre = em.createQuery("SELECT g FROM Genre g WHERE g.name = :name", Genre.class)
-			.setParameter("name", "foo")
+			.setParameter("name", "Pop")
 			.getSingleResult();
 
 		Assert.assertNotNull(genre);
 		Assert.assertNotNull(genre.getId());
-		Assert.assertEquals("foo", genre.getName());
+		Assert.assertEquals("Pop", genre.getName());
 
 		Song song = em.createQuery("SELECT s FROM Song s WHERE s.title = :title", Song.class)
 			.setParameter("title", "Perfect")
