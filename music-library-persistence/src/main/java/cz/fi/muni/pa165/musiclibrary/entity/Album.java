@@ -84,10 +84,6 @@ public class Album {
 		return Collections.unmodifiableList(songs);
 	}
 
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
-	}
-
 	public void addSong(Song song) {
 		this.songs.add(song);
 	}
