@@ -10,10 +10,10 @@
 	<form:form method="post" action="${pageContext.request.contextPath}/album/saveUpdate"
 			modelAttribute="albumUpdate" cssClass="form-horizontal">
 		<div class="form-group ${name_error?'has-error':''}">
-			<form:label path="name" cssClass="col-sm-2 control-label"><fmt:message key="album.name"/></form:label>
+			<form:label path="title" cssClass="col-sm-2 control-label"><fmt:message key="album.title"/></form:label>
 			<div class="col-sm-10">
-				<form:input path="name" cssClass="form-control"/>
-				<form:errors path="name" cssClass="help-block"/>
+				<form:input path="title" cssClass="form-control"/>
+				<form:errors path="title" cssClass="help-block"/>
 			</div>
 		</div>
 		<form:hidden path="id"/>
