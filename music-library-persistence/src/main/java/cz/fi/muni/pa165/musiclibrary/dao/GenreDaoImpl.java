@@ -58,7 +58,7 @@ public class GenreDaoImpl implements GenreDao {
 			if (i == 0) {
 				queryBuilder.append(" WHERE");
 			} else {
-				queryBuilder.append(" AND");
+				queryBuilder.append(" OR");
 			}
 			queryBuilder.append(" LOWER(g.name) LIKE :pattern").append(i);
 		}

@@ -67,7 +67,7 @@
 			<c:otherwise>
 				<p><fmt:message key="albums.detail.noSongs"/></p>
 				<p>
-					<my:a href="/song/create?albumId=${album.id}" class="btn btn-success">
+					<my:a href="/song/new?albumId=${album.id}" class="btn btn-success">
 						<fmt:message key="albums.detail.createFirstSong"/>
 					</my:a>
 				</p>

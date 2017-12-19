@@ -70,7 +70,7 @@ public class SongDaoImpl implements SongDao {
 			if (i == 0) {
 				queryBuilder.append(" WHERE");
 			} else {
-				queryBuilder.append(" AND");
+				queryBuilder.append(" OR");
 			}
 			queryBuilder.append(" LOWER(s.title) LIKE :pattern").append(i);
 		}

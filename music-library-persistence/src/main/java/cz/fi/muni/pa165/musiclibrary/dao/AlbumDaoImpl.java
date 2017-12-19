@@ -89,7 +89,7 @@ public class AlbumDaoImpl implements AlbumDao {
 			if (i == 0) {
 				queryBuilder.append(" WHERE");
 			} else {
-				queryBuilder.append(" AND");
+				queryBuilder.append(" OR");
 			}
 			queryBuilder.append(" LOWER(a.title) LIKE :pattern").append(i);
 		}
