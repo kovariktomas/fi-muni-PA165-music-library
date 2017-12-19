@@ -10,6 +10,7 @@ import java.util.Objects;
  * @author Iva Liberova
  */
 public class AlbumDTO {
+
 	private Long id;
 
 	private Date releaseDate;

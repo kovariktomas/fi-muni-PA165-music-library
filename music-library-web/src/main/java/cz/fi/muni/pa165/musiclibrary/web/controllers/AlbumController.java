@@ -3,8 +3,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
-import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumCreateDTOValidator;
-import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumDTOValidator;
+import cz.fi.muni.pa165.musiclibrary.web.forms.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,7 @@ import java.util.Locale;
  * Controller for albums administration.
  *
  * @author Iva Liberova
+ * @author Jan-Sebastian Fabik
  */
 @Controller
 @RequestMapping("/album")
@@ -73,20 +73,21 @@ public class AlbumController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create(Model model) {
 		log.debug("create()");
-		model.addAttribute("albumCreate", new AlbumCreateDTO());
+		model.addAttribute("albumCreate", new AlbumCreateFormData());
 		return "album/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(
-		@Valid @ModelAttribute("albumCreate") AlbumCreateDTO albumCreate,
+		@Valid @ModelAttribute("albumCreate") AlbumCreateFormData albumData,
 		BindingResult bindingResult,
 		Model model,
 		RedirectAttributes redirectAttributes,
 		UriComponentsBuilder uriBuilder,
 		Locale locale
 	) {
-		log.debug("create({})", albumCreate);
+		log.debug("create({})", albumData);
+		AlbumCreateDTO albumCreate = albumData.toAlbumCreateDTO();
 
 		if (bindingResult.hasErrors()) {
 			for (ObjectError error : bindingResult.getGlobalErrors()) {
@@ -112,7 +113,12 @@ public class AlbumController extends BaseController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable long id, Model model, RedirectAttributes redirectAttributes, Locale locale) {
+	public String edit(
+		@PathVariable long id,
+		Model model,
+		RedirectAttributes redirectAttributes,
+		Locale locale
+	) {
 		log.debug("edit({})", id);
 		AlbumDTO album = albumFacade.findById(id);
 
@@ -129,14 +135,15 @@ public class AlbumController extends BaseController {
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String edit(
 		@PathVariable long id,
-		@Valid @ModelAttribute("album") AlbumDTO album,
+		@Valid @ModelAttribute("album") AlbumEditFormData albumData,
 		BindingResult bindingResult,
 		Model model,
 		RedirectAttributes redirectAttributes,
 		UriComponentsBuilder uriBuilder,
 		Locale locale
 	) {
-		log.debug("edit({})", album);
+		log.debug("edit({}, {})", id, albumData);
+		AlbumDTO album = albumFacade.findById(id);
 
 		if (bindingResult.hasErrors()) {
 			for (ObjectError error : bindingResult.getGlobalErrors()) {
@@ -149,7 +156,7 @@ public class AlbumController extends BaseController {
 			return "album/edit";
 		}
 
-		album.setId(id);
+		albumData.updateAlbumDTO(album);
 		albumFacade.update(album);
 
 		String flashMessage = messageSource.getMessage(
@@ -194,14 +201,13 @@ public class AlbumController extends BaseController {
 	protected void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class,
 			new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true, 10));
-		if (binder.getTarget() instanceof AlbumCreateDTO) {
-			binder.addValidators(new AlbumCreateDTOValidator());
+
+		if (binder.getTarget() instanceof AlbumCreateFormData) {
+			binder.addValidators(new AlbumCreateFormDataValidator());
 		}
 
-		if (binder.getTarget() instanceof AlbumDTO) {
-			binder.addValidators(new AlbumDTOValidator());
+		if (binder.getTarget() instanceof AlbumEditFormData) {
+			binder.addValidators(new AlbumEditFormDataValidator());
 		}
-
-
 	}
 }
