@@ -17,11 +17,18 @@ public class SongCreateDTOValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		SongCreateDTO songCreateDTO = (SongCreateDTO) o;
-		if (songCreateDTO.getAlbumId() == null) return;
-		if (songCreateDTO.getMusicianId() == null) return;
-		if (songCreateDTO.getGenreId() == null) return;
-		if (songCreateDTO.getTitle() == null) return;
-		// not finnished
+		if (songCreateDTO.getAlbumId() == null) {
+			errors.rejectValue("albumid", "SongCreateDTOValidator.AlbumId.required");
+		}
+		if (songCreateDTO.getMusicianId() == null){
+			errors.rejectValue("musicianid", "SongCreateDTOValidator.MusicianId.required");
+		}
+		if (songCreateDTO.getGenreId() == null){
+			errors.rejectValue("genreid", "SongCreateDTOValidator.GenreId.required");
+		}
+		if (songCreateDTO.getTitle() == null || songCreateDTO.getTitle().isEmpty()) {
+			errors.rejectValue("title", "SongCreateDTOValidator.title.required");
+		}
 	}
 
 }
