@@ -61,8 +61,19 @@ public class SongController extends BaseController {
 	 * @return JSP page
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String newSong(Model model) {
-		model.addAttribute("songCreate", new SongCreateDTO());
+	public String newSong(@RequestParam(value = "albumId", defaultValue = "", required = false) String albumId, Model model) {
+		SongCreateDTO song = new SongCreateDTO();
+		if (albumId!="") {
+			try {
+			AlbumDTO album = albumFacade.findById(new Long(albumId));
+			if (album!=null)
+				song.setAlbumId(album.getId());
+			} catch (NumberFormatException e){
+				//
+			}
+		}
+		
+		model.addAttribute("songCreate", song);
 		model.addAttribute("genres", genreFacade.findAll());
 		model.addAttribute("albums", albumFacade.findAll());
 		model.addAttribute("musicians", musicianFacade.findAll());
