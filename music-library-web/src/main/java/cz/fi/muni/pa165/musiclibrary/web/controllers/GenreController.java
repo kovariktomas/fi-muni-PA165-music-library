@@ -70,9 +70,17 @@ public class GenreController extends BaseController {
 	}
 
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String view(@PathVariable long id, Model model) {
+	public String view(@PathVariable long id, Model model, RedirectAttributes redirectAttributes, Locale locale) {
 		log.debug("view({})", id);
-		model.addAttribute("genre", genreFacade.findById(id));
+		GenreDTO genre = genreFacade.findById(id);
+
+		if (genre == null) {
+			String flashMessage = messageSource.getMessage("genres.detail.notFound", null, locale);
+			redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
+			return "redirect:/genre/list";
+		}
+
+		model.addAttribute("genre", genre);
 		model.addAttribute("albums", albumFacade.findByGenre(id));
 		return "genre/view";
 	}
