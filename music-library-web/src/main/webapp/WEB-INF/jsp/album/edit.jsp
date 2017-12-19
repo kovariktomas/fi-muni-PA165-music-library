@@ -37,7 +37,8 @@
 					<fmt:message key="albums.edit.album.releaseDate"/>:
 				</form:label>
 				<div class="col-sm-10">
-					<form:input path="releaseDate" placeholder="dd-mm-yyyy" cssClass="form-control"/>
+					<fmt:message key="albums.edit.album.releaseDate.placeholder" var="placeholder"/>
+					<form:input path="releaseDate" placeholder="${placeholder}" cssClass="form-control"/>
 					<form:errors path="releaseDate" cssClass="help-block"/>
 				</div>
 			</div>

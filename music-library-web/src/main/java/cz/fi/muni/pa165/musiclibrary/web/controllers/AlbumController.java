@@ -200,7 +200,7 @@ public class AlbumController extends BaseController {
 	@SuppressWarnings("unused")
 	protected void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class,
-			new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true, 10));
+			new CustomDateEditor(new SimpleDateFormat("dd.MM.yyyy"), true, 10));
 
 		if (binder.getTarget() instanceof AlbumCreateFormData) {
 			binder.addValidators(new AlbumCreateFormDataValidator());
