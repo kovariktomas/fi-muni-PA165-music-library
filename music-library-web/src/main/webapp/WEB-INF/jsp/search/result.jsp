@@ -51,14 +51,14 @@
 			<h2>
 				<fmt:message key="search.result.genres"/>
 			</h2>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
-				<tr>
-					<th><fmt:message key="search.result.genre.name"/></th>
-				</tr>
+					<tr>
+						<th><fmt:message key="search.result.genre.name"/></th>
+					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${genres}" var="genre" begin="0" end="4">
+					<c:forEach items="${genres}" var="genre" begin="0" end="4">
 						<tr>
 							<td><c:out value="${genre.name}"/></td>
 							<td>
@@ -78,14 +78,14 @@
 			<h3>
 				<fmt:message key="search.result.songs"/>
 			</h3>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
-				<tr>
-					<th><fmt:message key="search.result.song.name"/></th>
-				</tr>
+					<tr>
+						<th><fmt:message key="search.result.song.name"/></th>
+					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${songs}" var="song" begin="0" end="4">
+					<c:forEach items="${songs}" var="song" begin="0" end="4">
 						<tr>
 							<td><c:out value="${song.title}"/></td>
 							<td>
@@ -105,14 +105,14 @@
 			<h3>
 				<fmt:message key="search.result.musicians"/>
 			</h3>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
-				<tr>
-					<th><fmt:message key="search.result.musician.name"/></th>
-				</tr>
+					<tr>
+						<th><fmt:message key="search.result.musician.name"/></th>
+					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${musicians}" var="musician" begin="0" end="4">
+					<c:forEach items="${musicians}" var="musician" begin="0" end="4">
 						<tr>
 							<td><c:out value="${musician.name}"/></td>
 							<td>
