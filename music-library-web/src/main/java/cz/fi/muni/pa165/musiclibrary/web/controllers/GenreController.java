@@ -134,7 +134,7 @@ public class GenreController extends BaseController {
 		Long id = genreFacade.create(formBean);
 		//report success
 		redirectAttributes.addFlashAttribute("alert_success", String.format(messageSource.getMessage("genreMessage.successAdd", null, loc), id));
-		return "redirect:" + uriBuilder.path("/genre/create/{id}").buildAndExpand(id).encode().toUriString();
+		return "redirect:" + uriBuilder.path("/genre/detail/{id}").buildAndExpand(id).encode().toUriString();
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
