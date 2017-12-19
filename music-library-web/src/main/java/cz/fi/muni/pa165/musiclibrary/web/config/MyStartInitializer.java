@@ -4,6 +4,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+import java.io.File;
 
 /**
  * Replaces web.xml file.
@@ -40,6 +43,13 @@ public class MyStartInitializer extends AbstractAnnotationConfigDispatcherServle
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return null;
+	}
+
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		File uploadDirectory = new File(System.getProperty("java.io.tmpdir"));
+		registration.setMultipartConfig(new MultipartConfigElement(uploadDirectory.getAbsolutePath(),
+			32000000, 320000000, 32000000));
 	}
 
 }
