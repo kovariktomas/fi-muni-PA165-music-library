@@ -9,7 +9,7 @@
 <my:pagetemplate title="${title}">
 <jsp:attribute name="body">
 	<p>
-		<my:a href="/song/new" class="btn btn-success">
+		<my:a href="/song/create" class="btn btn-success">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 			<fmt:message key="songs.list.create"/>
 		</my:a>
@@ -37,7 +37,7 @@
 						</my:a>
 					</td>
 					<td>
-						<my:a href="/genre/view/${song.genre.id}">
+						<my:a href="/genre/detail/${song.genre.id}">
 							<c:out value="${song.genre.name}"/>
 						</my:a>
 					</td>

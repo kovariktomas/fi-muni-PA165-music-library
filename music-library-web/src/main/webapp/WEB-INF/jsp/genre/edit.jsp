@@ -9,7 +9,7 @@
 <jsp:attribute name="pageHeader">
 	<div class="page-header">
 		<div class="pull-right">
-			<my:a href="/genre/view/${genre.id}" class="btn btn-default">
+			<my:a href="/genre/detail/${genre.id}" class="btn btn-default">
 				<fmt:message key="musicians.edit.backToDetail"/>
 			</my:a>
 		</div>
@@ -20,7 +20,7 @@
 	</div>
 </jsp:attribute>
 <jsp:attribute name="body">
-	<form:form method="post" action="${pageContext.request.contextPath}/genre/saveUpdate"
+	<form:form method="post" action="${pageContext.request.contextPath}/genre/edit"
 			modelAttribute="genreUpdate" cssClass="form-horizontal">
 		<div class="form-group ${name_error?'has-error':''}">
 			<form:label path="name" cssClass="col-sm-2 control-label"><fmt:message key="genre.name"/></form:label>

@@ -12,18 +12,15 @@ import java.io.IOException;
 	urlPatterns = {
 		"/musician/create",
 		"/musician/edit/*",
-		"/musician/delete",
+		"/musician/delete/*",
 		"/album/create",
 		"/album/edit/*",
-		"/album/delete",
-		"/song/new",
+		"/album/delete/*",
 		"/song/create",
-		"/song/delete",
-		"/genre/new",
+		"/song/delete/*",
 		"/genre/create",
-		"/genre/showUpdateGenreForm/*",
-		"/genre/update",
-		"/genre/delete"
+		"/genre/edit/*",
+		"/genre/delete/*"
 	}
 )
 public class ProtectFilter implements Filter {

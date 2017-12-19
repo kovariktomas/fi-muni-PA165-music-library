@@ -61,7 +61,7 @@
 					<c:forEach items="${genres}" var="genre" begin="0" end="4">
 						<tr>
 							<td>
-								<my:a href="/genre/view/${genre.id}">
+								<my:a href="/genre/detail/${genre.id}">
 									<c:out value="${genre.name}"/>
 								</my:a>
 							</td>
@@ -98,7 +98,7 @@
 								</my:a>
 							</td>
 							<td>
-								<my:a href="/genre/view/${song.genre.id}">
+								<my:a href="/genre/detail/${song.genre.id}">
 									<c:out value="${song.genre.name}"/>
 								</my:a>
 							</td>

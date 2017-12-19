@@ -54,7 +54,7 @@
 									</my:a>
 								</td>
 								<td>
-									<my:a href="/genre/view/${song.genre.id}">
+									<my:a href="/genre/detail/${song.genre.id}">
 										<c:out value="${song.genre.name}"/>
 									</my:a>
 								</td>

@@ -60,13 +60,13 @@ public class SongController extends BaseController {
 	 * @param model data to be displayed
 	 * @return JSP page
 	 */
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newSong(Model model) {
 		model.addAttribute("songCreate", new SongCreateDTO());
 		model.addAttribute("genres", genreFacade.findAll());
 		model.addAttribute("albums", albumFacade.findAll());
 		model.addAttribute("musicians", musicianFacade.findAll());
-		return "song/new";
+		return "song/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -86,7 +86,7 @@ public class SongController extends BaseController {
 			bindingResult.getFieldErrors().forEach((fe) -> {
 				model.addAttribute(fe.getField() + "_error", true);
 			});
-			return "song/new";
+			return "song/create";
 		}
 
 		Long id = songFacade.create(formBean);
@@ -108,10 +108,10 @@ public class SongController extends BaseController {
 		return "redirect:/song/list";
 	}
 
-	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable long id, Model model) {
 		model.addAttribute("song", songFacade.findById(id));
-		return "song/view";
+		return "song/detail";
 	}
 
 	/**

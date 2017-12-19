@@ -10,7 +10,7 @@
 	<jsp:attribute name="pageHeader">
 	<div class="page-header">
 		<form method="post" action="${pageContext.request.contextPath}/genre/delete/${genre.id}" class="pull-right">
-			<my:a href="/genre/update/${genre.id}" class="btn btn-default"><fmt:message key="genres.detail.edit"/></my:a>
+			<my:a href="/genre/edit/${genre.id}" class="btn btn-default"><fmt:message key="genres.detail.edit"/></my:a>
 			<button type="submit" class="btn btn-danger"><fmt:message key="genres.detail.delete"/></button>
 		</form>
 		<h1>

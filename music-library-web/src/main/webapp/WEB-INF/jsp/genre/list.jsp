@@ -9,7 +9,7 @@
 <jsp:attribute name="body">
 
 	<p>
-		<my:a href="/genre/new" class="btn btn-success">
+		<my:a href="/genre/create" class="btn btn-success">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 			<fmt:message key="genreCreate.title"/>
 		</my:a>
@@ -27,9 +27,9 @@
 		<c:forEach items="${genres}" var="genre">
 			<tr>
 				<td>${genre.id}</td>
-				<td><my:a href="/genre/view/${genre.id}"><c:out value="${genre.name}"/></my:a></td>
+				<td><my:a href="/genre/detail/${genre.id}"><c:out value="${genre.name}"/></my:a></td>
 				<td>
-					<my:a href="/genre/update/${genre.id}" class="btn btn-default">
+					<my:a href="/genre/edit/${genre.id}" class="btn btn-default">
 						<fmt:message key="genre.edit"/>
 					</my:a>
 				</td>
