@@ -7,26 +7,26 @@ import org.springframework.validation.Validator;
  * @author Iva Liberova
  * @author Jan-Sebastian Fabik
  */
-public class AlbumCreateFormValidator implements Validator {
+public class AlbumCreateFormDataValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return AlbumCreateForm.class.isAssignableFrom(clazz);
+		return AlbumCreateFormData.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		AlbumCreateForm albumCreate = (AlbumCreateForm) target;
+		AlbumCreateFormData albumData = (AlbumCreateFormData) target;
 
-		if (albumCreate.getTitle() == null || albumCreate.getTitle().isEmpty()) {
+		if (albumData.getTitle() == null || albumData.getTitle().isEmpty()) {
 			errors.rejectValue("title", "AlbumCreateFormValidator.title.required");
 		}
 
-		if (albumCreate.getReleaseDate() == null) {
+		if (albumData.getReleaseDate() == null) {
 			errors.rejectValue("releaseDate", "AlbumCreateFormValidator.releaseDate.required");
 		}
 
-		if (albumCreate.getAlbumArt() == null || albumCreate.getAlbumArt().length == 0) {
+		if (albumData.getAlbumArt() == null || albumData.getAlbumArt().length == 0) {
 			errors.rejectValue("albumArt", "AlbumCreateFormValidator.albumArt.required");
 		}
 	}

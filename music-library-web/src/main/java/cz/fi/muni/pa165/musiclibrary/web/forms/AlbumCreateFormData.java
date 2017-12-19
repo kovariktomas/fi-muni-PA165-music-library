@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author Jan-Sebastian Fabik
  */
-public class AlbumCreateForm {
+public class AlbumCreateFormData {
 
 	private Date releaseDate;
 
@@ -48,7 +48,7 @@ public class AlbumCreateForm {
 	}
 
 	public void setAlbumArt(MultipartFile albumArt) throws IOException {
-		this.albumArt = albumArt.getBytes();
+		this.albumArt = albumArt.isEmpty() ? null : albumArt.getBytes();
 	}
 
 	public AlbumCreateDTO toAlbumCreateDTO() {
