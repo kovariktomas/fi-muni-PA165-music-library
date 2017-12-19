@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
+import cz.fi.muni.pa165.musiclibrary.facade.SongFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,9 @@ public class AlbumController extends BaseController {
 	private AlbumFacade albumFacade;
 
 	@Autowired
+	private SongFacade songFacade;
+
+	@Autowired
 	private MessageSource messageSource;
 
 	@ModelAttribute
@@ -67,6 +71,7 @@ public class AlbumController extends BaseController {
 		}
 
 		model.addAttribute("album", album);
+		model.addAttribute("songs", songFacade.findByAlbum(id));
 		return "album/detail";
 	}
 

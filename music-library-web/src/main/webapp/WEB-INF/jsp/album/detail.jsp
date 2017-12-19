@@ -5,8 +5,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message key="albumView.title" var="title"/>
-<my:pagetemplate title="${title}">
+<my:pagetemplate title="${album.title}">
 	<jsp:attribute name="pageHeader">
 	<div class="page-header">
 		<form method="post" action="${pageContext.request.contextPath}/album/delete/${album.id}" class="pull-right">
@@ -24,21 +23,50 @@
 	</div>
 	</jsp:attribute>
 	<jsp:attribute name="body">
-		<table class="table">
-			<thead>
-			<tr>
-				<th><fmt:message key="album.id"/></th>
-				<th><fmt:message key="album.name"/></th>
-				<th><fmt:message key="album.commentary"/></th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>${album.id}</td>
-				<td><c:out value="${album.title}"/></td>
-				<td><c:out value="${album.commentary}"/></td>
-			</tr>
-			</tbody>
-		</table>
+		<c:if test="${not empty album.commentary}">
+			<p>
+				<c:out value="${album.commentary}"/>
+			</p>
+		</c:if>
+
+		<c:choose>
+			<c:when test="${not empty songs}">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="col-xs-1 col-md-1 col-lg-1"><fmt:message key="albums.detail.song.id"/></th>
+							<th><fmt:message key="albums.detail.song.title"/></th>
+							<th><fmt:message key="albums.detail.song.musician"/></th>
+							<th><fmt:message key="albums.detail.song.genre"/></th>
+							<th><fmt:message key="albums.detail.song.bitrate"/></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${songs}" var="song">
+							<tr>
+								<td><c:out value="${song.id}"/></td>
+								<td>
+									<c:out value="${song.title}"/>
+									<c:if test="${not empty song.commentary}">
+										<p><em>${song.commentary}</em></p>
+									</c:if>
+								</td>
+								<td><c:out value="${song.musician.name}"/></td>
+								<td><c:out value="${song.genre.name}"/></td>
+								<td><c:out value="${song.bitrate}"/></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<p><fmt:message key="albums.detail.noSongs"/></p>
+				<p>
+					<my:a href="/song/create?albumId=${album.id}" class="btn btn-success">
+						<fmt:message key="albums.detail.createFirstSong"/>
+					</my:a>
+				</p>
+			</c:otherwise>
+		</c:choose>
 	</jsp:attribute>
 </my:pagetemplate>
