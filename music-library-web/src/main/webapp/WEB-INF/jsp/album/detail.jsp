@@ -29,9 +29,11 @@
 			</p>
 		</c:if>
 
+		<h2><fmt:message key="albums.detail.songs"/></h2>
+
 		<c:choose>
 			<c:when test="${not empty songs}">
-				<table class="table table-striped">
+				<table class="table table-striped table-align-middle">
 					<thead>
 						<tr>
 							<th class="col-xs-1 col-md-1 col-lg-1"><fmt:message key="albums.detail.song.id"/></th>
@@ -44,15 +46,18 @@
 					<tbody>
 						<c:forEach items="${songs}" var="song">
 							<tr>
-								<td><c:out value="${song.id}"/></td>
+								<td>${song.id}</td>
+								<td><c:out value="${song.title}"/></td>
 								<td>
-									<c:out value="${song.title}"/>
-									<c:if test="${not empty song.commentary}">
-										<p><em>${song.commentary}</em></p>
-									</c:if>
+									<my:a href="/musician/detail/${song.musician.id}" class="btn">
+										<c:out value="${song.musician.name}"/>
+									</my:a>
 								</td>
-								<td><c:out value="${song.musician.name}"/></td>
-								<td><c:out value="${song.genre.name}"/></td>
+								<td>
+									<my:a href="/genre/view/${song.genre.id}" class="btn">
+										<c:out value="${song.genre.name}"/>
+									</my:a>
+								</td>
 								<td><c:out value="${song.bitrate}"/></td>
 							</tr>
 						</c:forEach>
