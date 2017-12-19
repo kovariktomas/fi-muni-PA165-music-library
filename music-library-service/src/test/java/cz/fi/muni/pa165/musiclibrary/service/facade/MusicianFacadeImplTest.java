@@ -89,7 +89,7 @@ public class MusicianFacadeImplTest extends AbstractTestNGSpringContextTests {
 	public void testFindByName() {
 		Musician musician1 = createSampleMusician("Red Hot Chilli Peppers");
 		Musician musician2 = createSampleMusician("Alabama Red Peppers");
-		createSampleMusician("Blue Velvet");
+		createSampleMusician("Red Velvet");
 
 		List<MusicianDTO> musicianDTOs = musicianFacade.findByName("red peppers");
 

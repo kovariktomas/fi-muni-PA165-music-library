@@ -46,7 +46,7 @@ public class MusicianDaoImpl implements cz.fi.muni.pa165.musiclibrary.dao.Musici
 			if (i == 0) {
 				queryBuilder.append(" WHERE");
 			} else {
-				queryBuilder.append(" OR");
+				queryBuilder.append(" AND");
 			}
 			queryBuilder.append(" LOWER(m.name) LIKE :pattern").append(i);
 		}
