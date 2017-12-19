@@ -36,7 +36,7 @@ curl -i -X GET http://localhost:8080/pa165/rest/albums/by_title?title=Hybrid+The
 curl -i -X POST \
 	--header "Content-Type: application/json" \
 	--data '{"releaseDate":"2000-10-24","title":"Hybrid Theory","commentary":"","albumArt":null}' \
-	http://localhost:8080/pa165/rest/albums/create
+	http://admin%40example.com:password@localhost:8080/pa165/rest/albums/create
 ```
 
 ### Update album
@@ -45,11 +45,11 @@ curl -i -X POST \
 curl -i -X PUT \
 	--header "Content-Type: application/json" \
 	--data '{"releaseDate":"2003-03-25","title":"Meteora"}' \
-	http://localhost:8080/pa165/rest/albums/1
+	http://admin%40example.com:password@localhost:8080/pa165/rest/albums/1
 ```
 
 ### Delete album
 
 ```
-curl -i -X DELETE http://localhost:8080/pa165/rest/albums/1
+curl -i -X DELETE http://admin%40example.com:password@localhost:8080/pa165/rest/albums/1
 ```
