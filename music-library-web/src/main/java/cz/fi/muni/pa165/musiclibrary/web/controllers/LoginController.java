@@ -21,7 +21,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
 	@Autowired
 	private ApplicationUserFacade applicationUserFacade;

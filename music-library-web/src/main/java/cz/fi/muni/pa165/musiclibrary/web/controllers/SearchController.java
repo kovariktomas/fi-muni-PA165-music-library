@@ -27,7 +27,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/search")
-public class SearchController {
+public class SearchController extends BaseController {
 
 	final static Logger log = LoggerFactory.getLogger(SearchController.class);
 

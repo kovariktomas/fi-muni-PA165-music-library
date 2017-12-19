@@ -30,7 +30,7 @@ import java.util.Locale;
  */
 @Controller
 @RequestMapping("/musician")
-public class MusicianController {
+public class MusicianController extends BaseController {
 
 	private final static Logger log = LoggerFactory.getLogger(MusicianController.class);
 

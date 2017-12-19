@@ -32,7 +32,7 @@ import java.util.Locale;
  */
 @Controller
 @RequestMapping("/album")
-public class AlbumController {
+public class AlbumController extends BaseController {
 
 	private final static Logger log = LoggerFactory.getLogger(AlbumController.class);
 
