@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,11 @@ public class LogoutController extends BaseController {
 	public String logout(
 		HttpServletRequest request,
 		RedirectAttributes redirectAttributes,
-		Locale locale
+		Locale locale,
+		SessionStatus status
 	) {
-		request.getSession().setAttribute("authenticatedUser", null);
+		status.setComplete();
+		request.getSession().removeAttribute("authenticatedUser");
 
 		String flashMessage = messageSource.getMessage("logout.succeeded", null, locale);
 		redirectAttributes.addFlashAttribute("alert_success", flashMessage);
