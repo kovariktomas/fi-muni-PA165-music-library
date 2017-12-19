@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 
 import cz.fi.muni.pa165.musiclibrary.dto.GenreCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.GenreDTO;
+import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
 import cz.fi.muni.pa165.musiclibrary.facade.GenreFacade;
 import cz.fi.muni.pa165.musiclibrary.web.forms.GenreCreateDTOValidator;
 import org.slf4j.Logger;
@@ -37,6 +38,9 @@ public class GenreController extends BaseController {
 	private GenreFacade genreFacade;
 
 	@Autowired
+	private AlbumFacade albumFacade;
+
+	@Autowired
 	private MessageSource messageSource;
 
 	@ModelAttribute
@@ -69,6 +73,7 @@ public class GenreController extends BaseController {
 	public String view(@PathVariable long id, Model model) {
 		log.debug("view({})", id);
 		model.addAttribute("genre", genreFacade.findById(id));
+		model.addAttribute("albums", albumFacade.findByGenre(id));
 		return "genre/view";
 	}
 
