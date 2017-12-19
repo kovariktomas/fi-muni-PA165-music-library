@@ -28,22 +28,29 @@
 	</h2>
 	<c:choose>
 		<c:when test="${not empty albums}">
-			<table class="table">
-				<thead>
-					<tr>
-						<th><fmt:message key="musicians.detail.album.id"/></th>
-						<th><fmt:message key="musicians.detail.album.name"/></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${albums}" var="album">
-						<tr>
-							<td><c:out value="${album.id}"/></td>
-							<td><c:out value="${album.title}"/></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<div class="row">
+				<c:forEach items="${albums}" var="album">
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img src="${pageContext.request.contextPath}/search/albumImage/${album.id}"
+								 alt="${album.title}">
+							<div class="caption">
+								<h3>${album.title}</h3>
+								<p>${album.commentary}</p>
+								<p>
+									<fmt:message key="musicians.detail.album.releaseDate"/>:
+									<fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/>
+								</p>
+								<p>
+									<my:a href="/album/detail/${album.id}" class="btn btn-primary" role="button">
+										<fmt:message key="musicians.detail.album.detail"/>
+									</my:a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<p><fmt:message key="musicians.detail.noAlbums"/></p>
