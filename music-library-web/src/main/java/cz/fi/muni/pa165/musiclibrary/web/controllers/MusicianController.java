@@ -178,6 +178,12 @@ public class MusicianController extends BaseController {
 			redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
 			return "redirect:/musician/list";
 		}
+		
+		if (albumFacade.findByMusician(musician.getId()).isEmpty() == false) {
+ 			String flashMessage = messageSource.getMessage("musicians.delete.couldnotbydeleted", null, locale);
+ 			redirectAttributes.addFlashAttribute("alert_danger", flashMessage);
+ 			return "redirect:/musician/list";
+ 		}
 
 		musicianFacade.delete(id);
 
