@@ -26,6 +26,8 @@ Password: password
 
 ## REST API documentation
 
+No authentication is required for `GET` requests. HTTP Basic authorization is required for data modification.
+
 - [Albums](docs/rest-api/albums.md)
 - [Musicians](docs/rest-api/musicians.md)
 - [Genres](docs/rest-api/genres.md)
