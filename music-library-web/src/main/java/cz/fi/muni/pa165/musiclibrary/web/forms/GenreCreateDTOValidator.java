@@ -17,6 +17,9 @@ public class GenreCreateDTOValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		GenreCreateDTO genreCreateDTO = (GenreCreateDTO) target;
-		if (genreCreateDTO.getName() == null) return;
+
+		if (genreCreateDTO.getName() == null || genreCreateDTO.getName().isEmpty()) {
+			errors.rejectValue("name", "GenreCreateDTOValidator.name.required");
+		}
 	}
 }
