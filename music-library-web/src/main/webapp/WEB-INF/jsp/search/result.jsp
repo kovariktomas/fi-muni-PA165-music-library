@@ -25,10 +25,10 @@
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail">
 							<img src="${pageContext.request.contextPath}/search/albumImage/${album.id}"
-								alt="${album.title}">
+								alt="${fn:escapeXml(album.title)}">
 							<div class="caption">
-								<h3>${album.title}</h3>
-								<p>${album.commentary}</p>
+								<h3><c:out value="${album.title}"/></h3>
+								<p><c:out value="${album.commentary}"/></p>
 								<p>
 									<fmt:message key="search.result.album.releaseDate"/>:
 									<fmt:formatDate pattern="dd. MM. yyyy" value="${album.releaseDate}"/>
