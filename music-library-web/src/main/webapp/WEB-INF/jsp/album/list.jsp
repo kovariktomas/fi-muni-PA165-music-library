@@ -28,7 +28,7 @@
 			<c:forEach items="${albums}" var="album">
 				<tr>
 					<td>${album.id}</td>
-					<td><my:a href="/album/detail/${album.id}" class="btn"><c:out value="${album.title}"/></my:a></td>
+					<td><my:a href="/album/detail/${album.id}"><c:out value="${album.title}"/></my:a></td>
 					<td>
 						<my:a href="/album/edit/${album.id}" class="btn btn-default">
 							<fmt:message key="album.edit"/>

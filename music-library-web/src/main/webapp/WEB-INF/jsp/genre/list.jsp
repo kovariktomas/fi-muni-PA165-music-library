@@ -27,7 +27,7 @@
 		<c:forEach items="${genres}" var="genre">
 			<tr>
 				<td>${genre.id}</td>
-				<td><my:a href="/genre/view/${genre.id}" class="btn"><c:out value="${genre.name}"/></my:a></td>
+				<td><my:a href="/genre/view/${genre.id}"><c:out value="${genre.name}"/></my:a></td>
 				<td>
 					<my:a href="/genre/update/${genre.id}" class="btn btn-default">
 						<fmt:message key="genre.edit"/>

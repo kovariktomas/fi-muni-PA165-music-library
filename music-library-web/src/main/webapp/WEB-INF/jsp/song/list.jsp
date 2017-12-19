@@ -32,17 +32,17 @@
 					<td>${song.id}</td>
 					<td><c:out value="${song.title}"/></td>
 					<td>
-						<my:a href="/musician/detail/${song.musician.id}" class="btn">
+						<my:a href="/musician/detail/${song.musician.id}">
 							<c:out value="${song.musician.name}"/>
 						</my:a>
 					</td>
 					<td>
-						<my:a href="/genre/view/${song.genre.id}" class="btn">
+						<my:a href="/genre/view/${song.genre.id}">
 							<c:out value="${song.genre.name}"/>
 						</my:a>
 					</td>
 					<td>
-						<my:a href="/album/detail/${song.album.id}" class="btn">
+						<my:a href="/album/detail/${song.album.id}">
 							<c:out value="${song.album.title}"/>
 						</my:a>
 					</td>
