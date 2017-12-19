@@ -51,7 +51,7 @@
 			<h2>
 				<fmt:message key="search.result.genres"/>
 			</h2>
-			<table class="table table-striped">
+			<table class="table table-striped table-align-middle">
 				<thead>
 					<tr>
 						<th><fmt:message key="search.result.genre.name"/></th>
@@ -60,10 +60,9 @@
 				<tbody>
 					<c:forEach items="${genres}" var="genre" begin="0" end="4">
 						<tr>
-							<td><c:out value="${genre.name}"/></td>
 							<td>
-								<my:a href="/genre/view/${genre.id}" class="btn btn-primary">
-									<fmt:message key="search.result.genre.detail"/>
+								<my:a href="/genre/view/${genre.id}">
+									<c:out value="${genre.name}"/>
 								</my:a>
 							</td>
 						</tr>
@@ -78,21 +77,32 @@
 			<h3>
 				<fmt:message key="search.result.songs"/>
 			</h3>
-			<table class="table table-striped">
+			<table class="table table-striped table-align-middle">
 				<thead>
 					<tr>
-						<th><fmt:message key="search.result.song.name"/></th>
+						<th class="col-xs-1 col-md-1 col-lg-1"><fmt:message key="search.result.song.id"/></th>
+						<th><fmt:message key="search.result.song.title"/></th>
+						<th><fmt:message key="search.result.song.musician"/></th>
+						<th><fmt:message key="search.result.song.genre"/></th>
+						<th><fmt:message key="search.result.song.bitrate"/></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${songs}" var="song" begin="0" end="4">
+					<c:forEach items="${songs}" var="song">
 						<tr>
+							<td>${song.id}</td>
 							<td><c:out value="${song.title}"/></td>
 							<td>
-								<my:a href="/song/view/${song.id}" class="btn btn-primary">
-									<fmt:message key="search.result.song.detail"/>
+								<my:a href="/musician/detail/${song.musician.id}">
+									<c:out value="${song.musician.name}"/>
 								</my:a>
 							</td>
+							<td>
+								<my:a href="/genre/view/${song.genre.id}">
+									<c:out value="${song.genre.name}"/>
+								</my:a>
+							</td>
+							<td><c:out value="${song.bitrate}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -105,7 +115,7 @@
 			<h3>
 				<fmt:message key="search.result.musicians"/>
 			</h3>
-			<table class="table table-striped">
+			<table class="table table-striped table-align-middle">
 				<thead>
 					<tr>
 						<th><fmt:message key="search.result.musician.name"/></th>
@@ -114,10 +124,9 @@
 				<tbody>
 					<c:forEach items="${musicians}" var="musician" begin="0" end="4">
 						<tr>
-							<td><c:out value="${musician.name}"/></td>
 							<td>
-								<my:a href="/musician/detail/${musician.id}" class="btn btn-primary">
-									<fmt:message key="search.result.musician.detail"/>
+								<my:a href="/musician/detail/${musician.id}">
+									<c:out value="${musician.name}"/>
 								</my:a>
 							</td>
 						</tr>
