@@ -57,6 +57,27 @@
 					<my:a href="/genre/list"><f:message key="navigation.genres"/></my:a>
 				</li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<c:choose>
+					<c:when test="${not empty authenticatedUser}">
+						<li>
+							<p class="navbar-text">
+								<f:message key="navigation.loggedInAs"/>
+								<c:out value=" "/>
+								<strong><c:out value="${authenticatedUser.email}"/></strong>
+							</p>
+						</li>
+						<li>
+							<my:a href="/logout"><f:message key="navigation.logout"/></my:a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<my:a href="/login"><f:message key="navigation.login"/></my:a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
@@ -76,20 +97,6 @@
 			</c:if>
 		</c:otherwise>
 	</c:choose>
-
-	<!-- authenticated user info -->
-	<c:if test="${not empty authenticatedUser}">
-		<div class="row">
-			<div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<c:out value="${authenticatedUser.username}"/>
-					</div>
-				</div>
-			</div>
-		</div>
-	</c:if>
 
 	<!-- alerts -->
 	<c:if test="${not empty alert_danger}">

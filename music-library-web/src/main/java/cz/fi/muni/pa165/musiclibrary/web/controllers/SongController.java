@@ -26,7 +26,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/song")
-public class SongController {
+public class SongController extends BaseController {
 
 	@Autowired
 	private SongFacade songFacade;

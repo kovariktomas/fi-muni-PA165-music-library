@@ -29,7 +29,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/genre")
-public class GenreController {
+public class GenreController extends BaseController {
 
 	final static Logger log = LoggerFactory.getLogger(GenreController.class);
 
