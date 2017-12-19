@@ -49,6 +49,9 @@ public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}
 
+	/**
+	 * Enables uploading of files.
+	 */
 	@Bean
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
