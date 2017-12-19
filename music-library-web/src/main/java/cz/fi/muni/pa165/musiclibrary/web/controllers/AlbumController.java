@@ -3,7 +3,8 @@ package cz.fi.muni.pa165.musiclibrary.web.controllers;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumCreateDTO;
 import cz.fi.muni.pa165.musiclibrary.dto.AlbumDTO;
 import cz.fi.muni.pa165.musiclibrary.facade.AlbumFacade;
-import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumCreateDTOValidator;
+import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumCreateFormValidator;
+import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumCreateForm;
 import cz.fi.muni.pa165.musiclibrary.web.forms.AlbumDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import java.util.Locale;
  * Controller for albums administration.
  *
  * @author Iva Liberova
+ * @author Jan-Sebastian Fabik
  */
 @Controller
 @RequestMapping("/album")
@@ -73,20 +75,20 @@ public class AlbumController extends BaseController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create(Model model) {
 		log.debug("create()");
-		model.addAttribute("albumCreate", new AlbumCreateDTO());
+		model.addAttribute("albumCreate", new AlbumCreateForm());
 		return "album/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(
-		@Valid @ModelAttribute("albumCreate") AlbumCreateDTO albumCreate,
+		@Valid @ModelAttribute("albumCreate") AlbumCreateForm albumCreateForm,
 		BindingResult bindingResult,
 		Model model,
 		RedirectAttributes redirectAttributes,
 		UriComponentsBuilder uriBuilder,
 		Locale locale
 	) {
-		log.debug("create({})", albumCreate);
+		AlbumCreateDTO albumCreate = albumCreateForm.toAlbumCreateDTO();
 
 		if (bindingResult.hasErrors()) {
 			for (ObjectError error : bindingResult.getGlobalErrors()) {
@@ -194,8 +196,9 @@ public class AlbumController extends BaseController {
 	protected void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class,
 			new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true, 10));
-		if (binder.getTarget() instanceof AlbumCreateDTO) {
-			binder.addValidators(new AlbumCreateDTOValidator());
+
+		if (binder.getTarget() instanceof AlbumCreateForm) {
+			binder.addValidators(new AlbumCreateFormValidator());
 		}
 
 		if (binder.getTarget() instanceof AlbumDTO) {
