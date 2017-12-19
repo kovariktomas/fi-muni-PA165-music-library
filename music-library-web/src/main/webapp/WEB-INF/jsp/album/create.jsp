@@ -4,45 +4,53 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<fmt:message key="albumCreate.title" var="title"/>
+
+<fmt:message key="albums.create.title" var="title"/>
 <my:pagetemplate title="${title}">
 	<jsp:attribute name="body">
-		<form:form cssClass="editable-form" method="POST" action="${pageContext.request.contextPath}/album/create"
-				modelAttribute="albumCreate">
-			<table>
-				<tr>
-					<th><form:label path="title"><fmt:message key="album.name"/>:</form:label></th>
-					<td><form:input path="title"/></td>
-					<td><form:errors path="title" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<th>
-						<form:label path="releaseDate">
-							<fmt:message key="album.releaseDate"/>
-							<c:out value="(dd-mm-yyyy):"/>
-						</form:label>
-					</th>
-					<td><form:input path="releaseDate"/></td>
-					<td><form:errors path="releaseDate" cssClass="error"/></td>
-				</tr>
-				<tr>
-
-					<th><form:label path="albumArt"><fmt:message key="album.albumArt"/>:</form:label></th>
-					<td><form:input type="file" path="albumArt"/></td>
-					<td><form:errors path="albumArt" cssClass="error"/></td>
-				</tr>
-				<tr>
-					<th><form:label path="commentary"><fmt:message key="album.commentary"/>:</form:label></th>
-					<td><form:textarea path="commentary"/></td>
-					<td><form:errors path="commentary" cssClass="error"/></td>
-				</tr>
-			</table>
-			<input type="hidden" name="id" value="${album.id}"/>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<form:form method="POST" action="${pageContext.request.contextPath}/album/create"
+				modelAttribute="albumCreate" cssClass="form-horizontal"
+				enctype="multipart/form-data">
+			<div class="form-group ${title_error ? 'has-error' : ''}">
+				<form:label path="title" cssClass="col-sm-2 control-label">
+					<fmt:message key="albums.create.album.title"/>:
+				</form:label>
+				<div class="col-sm-10">
+					<form:input path="title" cssClass="form-control"/>
+					<form:errors path="title" cssClass="help-block"/>
+				</div>
+			</div>
+			<div class="form-group ${releaseDate_error ? 'has-error' : ''}">
+				<form:label path="releaseDate" cssClass="col-sm-2 control-label">
+					<fmt:message key="albums.create.album.releaseDate"/>:
+				</form:label>
+				<div class="col-sm-10">
+					<form:input path="releaseDate" placeholder="dd-mm-yyyy" cssClass="form-control"/>
+					<form:errors path="releaseDate" cssClass="help-block"/>
+				</div>
+			</div>
+			<div class="form-group ${albumArt_error ? 'has-error' : ''}">
+				<form:label path="albumArt" cssClass="col-sm-2 control-label">
+					<fmt:message key="albums.create.album.albumArt"/>:
+				</form:label>
+				<div class="col-sm-10">
+					<form:input path="albumArt" type="file"/>
+					<form:errors path="albumArt" cssClass="help-block"/>
+				</div>
+			</div>
+			<div class="form-group ${commentary_error ? 'has-error' : ''}">
+				<form:label path="commentary" cssClass="col-sm-2 control-label">
+					<fmt:message key="albums.create.album.commentary"/>:
+				</form:label>
+				<div class="col-sm-10">
+					<form:input path="commentary" cssClass="form-control"/>
+					<form:errors path="commentary" cssClass="help-block"/>
+				</div>
+			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button class="btn btn-primary" type="submit">
-						<fmt:message key="albumCreate.createNew"/>
+						<fmt:message key="albums.create.save"/>
 					</button>
 				</div>
 			</div>
